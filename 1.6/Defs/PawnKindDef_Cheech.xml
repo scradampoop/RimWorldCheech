@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <PawnKindDef ParentName="BasePlayerPawnKind">
+    <defName>PawnKindDef_Cheech_LeedurMunuh</defName>
+    <label>Leedur Munuh</label>
+    <defaultFactionType>PlayerColony</defaultFactionType>
+    <chemicalAddictionChance>0.06</chemicalAddictionChance>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <fixedGender>Female</fixedGender>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <apparelMoney>350~600</apparelMoney>
+    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+    <techHediffsChance>0.03</techHediffsChance>
+    <techHediffsMoney>50~800</techHediffsMoney>
+    <techHediffsTags>
+      <li>Poor</li>
+      <li>Simple</li>
+      <li>ImplantEmpireCommon</li>
+    </techHediffsTags>
+    <techHediffsDisallowTags>
+      <li>PainCauser</li>
+    </techHediffsDisallowTags>
+    <initialResistanceRange>13~21</initialResistanceRange>
+    <xenotypeSet>
+      <xenotypeChances>
+        <XenotypeDef_Cheech>999</XenotypeDef_Cheech>
+      </xenotypeChances>		
+    </xenotypeSet>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="VillagerBase">
+		<defName>PawnKindDef_Cheech_Villager</defName>
+		<weaponTags>
+			<li>ShortShots</li>
+			<li>MedievalMeleeBasic</li>
+		</weaponTags>
+		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
+		<useFactionXenotypes>false</useFactionXenotypes>
+		<xenotypeSet>
+			<xenotypeChances>
+				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
+			</xenotypeChances>			
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<PawnKindDef ParentName="Villager_Child">
+		<defName>PawnKindDef_Cheech_VillagerChild</defName>
+		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
+		<useFactionXenotypes>false</useFactionXenotypes>
+		<xenotypeSet>
+			<xenotypeChances>
+				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
+			</xenotypeChances>			
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<PawnKindDef ParentName="GuardBase">
+		<defName>PawnKindDef_Cheech_TownGuard</defName>
+		<weaponTags>
+			<li>ShortShots</li>
+			<li>MedievalMeleeBasic</li>
+		</weaponTags>
+		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
+		<useFactionXenotypes>false</useFactionXenotypes>
+		<xenotypeSet>
+			<xenotypeChances>
+				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
+			</xenotypeChances>			
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<PawnKindDef ParentName="CouncilmanBase">
+		<defName>PawnKindDef_Cheech_TownCouncilman</defName>
+		<weaponTags>
+			<li>ShortShots</li>
+			<li>MedievalMeleeBasic</li>
+		</weaponTags>
+		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
+		<useFactionXenotypes>false</useFactionXenotypes>
+		<xenotypeSet>
+			<xenotypeChances>
+				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
+			</xenotypeChances>			
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<PawnKindDef ParentName="TraderBase">
+		<defName>PawnKindDef_Cheech_TownTrader</defName>
+		<weaponTags>
+			<li>Gun</li>
+		</weaponTags>
+		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
+		<useFactionXenotypes>false</useFactionXenotypes>
+		<xenotypeSet>
+			<xenotypeChances>
+				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
+			</xenotypeChances>		
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<PawnKindDef ParentName="MercenaryGunnerBase">
+		<defName>PawnKindDef_Cheech_MercenaryGunner</defName>
+		<label>cheech gunner</label>
+		<initialResistanceRange>6~10</initialResistanceRange>
+		<weaponTags Inherit="False">
+			<li>ShortShots</li>
+		</weaponTags>
+		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
+		<useFactionXenotypes>false</useFactionXenotypes>
+		<xenotypeSet>
+			<xenotypeChances>
+				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
+			</xenotypeChances>			
+		</xenotypeSet>
+	</PawnKindDef>
+
+	<PawnKindDef ParentName="MercenaryEliteBase">
+		<defName>PawnKindDef_Cheech_MercenaryElite</defName>
+		<label>cheech elite</label>
+		<initialResistanceRange>15~23</initialResistanceRange>
+		<weaponTags Inherit="False">
+			<li>ShortShots</li>
+		</weaponTags>
+		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
+		<useFactionXenotypes>false</useFactionXenotypes>
+		<xenotypeSet>
+			<xenotypeChances>
+				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
+			</xenotypeChances>		
+		</xenotypeSet>
+	</PawnKindDef>
+</Defs>

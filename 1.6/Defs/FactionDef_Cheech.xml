@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+	<FactionDef ParentName="OutlanderRoughBase">
+		<defName>FactionDef_Cheech_OutlanderRough</defName>
+		<label>rough cheech union</label>
+		<description>These are some reel niec cheechers, huh.</description>
+		<factionIconPath>Cheech/Icons/Icon_Paw</factionIconPath>
+		<factionNameMaker>RulePackDef_Cheech_NamerFactionOutlander</factionNameMaker>
+		<settlementNameMaker>RulePackDef_Cheech_NamerSettlementOutlander</settlementNameMaker>
+		<pawnSingular>cheech</pawnSingular>
+		<pawnsPlural>cheechers</pawnsPlural>
+		<replacesFaction>OutlanderRough</replacesFaction>
+		<xenotypeSet Inherit="False">
+			<xenotypeChances>
+				<XenotypeDef_Cheech>8</XenotypeDef_Cheech>
+				<Hussar>0.05</Hussar>
+				<Neanderthal>0.025</Neanderthal>
+				<Impid>0.1</Impid>
+			</xenotypeChances>			
+		</xenotypeSet>
+		<dialogFactionGreetingHostile>FactionGreetingHostile_Cheech</dialogFactionGreetingHostile>
+		<dialogFactionGreetingHostileAppreciative>FactionGreetingHostileAppreciative_Cheech</dialogFactionGreetingHostileAppreciative>
+		<dialogFactionGreetingWary>FactionGreetingWary_Cheech</dialogFactionGreetingWary>
+		<dialogFactionGreetingWarm>FactionGreetingWarm_Cheech</dialogFactionGreetingWarm>
+		<dialogMilitaryAidSent>MilitaryAidSent_Cheech</dialogMilitaryAidSent>
+		<pawnGroupMakers Inherit="False">
+			<li>
+				<kindDef>Combat</kindDef>
+				<options>
+					<PawnKindDef_Cheech_Villager>5</PawnKindDef_Cheech_Villager>
+					<PawnKindDef_Cheech_TownGuard>10</PawnKindDef_Cheech_TownGuard>
+					<Grenadier_Destructive>10</Grenadier_Destructive>
+					<Mercenary_Slasher>10</Mercenary_Slasher>
+					<PawnKindDef_Cheech_MercenaryGunner>7</PawnKindDef_Cheech_MercenaryGunner>
+					<PawnKindDef_Cheech_MercenaryElite>10</PawnKindDef_Cheech_MercenaryElite>
+					<PawnKindDef_Cheech_TownCouncilman>10</PawnKindDef_Cheech_TownCouncilman>
+				</options>
+			</li>
+			<li>
+				<kindDef>Peaceful</kindDef>
+				<options>
+					<PawnKindDef_Cheech_Villager>20</PawnKindDef_Cheech_Villager>
+					<PawnKindDef_Cheech_VillagerChild>10</PawnKindDef_Cheech_VillagerChild>
+					<PawnKindDef_Cheech_TownGuard>10</PawnKindDef_Cheech_TownGuard>
+					<PawnKindDef_Cheech_TownCouncilman>10</PawnKindDef_Cheech_TownCouncilman>
+				</options>
+			</li>
+			<li>
+				<kindDef>Trader</kindDef>
+				<traders>
+					<PawnKindDef_Cheech_TownTrader>1</PawnKindDef_Cheech_TownTrader>
+				</traders>
+				<carriers>
+					<Muffalo>6</Muffalo>
+					<Dromedary>5</Dromedary>
+					<Alpaca>2</Alpaca>
+					<Elephant>1</Elephant>
+				</carriers>
+				<guards>
+					<PawnKindDef_Cheech_Villager>3</PawnKindDef_Cheech_Villager>
+					<PawnKindDef_Cheech_TownGuard>10</PawnKindDef_Cheech_TownGuard>
+					<Grenadier_Destructive>10</Grenadier_Destructive>
+					<Mercenary_Slasher>10</Mercenary_Slasher>
+					<PawnKindDef_Cheech_MercenaryGunner>7</PawnKindDef_Cheech_MercenaryGunner>
+					<PawnKindDef_Cheech_MercenaryElite>10</PawnKindDef_Cheech_MercenaryElite>
+				</guards>
+			</li>
+			<li>
+				<kindDef>Settlement</kindDef>
+				<options>
+					<PawnKindDef_Cheech_Villager>10</PawnKindDef_Cheech_Villager>
+					<PawnKindDef_Cheech_TownGuard>10</PawnKindDef_Cheech_TownGuard>
+					<Grenadier_Destructive>10</Grenadier_Destructive>
+					<Mercenary_Slasher>10</Mercenary_Slasher>
+					<PawnKindDef_Cheech_MercenaryGunner>7</PawnKindDef_Cheech_MercenaryGunner>
+					<PawnKindDef_Cheech_MercenaryElite>10</PawnKindDef_Cheech_MercenaryElite>
+					<PawnKindDef_Cheech_TownCouncilman>10</PawnKindDef_Cheech_TownCouncilman>
+				</options>
+			</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">
+				<kindDef>Miners</kindDef>
+				<commonality>1</commonality>
+				<options>
+					<Miner>1</Miner>
+				</options>
+			</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">
+				<kindDef>Hunters</kindDef>
+				<commonality>1</commonality>
+				<options>
+					<Hunter>1</Hunter>
+				</options>
+			</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">
+				<kindDef>Loggers</kindDef>
+				<commonality>1</commonality>
+				<options>
+					<Logger>1</Logger>
+				</options>
+			</li>
+			<li MayRequire="Ludeon.RimWorld.Ideology">
+				<kindDef>Farmers</kindDef>
+				<commonality>1</commonality>
+				<options>
+					<Farmer>1</Farmer>
+				</options>
+			</li>
+		</pawnGroupMakers>
+	</FactionDef>
+</Defs>

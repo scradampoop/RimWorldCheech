@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<FactionGreetingHostile_Cheech>{0} screeches something only cheechers could understand into the microphone and disconnects.</FactionGreetingHostile_Cheech>
+	<FactionGreetingHostileAppreciative_Cheech>Hissing and screeching angrily, {0} demands that you make a gesture of unity, like bringing gifts to one of {0_possessive} settlements or releasing {0_possessive} faction's prisoners unharmed. Until then, {0_pronoun} is unwilling to talk.\n\nHissing an insult, {0_pronoun} disconnects.</FactionGreetingHostileAppreciative_Cheech>
+	<FactionGreetingWary_Cheech>{0} hisses a greeting and asks what business you need done.</FactionGreetingWary_Cheech>
+	<FactionGreetingWarm_Cheech>Barks out enthusiastically, {0} greets {NEGOTIATOR_labelShort} and asks what {LEADER_pronoun} can do to help you.</FactionGreetingWarm_Cheech>
+	<MilitaryAidSent_Cheech>{0} agrees to send cheech fighters to help you.</MilitaryAidSent_Cheech>
+</LanguageData>

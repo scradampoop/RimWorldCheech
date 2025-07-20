@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/CultureDef[defName="Astropolitan" or defName="Rustican" or defName="Corunan" or defName="Kriminul"]/styleItemTags</xpath>
+		<value>
+			<li>
+				<tag>Cheech</tag>
+				<baseWeight>1</baseWeight>
+				<weightFactor>1</weightFactor>
+			</li>
+		</value>
+	</Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/FactionDef[defName="PirateWaster"]/xenotypeSet/xenotypeChances</xpath>
+    <value>
+      <XenotypeDef_Cheech>0.025</XenotypeDef_Cheech>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/FactionDef[defName="Pirate"]/xenotypeSet/xenotypeChances</xpath>
+    <value>
+      <XenotypeDef_Cheech>0.05</XenotypeDef_Cheech>
+    </value>
+  </Operation>
+
+</Patch>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+	<GeneDef ParentName="GeneTailBase">
+    <!--Inherited:
+    <displayCategory>Miscellaneous</displayCategory>
+    <randomChosen>true</randomChosen>
+    <exclusionTags>
+      <li>Tail</li>
+    </exclusionTags>-->    
+		<defName>GeneDef_Cheech_Tail</defName>
+		<label>cheech tail</label>
+		<description>Cheech tail.  ^_^</description>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+    <biostatCpx>0</biostatCpx>
+    <biostatMet>0</biostatMet>
+		<displayOrderInCategory>1000</displayOrderInCategory>
+		<renderNodeProperties>
+			<li>
+				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
+				<texPath>Cheech/Tail/Cheech_Tail</texPath>
+				<overrideMeshSize>(1, 1)</overrideMeshSize>
+				<parentTagDef>Body</parentTagDef>
+        <colorType>Skin</colorType>
+        <useSkinShader>true</useSkinShader>
+        <useRottenColor>true</useRottenColor>
+				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <visibleFacing>
+          <li>East</li>
+          <li>North</li>
+          <li>West</li>
+        </visibleFacing>
+				<drawData>
+					<scaleOffsetByBodySize>true</scaleOffsetByBodySize>
+					<defaultData>
+						<layer>-2</layer>
+					</defaultData>
+					<dataNorth>
+						<offset>(0, 0.25, -0.45)</offset>
+						<layer>90</layer>
+					</dataNorth>
+					<dataEast>
+						<offset>(-0.35, -0.1, -0.25)</offset>
+					</dataEast>
+					<dataWest>
+						<offset>(0.35, -0.1, -0.25)</offset>
+					</dataWest>
+				</drawData>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+</Defs>

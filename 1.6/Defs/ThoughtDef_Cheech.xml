@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<ThoughtDef>
+		<defName>ThoughtDef_Cheech_PheromoneThought</defName>
+		<thoughtClass>Cheechin.Thought_PheromoneAttraction</thoughtClass>
+		<workerClass>Cheechin.ThoughtWorker_PheromoneAttraction</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<li>
+				<label>comforting scent</label>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

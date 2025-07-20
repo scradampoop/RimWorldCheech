@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <FurDef>
+    <defName>FurDef_Cheech_Tufts</defName>
+    <noGraphic>true</noGraphic>
+    <bodyTypeGraphicPaths>
+      <Male>Cheech/Fur/Tufts/Tufts_Male</Male>
+      <Female>Cheech/Fur/Tufts/Tufts_Female</Female>
+      <Hulk>Cheech/Fur/Tufts/Tufts_Hulk</Hulk>
+      <Thin>Cheech/Fur/Tufts/Tufts_Thin</Thin>
+      <Child>Cheech/Fur/Tufts/Tufts_Child</Child>
+    </bodyTypeGraphicPaths>
+  </FurDef>
+
+  <FurDef>
+    <defName>FurDef_Cheech_Cheetah</defName>
+    <noGraphic>true</noGraphic>
+    <bodyTypeGraphicPaths>
+      <Male>Cheech/Fur/Cheetah/Cheetah_Male</Male>
+      <Female>Cheech/Fur/Cheetah/Cheetah_Female</Female>
+      <Child>Cheech/Fur/Cheetah/Cheetah_Child</Child>
+    </bodyTypeGraphicPaths>
+  </FurDef>
+
+</Defs>

@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<Defs>
+  <!--<GeneDef ParentName="GeneNoseBase">
+    <defName>GeneDef_Nose_Cheech</defName>
+    <label>cheech muzzle</label>
+    <description>Cheech muzzle. To smell your butt.</description>
+    <iconPath>Cheech/Icons/Icon_Paw</iconPath>
+    <biostatCpx>0</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>PawnRenderNode_AttachmentHead</nodeClass>
+        <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+        <texPath>Things/Pawn/Humanlike/HeadAttachments/PigNose/PigNose</texPath>
+        <narrowCrownHorizontalOffset>0.03</narrowCrownHorizontalOffset>
+        <useSkinShader>true</useSkinShader>
+        <useRottenColor>true</useRottenColor>
+        <colorType>Skin</colorType>
+        <parentTagDef>Head</parentTagDef>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <visibleFacing>
+          <li>East</li>
+          <li>South</li>
+          <li>West</li>
+        </visibleFacing>
+        <drawData>
+          <defaultData>
+            <layer>66</layer>
+          </defaultData>
+        </drawData>
+      </li>
+    </renderNodeProperties>
+    <displayCategory>Miscellaneous</displayCategory>
+    <displayOrderInCategory>410</displayOrderInCategory>
+    TODO: What do these do?
+    <symbolPack>
+        <prefixSymbols>
+          <li><symbol>cat</symbol></li>
+          <li><symbol>kitty</symbol></li>
+          <li><symbol>kit</symbol></li>
+          <li><symbol>tabby</symbol></li>
+          <li><symbol>tom</symbol></li>
+        </prefixSymbols>
+        <suffixSymbols>
+          <li><symbol>cat</symbol></li>
+          <li><symbol>kitten</symbol></li>
+          <li><symbol>tabby</symbol></li>
+          <li><symbol>tom</symbol></li>
+          <li><symbol>ear</symbol></li>
+        </suffixSymbols>
+      </symbolPack>
+  </GeneDef>-->
+</Defs>

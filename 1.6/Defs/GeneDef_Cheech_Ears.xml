@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<Defs>
+  <!--TODO: use cat ears as base instead?-->
+  <!--<GeneDef ParentName="Ears_Cat">-->
+  <GeneDef ParentName="GeneEarsBase">
+    <!--Inherited:
+    <biostatCpx>0</biostatCpx>
+    <endogeneCategory>Ears</endogeneCategory>
+    <displayCategory>Cosmetic</displayCategory>
+    <displayOrderInCategory>70</displayOrderInCategory>
+    <iconColor>(0.75, 0.75, 0.75)</iconColor>
+    <randomChosen>true</randomChosen>
+    <exclusionTags>
+      <li>Ears</li>
+    </exclusionTags>-->
+    <defName>GeneDef_Cheech_Ears</defName>
+    <label>cheech ears</label>
+    <description>Cosmetic only. Cheech ears.</description>
+    <iconPath>Cheech/Icons/Icon_CheechEars</iconPath>		
+    <biostatMet>0</biostatMet>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>PawnRenderNode_AttachmentHead</nodeClass>
+        <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+        <texPath>Cheech/Ears/Ear</texPath>
+        <colorType>Skin</colorType>
+        <parentTagDef>Head</parentTagDef>
+        <useSkinShader>true</useSkinShader>
+        <useRottenColor>true</useRottenColor>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <drawData>
+          <defaultData>
+            <layer>70</layer>
+          </defaultData>
+        </drawData>
+      </li>
+    </renderNodeProperties>
+    <!--TODO: What do these do?-->
+    <!--<symbolPack>
+      <prefixSymbols>
+        <li><symbol>cat</symbol></li>
+        <li><symbol>kitty</symbol></li>
+        <li><symbol>kit</symbol></li>
+        <li><symbol>tabby</symbol></li>
+        <li><symbol>tom</symbol></li>
+      </prefixSymbols>
+      <suffixSymbols>
+        <li><symbol>cat</symbol></li>
+        <li><symbol>kitten</symbol></li>
+        <li><symbol>tabby</symbol></li>
+        <li><symbol>tom</symbol></li>
+        <li><symbol>ear</symbol></li>
+      </suffixSymbols>
+    </symbolPack>-->
+  </GeneDef>
+</Defs>

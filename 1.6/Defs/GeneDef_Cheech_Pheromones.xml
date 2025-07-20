@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+	<GeneDef>
+		<defName>GeneDef_Cheech_Pheromones</defName>
+		<label>cheech pheromones</label>
+		<description>Cheechers liek eachover. ^_^</description>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<displayCategory>Miscellaneous</displayCategory>
+		<displayOrderInCategory>100</displayOrderInCategory>
+		<biostatCpx>1</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<customEffectDescriptions>
+			<li>Improved relations with any pawn of the same xenotype.</li>
+		</customEffectDescriptions>
+	</GeneDef>
+</Defs>

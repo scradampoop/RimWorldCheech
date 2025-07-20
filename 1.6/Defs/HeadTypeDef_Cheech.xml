@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<!-- Average -->
+	<HeadTypeDef ParentName="AverageBase">
+		<defName>HeadTypeDef_Cheech_Female_Average</defName>
+		<graphicPath>Cheech/Head/Female_Average_Normal</graphicPath>
+		<randomChosen>false</randomChosen>
+		<gender>Female</gender>
+		<requiredGenes>
+			<li>GeneDef_Cheech_Head</li>
+		</requiredGenes>
+	</HeadTypeDef>
+  <HeadTypeDef ParentName="AverageBase">
+    <defName>HeadTypeDef_Cheech_Male_Average</defName>
+    <graphicPath>Cheech/Head/Male_Average_Normal</graphicPath>
+    <randomChosen>false</randomChosen>
+    <gender>Male</gender>
+    <requiredGenes>
+      <li>GeneDef_Cheech_Head</li>
+    </requiredGenes>
+  </HeadTypeDef>
+
+</Defs>

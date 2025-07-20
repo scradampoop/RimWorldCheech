@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<RulePackDef>
+		<defName>RulePackDef_Cheech_NamerFactionOutlander</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name->[firstPart]'[secondPart] [union]</li>
+
+				<li>firstPart->Trum</li>
+				<li>firstPart->Alam</li>
+				<li>firstPart->Pob</li>
+				<li>firstPart->Lav</li>
+				<li>firstPart->Na</li>
+				<li>firstPart->Kur</li>
+				<li>firstPart->Pan</li>
+				<li>firstPart->Mil</li>
+				<li>firstPart->Hask</li>
+
+				<li>secondPart->Pakh</li>
+				<li>secondPart->Dolon</li>
+				<li>secondPart->Sarim</li>
+				<li>secondPart->Doloss</li>
+				<li>secondPart->Rokh</li>
+				<li>secondPart->Vakhna</li>
+				<li>secondPart->Kariss</li>
+				<li>secondPart->Poffon</li>
+				<li>secondPart->Hariss</li>
+				<li>secondPart->Soyob</li>
+				<li>secondPart->Dakhan</li>
+				<li>secondPart->Voim</li>
+				<li>secondPart->Dukh</li>
+				<li>secondPart->Vassk</li>
+				<li>secondPart->Esam</li>
+				<li>secondPart->Cassthar</li>
+				<li>secondPart->Barkan</li>
+				<li>secondPart->Lampan</li>
+				<li>secondPart->Rokba</li>
+				<li>secondPart->Histan</li>
+				<li>secondPart->Oloman</li>
+				<li>secondPart->Okran</li>
+				<li>secondPart->Fokin</li>
+				<li>secondPart->Farass</li>
+				<li>secondPart->Iomath</li>
+				<li>secondPart->Mothon</li>
+				<li>secondPart->Dialom</li>
+				<li>secondPart->Bodnok</li>
+				<li>secondPart->Bathnor</li>
+				<li>secondPart->Zoyom</li>
+				<li>secondPart->Abnar</li>
+				<li>secondPart->Reeken</li>
+				<li>secondPart->Bissna</li>
+				<li>secondPart->Turom</li>
+				<li>secondPart->Taratha</li>
+				<li>secondPart->Tisska</li>
+				<li>secondPart->Purim</li>
+				<li>secondPart->Shuss</li>
+				<li>secondPart->Parathnak</li>
+				<li>secondPart->Gioshum</li>
+				<li>secondPart->Korob</li>
+				<li>secondPart->Hinthab</li>
+				<li>secondPart->Kulom</li>
+				<li>secondPart->Avintok</li>
+				<li>secondPart->Tannek</li>
+
+				<li>union->Union</li>
+				<li>union->Nation</li>
+				<li>union->Confederacy</li>
+				<li>union->Confederation</li>
+				<li>union->Alliance</li>
+				<li>union->Covenant</li>
+				<li>union->Treaty</li>
+				<li>union->Pact</li>
+				<li>union->Coalition</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<RulePackDef>
+		<defName>RulePackDef_Cheech_NamerSettlementOutlander</defName>
+		<include>
+			<li>RulePackDef_Cheech_NamerFactionOutlander</li>
+		</include>
+		<rulePack>
+			<rulesStrings>
+				<li>r_name->[firstPart] [secondPart]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+</Defs>

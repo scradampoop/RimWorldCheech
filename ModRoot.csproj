@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="1.6\**\*.*" Exclude="1.6\src\**\*.*" />
+    <Content Include="About\**\*.*" />
+    <Content Include="Languages\**\*.*" />
+    <Content Include="Textures\**\*.*" />
+  </ItemGroup>
+</Project>

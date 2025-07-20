@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+	<XenotypeDef>
+		<defName>XenotypeDef_Cheech</defName>
+		<label>cheech</label>
+		<description>These are some real niec cheechers, huh.</description>
+		<descriptionShort>These are some real niec cheechers, huh.</descriptionShort>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+    <!--<soundDefOnImplant>CheechRawr</soundDefOnImplant>-->
+		<inheritable>true</inheritable>
+		<!--TODO: Add custom cheech names.-->
+    <!--<nameMaker>NamerPersonWaster</nameMaker>-->
+		<!--<chanceToUseNameMaker>0.1</chanceToUseNameMaker>-->
+    <!--TODO: Might be able to use these to give coat variations without clogging up UI.-->
+    <!--<displayPriority>-1000</displayPriority>-->
+    <!--<doubleXenotypeChances>
+      <Pigskin>0.02</Pigskin>
+      <Impid>0.02</Impid>
+      <Yttakin>0.02</Yttakin>
+      <Neanderthal>0.02</Neanderthal>
+      <Waster>0.02</Waster>
+      <Dirtmole>0.02</Dirtmole>
+    </doubleXenotypeChances>-->
+		<genes>
+			<li>GeneDef_Cheech_Ears</li>
+			<li>GeneDef_Cheech_Head</li>
+			<li>GeneDef_Cheech_Tail</li>
+			<li>GeneDef_Cheech_Fur_Tufted</li>
+      <li>Hair_BaldOnly</li>
+      <li>Beard_NoBeardOnly</li>
+      <li>GeneDef_Cheech_Pheromones</li>
+		</genes>
+	</XenotypeDef>
+
+</Defs>

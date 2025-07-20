@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+	<GeneDef>
+		<defName>GeneDef_Cheech_Head</defName>
+		<label>cheech head</label>
+		<labelShortAdj>cheech-brained</labelShortAdj>
+		<description>"She's got a little heaad."</description>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<displayCategory>Cosmetic</displayCategory>
+		<displayOrderInCategory>400</displayOrderInCategory>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<forcedHeadTypes>
+			<li>HeadTypeDef_Cheech_Female_Average</li>
+      <li>HeadTypeDef_Cheech_Male_Average</li>
+		</forcedHeadTypes>
+		<skinIsHairColor>false</skinIsHairColor>
+		<tattoosVisible>true</tattoosVisible>
+	</GeneDef>
+</Defs>
