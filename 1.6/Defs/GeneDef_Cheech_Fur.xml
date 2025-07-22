@@ -2,9 +2,9 @@
 <Defs>
 
   <GeneDef>
-		<defName>GeneDef_Cheech_Fur_Tufted</defName>
+		<defName>GeneDef_Cheech_Fur_Tufted_White</defName>
     <fur>FurDef_Cheech_Tufts</fur>
-		<label>cheech tufts</label>
+		<label>cheech base coat: white</label>
 		<labelShortAdj>tufted</labelShortAdj>
     <biostatCpx>0</biostatCpx>
     <biostatMet>0</biostatMet>
@@ -13,7 +13,7 @@
 		<displayOrderInCategory>400</displayOrderInCategory>
 		<iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
 		<skinIsHairColor>false</skinIsHairColor>
-		<tattoosVisible>true</tattoosVisible>
+		<tattoosVisible>false</tattoosVisible>
     <exclusionTags>
       <li>Skin</li>
       <li>Fur</li>
@@ -41,9 +41,9 @@
 	</GeneDef>
 
   <GeneDef>
-    <defName>GeneDef_Cheech_Fur_Cheetah</defName>
-    <fur>FurDef_Cheech_Cheetah</fur>
-    <label>2cheetah</label>
+    <defName>GeneDef_Cheech_Fur_Tufted_Skin</defName>
+    <fur>FurDef_Cheech_Tufts</fur>
+    <label>cheech base coat: skin</label>
     <labelShortAdj>tufted</labelShortAdj>
     <biostatCpx>0</biostatCpx>
     <biostatMet>0</biostatMet>
@@ -52,9 +52,10 @@
     <displayOrderInCategory>400</displayOrderInCategory>
     <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
     <skinIsHairColor>false</skinIsHairColor>
-    <tattoosVisible>true</tattoosVisible>
+    <tattoosVisible>false</tattoosVisible>
     <exclusionTags>
       <li>Skin</li>
+      <li>BodyPatternSkin</li>
       <li>Fur</li>
     </exclusionTags>
     <renderNodeProperties>
@@ -63,7 +64,6 @@
         <nodeClass>PawnRenderNode_Fur</nodeClass>
         <workerClass>PawnRenderNodeWorker_Fur</workerClass>
         <baseLayer>5</baseLayer>
-        <shaderTypeDef>CutoutComplex</shaderTypeDef>
         <rotDrawMode>Fresh, Rotting</rotDrawMode>
         <colorType>Skin</colorType>
         <parentTagDef>Body</parentTagDef>
@@ -72,45 +72,48 @@
     <modExtensions>
       <li Class="VEF.Genes.GeneExtension">
         <furHidesBody>True</furHidesBody>
-        <!--<dontColourFur>True</dontColourFur>-->
-        <!--<useSkinAndHairColorsForFur>True</useSkinAndHairColorsForFur>-->
-        <!--<useSkinColorForFur>True</useSkinColorForFur>-->
-        <!--<useMaskForFur>True</useMaskForFur>-->
+        <useSkinColorForFur>True</useSkinColorForFur>
       </li>
     </modExtensions>
   </GeneDef>
 
   <GeneDef>
-    <defName>GeneDef_Cheech_Fur_Pattern1</defName>
-    <label>1cheech pattern1</label>
-    <labelShortAdj>cheech pattern1y</labelShortAdj>
+    <defName>GeneDef_Cheech_Fur_Tufted_Hair</defName>
+    <fur>FurDef_Cheech_Tufts</fur>
+    <label>cheech base coat: hair</label>
+    <labelShortAdj>tufted</labelShortAdj>
     <biostatCpx>0</biostatCpx>
     <biostatMet>0</biostatMet>
-    <description>Cheech Fur Pattern1.</description>
+    <description>Base cheech coat.</description>
     <displayCategory>Miscellaneous</displayCategory>
-    <displayOrderInCategory>1</displayOrderInCategory>
+    <displayOrderInCategory>400</displayOrderInCategory>
     <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
-    <skinIsHairColor>false</skinIsHairColor>
-    <tattoosVisible>true</tattoosVisible>
+    <skinIsHairColor>true</skinIsHairColor>
+    <tattoosVisible>false</tattoosVisible>
+    <exclusionTags>
+      <li>Skin</li>
+      <li>BodyPatternHair</li>
+      <li>Fur</li>
+    </exclusionTags>
     <renderNodeProperties>
       <li>
-        <nodeClass>PawnRenderNode</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <baseLayer>6</baseLayer>
+        <debugLabel>Fur</debugLabel>
+        <nodeClass>PawnRenderNode_Fur</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Fur</workerClass>
+        <baseLayer>5</baseLayer>
         <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <colorType>Skin</colorType>
-        <!--<useSkinShader>true</useSkinShader>-->
-        <shaderTypeDef>CutoutComplexBlend</shaderTypeDef>
-        <!--<useRottenColor>true</useRottenColor>-->
+        <colorType>Hair</colorType>
         <parentTagDef>Body</parentTagDef>
-        <bodyTypeGraphicPaths>
-          <Female>Cheech/Fur/ShortStripes/ShortStripes_Female</Female>
-        </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="VEF.Genes.GeneExtension">
+        <furHidesBody>True</furHidesBody>
+      </li>
+    </modExtensions>
   </GeneDef>
 
-  <GeneDef>
+  <!--<GeneDef>
     <defName>GeneDef_Cheech_Fur_Cheetah2</defName>
     <label>2cheech pattern1</label>
     <labelShortAdj>cheech pattern1y</labelShortAdj>
@@ -133,9 +136,9 @@
         <baseLayer>5</baseLayer>
         <rotDrawMode>Fresh, Rotting</rotDrawMode>
         <colorType>Skin</colorType>
-        <!--<useSkinShader>true</useSkinShader>-->
+        <useSkinShader>true</useSkinShader>
         <shaderTypeDef>CutoutComplex</shaderTypeDef>
-        <!--<useRottenColor>true</useRottenColor>-->
+        <useRottenColor>true</useRottenColor>
         <parentTagDef>Body</parentTagDef>
         <bodyTypeGraphicPaths>
           <Female>Cheech/Fur/Cheetah/Cheetah_Female</Female>
@@ -144,6 +147,6 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
-  </GeneDef>
-
+  </GeneDef>-->
+  
 </Defs>

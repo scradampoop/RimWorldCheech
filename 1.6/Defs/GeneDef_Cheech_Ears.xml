@@ -22,7 +22,7 @@
       <li>
         <nodeClass>PawnRenderNode_AttachmentHead</nodeClass>
         <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
-        <texPath>Cheech/Ears/Ear</texPath>
+        <texPath>Cheech/Ears/Cheech_Ears</texPath>
         <colorType>Skin</colorType>
         <parentTagDef>Head</parentTagDef>
         <useSkinShader>true</useSkinShader>

@@ -8,18 +8,10 @@
       <Male>Cheech/Fur/Tufts/Tufts_Male</Male>
       <Female>Cheech/Fur/Tufts/Tufts_Female</Female>
       <Hulk>Cheech/Fur/Tufts/Tufts_Hulk</Hulk>
+      <Fat>Things/Pawn/Humanlike/Bodies/FurCovered_Fat</Fat>
       <Thin>Cheech/Fur/Tufts/Tufts_Thin</Thin>
       <Child>Cheech/Fur/Tufts/Tufts_Child</Child>
-    </bodyTypeGraphicPaths>
-  </FurDef>
-
-  <FurDef>
-    <defName>FurDef_Cheech_Cheetah</defName>
-    <noGraphic>true</noGraphic>
-    <bodyTypeGraphicPaths>
-      <Male>Cheech/Fur/Cheetah/Cheetah_Male</Male>
-      <Female>Cheech/Fur/Cheetah/Cheetah_Female</Female>
-      <Child>Cheech/Fur/Cheetah/Cheetah_Child</Child>
+      <Baby>Cheech/Fur/Tufts/Tufts_Child</Baby><!-- Always covered by swaddled graphic? -->
     </bodyTypeGraphicPaths>
   </FurDef>
 

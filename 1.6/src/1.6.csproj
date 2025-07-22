@@ -29,6 +29,9 @@
 
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.3.6" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -65,11 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.3.6" />
+    <Compile Remove="scratchpad.cs" />
+    <None Include="scratchpad.cs" />
   </ItemGroup>
-  <!--<ItemGroup>
-    <None Include="..\..\..\**\*.*" Exclude="..\..\..\.vs\**\*.*;..\..\..\1.6\Assemblies\**\*.*;..\..\..\1.6\Source\**\*.*;">
-      <Link>ModRoot\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </None>
-  </ItemGroup>-->
 </Project>

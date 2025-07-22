@@ -83,3 +83,26 @@ public class ThoughtWorker_PheromoneAttraction : ThoughtWorker
         return false;
     }
 }
+
+public class PawnRenderNode_BodyPattern(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode(pawn, props, tree)
+{
+    public override Graphic? GraphicFor(Pawn pawnGraphicFor)
+    {
+        for (int index = 0; index < props.bodyTypeGraphicPaths.Count; ++index)
+        {
+            if (props.bodyTypeGraphicPaths[index].bodyType == pawnGraphicFor.story.bodyType)
+            {
+                return GraphicDatabase.Get<Graphic_Multi>(
+                    path: props.bodyTypeGraphicPaths[index].texturePath,
+                    shader: ShaderDatabase.CutoutSkinOverlay,
+                    drawSize: Vector2.one,
+                    color: props.colorType == PawnRenderNodeProperties.AttachmentColorType.Hair ? pawnGraphicFor.story.HairColor : pawnGraphicFor.story.SkinColor,
+                    colorTwo: Color.white,
+                    data: null,
+                    maskPath: pawnGraphicFor.story.furDef?.GetFurBodyGraphicPath(pawnGraphicFor) ?? pawnGraphicFor.story.bodyType.bodyNakedGraphicPath
+                );
+            }
+        }
+        return null;
+    }
+}

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <GeneDef>
+    <defName>GeneDef_Cheech_Pattern_Tux_Skin</defName>
+    <label>cheech pattern: tux</label>
+    <labelShortAdj>tuxedo</labelShortAdj>
+    <biostatCpx>0</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <description>Looks like the Steenk!</description>
+    <displayCategory>Miscellaneous</displayCategory>
+    <displayOrderInCategory>1</displayOrderInCategory>
+    <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
+    <exclusionTags>
+      <li>BodyPatternSkin</li>
+    </exclusionTags>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Skin</debugLabel>
+        <baseLayer>6</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/Tux/Tux_Female</Male>
+          <Female>Cheech/Fur/Tux/Tux_Female</Female>
+          <Hulk>Cheech/Fur/Tux/Tux_Female</Hulk>
+          <Fat>Cheech/Fur/Tux/Tux_Female</Fat>
+          <Thin>Cheech/Fur/Tux/Tux_Female</Thin>
+          <Child>Cheech/Fur/Tux/Tux_Female</Child>
+          <Baby>Cheech/Fur/Tux/Tux_Female</Baby>
+        </bodyTypeGraphicPaths>
+        <!--<overlayLayer>Body</overlayLayer>-->
+        <!--<colorType>Skin</colorType>-->
+        <!--<shaderTypeDef>CutoutSkin</shaderTypeDef>-->
+        <!--<shaderTypeDef>CutoutComplexBlend</shaderTypeDef>-->
+        <!--<useSkinShader>true</useSkinShader>-->
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef>
+    <defName>GeneDef_Cheech_Pattern_RoundBib_Skin</defName>
+    <label>cheech pattern: RoundBib</label>
+    <labelShortAdj>RoundBib</labelShortAdj>
+    <biostatCpx>0</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <description>TODO: Description</description>
+    <displayCategory>Miscellaneous</displayCategory>
+    <displayOrderInCategory>1</displayOrderInCategory>
+    <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
+    <exclusionTags>
+      <li>BodyPatternSkin</li>
+    </exclusionTags>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Skin</debugLabel>
+        <baseLayer>6</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/RoundBib/RoundBib_Hulk</Male>
+          <Female>Cheech/Fur/RoundBib/RoundBib_Hulk</Female>
+          <Hulk>Cheech/Fur/RoundBib/RoundBib_Hulk</Hulk>
+          <Fat>Cheech/Fur/RoundBib/RoundBib_Hulk</Fat>
+          <Thin>Cheech/Fur/RoundBib/RoundBib_Hulk</Thin>
+          <Child>Cheech/Fur/RoundBib/RoundBib_Hulk</Child>
+          <Baby>Cheech/Fur/RoundBib/RoundBib_Hulk</Baby>
+        </bodyTypeGraphicPaths>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef Name="GeneDef_Cheech_Pattern_Base_Hair" Abstract="True">
+    <biostatCpx>0</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <displayCategory>Miscellaneous</displayCategory>
+    <displayOrderInCategory>1</displayOrderInCategory>
+    <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
+    <randomChosen>true</randomChosen>
+    <exclusionTags>
+      <li>BodyPatternHair</li>
+    </exclusionTags>
+  </GeneDef>
+
+  <!-- Template:
+  <GeneDef ParentName="GeneDef_Cheech_Pattern_Base_Hair">
+    <defName>GeneDef_Cheech_Pattern_DirName_Hair</defName>
+    <label>cheech pattern: dirName</label>
+    <labelShortAdj>dirname</labelShortAdj>
+    <description>TODO: Description</description>
+    <renderNodeProperties>
+      <li>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/DirName/DirName_Male</Male>
+          <Female>Cheech/Fur/DirName/DirName_Female</Female>
+          <Hulk>Cheech/Fur/DirName/DirName_Hulk</Hulk>
+          <Fat>Cheech/Fur/DirName/DirName_Hulk</Fat>
+          <Thin>Cheech/Fur/DirName/DirName_Thin</Thin>
+          <Child>Cheech/Fur/DirName/DirName_Thin</Child>
+          <Baby>Cheech/Fur/DirName/DirName_Thin</Baby>
+        </bodyTypeGraphicPaths>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Hair</debugLabel>
+        <baseLayer>7</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <colorType>Hair</colorType>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+  -->
+
+  <GeneDef ParentName="GeneDef_Cheech_Pattern_Base_Hair">
+    <defName>GeneDef_Cheech_Pattern_Jaguar_Hair</defName>
+    <label>cheech pattern: jaguar</label>
+    <labelShortAdj>jaguar</labelShortAdj>
+    <description>TODO: Description</description>
+    <renderNodeProperties>
+      <li>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/Jaguar/Jaguar_Male</Male>
+          <Female>Cheech/Fur/Jaguar/Jaguar_Female</Female>
+          <Hulk>Cheech/Fur/Jaguar/Jaguar_Hulk</Hulk>
+          <Fat>Cheech/Fur/Jaguar/Jaguar_Hulk</Fat>
+          <Thin>Cheech/Fur/Jaguar/Jaguar_Thin</Thin>
+          <Child>Cheech/Fur/Jaguar/Jaguar_Thin</Child>
+          <Baby>Cheech/Fur/Jaguar/Jaguar_Thin</Baby>
+        </bodyTypeGraphicPaths>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Hair</debugLabel>
+        <baseLayer>7</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <colorType>Hair</colorType>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Pattern_Base_Hair">
+    <defName>GeneDef_Cheech_Pattern_Leopard_Hair</defName>
+    <label>cheech pattern: leopard</label>
+    <labelShortAdj>leopard</labelShortAdj>
+    <description>TODO: Description</description>
+    <renderNodeProperties>
+      <li>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/Leopard/Leopard_Male</Male>
+          <Female>Cheech/Fur/Leopard/Leopard_Female</Female>
+          <Hulk>Cheech/Fur/Leopard/Leopard_Hulk</Hulk>
+          <Fat>Cheech/Fur/Leopard/Leopard_Hulk</Fat>
+          <Thin>Cheech/Fur/Leopard/Leopard_Thin</Thin>
+          <Child>Cheech/Fur/Leopard/Leopard_Thin</Child>
+          <Baby>Cheech/Fur/Leopard/Leopard_Thin</Baby>
+        </bodyTypeGraphicPaths>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Hair</debugLabel>
+        <baseLayer>7</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <colorType>Hair</colorType>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Pattern_Base_Hair">
+    <defName>GeneDef_Cheech_Pattern_Spots_Hair</defName>
+    <label>cheech pattern: Spots</label>
+    <labelShortAdj>Spots</labelShortAdj>
+    <description>TODO: Description</description>
+    <renderNodeProperties>
+      <li>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/Spots/Spots_Male</Male>
+          <Female>Cheech/Fur/Spots/Spots_Female</Female>
+          <Hulk>Cheech/Fur/Spots/Spots_Hulk</Hulk>
+          <Fat>Cheech/Fur/Spots/Spots_Hulk</Fat>
+          <Thin>Cheech/Fur/Spots/Spots_Thin</Thin>
+          <Child>Cheech/Fur/Spots/Spots_Thin</Child>
+          <Baby>Cheech/Fur/Spots/Spots_Thin</Baby>
+        </bodyTypeGraphicPaths>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Hair</debugLabel>
+        <baseLayer>7</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <colorType>Hair</colorType>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Pattern_Base_Hair">
+    <defName>GeneDef_Cheech_Pattern_StripesSharp_Hair</defName>
+    <label>cheech pattern: StripesSharp</label>
+    <labelShortAdj>StripesSharp</labelShortAdj>
+    <description>TODO: Description</description>
+    <renderNodeProperties>
+      <li>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/StripesSharp/StripesSharp_Male</Male>
+          <Female>Cheech/Fur/StripesSharp/StripesSharp_Female</Female>
+          <Hulk>Cheech/Fur/StripesSharp/StripesSharp_Hulk</Hulk>
+          <Fat>Cheech/Fur/StripesSharp/StripesSharp_Hulk</Fat>
+          <Thin>Cheech/Fur/StripesSharp/StripesSharp_Thin</Thin>
+          <Child>Cheech/Fur/StripesSharp/StripesSharp_Thin</Child>
+          <Baby>Cheech/Fur/StripesSharp/StripesSharp_Thin</Baby>
+        </bodyTypeGraphicPaths>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Hair</debugLabel>
+        <baseLayer>7</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <colorType>Hair</colorType>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Pattern_Base_Hair">
+    <defName>GeneDef_Cheech_Pattern_StripesSpots_Hair</defName>
+    <label>cheech pattern: stripes spots</label>
+    <labelShortAdj>stripy spotty</labelShortAdj>
+    <description>Looks like the Steenk!</description>
+    <renderNodeProperties>
+      <li>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/StripesSpots/StripesSpots_Female</Male>
+          <Female>Cheech/Fur/StripesSpots/StripesSpots_Female</Female>
+          <Hulk>Cheech/Fur/StripesSpots/StripesSpots_Female</Hulk>
+          <Fat>Cheech/Fur/StripesSpots/StripesSpots_Female</Fat>
+          <Thin>Cheech/Fur/StripesSpots/StripesSpots_Female</Thin>
+          <Child>Cheech/Fur/StripesSpots/StripesSpots_Female</Child>
+          <Baby>Cheech/Fur/StripesSpots/StripesSpots_Female</Baby>
+        </bodyTypeGraphicPaths>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Hair</debugLabel>
+        <baseLayer>7</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <colorType>Hair</colorType>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Pattern_Base_Hair">
+    <defName>GeneDef_Cheech_Pattern_StripesSquiggles_Hair</defName>
+    <label>cheech pattern: StripesSquiggles</label>
+    <labelShortAdj>StripesSquiggles</labelShortAdj>
+    <description>TODO: Description</description>
+    <renderNodeProperties>
+      <li>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/StripesSquiggles/StripesSquiggles_Male</Male>
+          <Female>Cheech/Fur/StripesSquiggles/StripesSquiggles_Female</Female>
+          <Hulk>Cheech/Fur/StripesSquiggles/StripesSquiggles_Hulk</Hulk>
+          <Fat>Cheech/Fur/StripesSquiggles/StripesSquiggles_Hulk</Fat>
+          <Thin>Cheech/Fur/StripesSquiggles/StripesSquiggles_Thin</Thin>
+          <Child>Cheech/Fur/StripesSquiggles/StripesSquiggles_Thin</Child>
+          <Baby>Cheech/Fur/StripesSquiggles/StripesSquiggles_Thin</Baby>
+        </bodyTypeGraphicPaths>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Hair</debugLabel>
+        <baseLayer>7</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <colorType>Hair</colorType>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Pattern_Base_Hair">
+    <defName>GeneDef_Cheech_Pattern_StripesV_Hair</defName>
+    <label>cheech pattern: StripesV</label>
+    <labelShortAdj>StripesV</labelShortAdj>
+    <description>TODO: Description</description>
+    <renderNodeProperties>
+      <li>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/StripesV/StripesV_Male</Male>
+          <Female>Cheech/Fur/StripesV/StripesV_Female</Female>
+          <Hulk>Cheech/Fur/StripesV/StripesV_Hulk</Hulk>
+          <Fat>Cheech/Fur/StripesV/StripesV_Hulk</Fat>
+          <Thin>Cheech/Fur/StripesV/StripesV_Thin</Thin>
+          <Child>Cheech/Fur/StripesV/StripesV_Thin</Child>
+          <Baby>Cheech/Fur/StripesV/StripesV_Thin</Baby>
+        </bodyTypeGraphicPaths>
+        <nodeClass>Cheechin.PawnRenderNode_BodyPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Hair</debugLabel>
+        <baseLayer>7</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <colorType>Hair</colorType>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+</Defs>
