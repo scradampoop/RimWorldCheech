@@ -29,15 +29,26 @@
 
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.3.6" />
+    <PackageReference Include="Lib.Harmony" Version="2.4.1" />
+    <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <!--<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4528" />-->
+    <Publicize Include="Assembly-CSharp:Verse.FloatMenuOption.iconTex" />
+    <Publicize Include="Assembly-CSharp:Verse.PawnRenderNode.props" />
+    <Publicize Include="Assembly-CSharp:Verse.Pawn.drawer" />
+    <Publicize Include="Assembly-CSharp:RimWorld.Pawn_MutantTracker.def" />
+    <Publicize Include="Assembly-CSharp:RimWorld.Dialog_ColorPickerBase.focusableControlNames" />
+    <Publicize Include="Assembly-CSharp:RimWorld.Dialog_ColorPickerBase.ButSize" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
+    <!--<Reference Include="System.Data.DataSetExtensions" />-->
+    <!--<Reference Include="Microsoft.CSharp" />-->
     <Reference Include="UnityEngine">
       <HintPath>C:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>

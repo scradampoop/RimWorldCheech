@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <!--<GeneDef>
+    <defName>GeneDef_Cheech_Pattern_Tux_Skin</defName>
+    <label>cheech pattern: tux</label>
+    <labelShortAdj>tuxedo</labelShortAdj>
+    <biostatCpx>0</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <description>Looks like the Steenk!</description>
+    <displayCategory>Miscellaneous</displayCategory>
+    <displayOrderInCategory>1</displayOrderInCategory>
+    <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
+    <exclusionTags>
+      <li>BodyPatternSkin</li>
+    </exclusionTags>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Skin</debugLabel>
+        <baseLayer>6</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/Tux/Tux_Female</Male>
+          <Female>Cheech/Fur/Tux/Tux_Female</Female>
+          <Hulk>Cheech/Fur/Tux/Tux_Female</Hulk>
+          <Fat>Cheech/Fur/Tux/Tux_Female</Fat>
+          <Thin>Cheech/Fur/Tux/Tux_Female</Thin>
+          <Child>Cheech/Fur/Tux/Tux_Female</Child>
+          <Baby>Cheech/Fur/Tux/Tux_Female</Baby>
+        </bodyTypeGraphicPaths>
+        --><!--<overlayLayer>Body</overlayLayer>--><!--
+        --><!--<colorType>Skin</colorType>--><!--
+        --><!--<shaderTypeDef>CutoutSkin</shaderTypeDef>--><!--
+        --><!--<shaderTypeDef>CutoutComplexBlend</shaderTypeDef>--><!--
+        --><!--<useSkinShader>true</useSkinShader>--><!--
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef>
+    <defName>GeneDef_Cheech_Pattern_RoundBib_Skin</defName>
+    <label>cheech pattern: RoundBib</label>
+    <labelShortAdj>RoundBib</labelShortAdj>
+    <biostatCpx>0</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <description>TODO: Description</description>
+    <displayCategory>Miscellaneous</displayCategory>
+    <displayOrderInCategory>1</displayOrderInCategory>
+    <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
+    <exclusionTags>
+      <li>BodyPatternSkin</li>
+    </exclusionTags>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
+        <workerClass>PawnRenderNodeWorker_Body</workerClass>
+        <debugLabel>Body Pattern Skin</debugLabel>
+        <baseLayer>6</baseLayer>
+        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <useRottenColor>true</useRottenColor>
+        <parentTagDef>Body</parentTagDef>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/RoundBib/RoundBib_Hulk</Male>
+          <Female>Cheech/Fur/RoundBib/RoundBib_Hulk</Female>
+          <Hulk>Cheech/Fur/RoundBib/RoundBib_Hulk</Hulk>
+          <Fat>Cheech/Fur/RoundBib/RoundBib_Hulk</Fat>
+          <Thin>Cheech/Fur/RoundBib/RoundBib_Hulk</Thin>
+          <Child>Cheech/Fur/RoundBib/RoundBib_Hulk</Child>
+          <Baby>Cheech/Fur/RoundBib/RoundBib_Hulk</Baby>
+        </bodyTypeGraphicPaths>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>-->
+
+</Defs>

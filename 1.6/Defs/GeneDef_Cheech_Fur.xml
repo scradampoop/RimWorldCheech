@@ -13,8 +13,13 @@
 		<displayOrderInCategory>400</displayOrderInCategory>
 		<iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
 		<skinIsHairColor>false</skinIsHairColor>
-		<tattoosVisible>false</tattoosVisible>
+    <tattoosVisible>true</tattoosVisible>
     <exclusionTags>
+      <!--<li>SkinColorOverride</li>
+      <li>BeardStyle</li>
+      <li>Bodies</li>
+      <li>Body</li>-->
+
       <li>Skin</li>
       <li>Fur</li>
     </exclusionTags>

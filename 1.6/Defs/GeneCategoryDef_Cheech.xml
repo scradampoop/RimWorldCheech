@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--
+  For reference:
+  Anthrosonae: 279
+  Skin: 280
+  Hair: 285
+  -->
+  <GeneCategoryDef>
+    <defName>GeneCategoryDef_Cheech_FurPatternFill</defName>
+    <label>cosmetic - fur pattern fill</label>
+    <displayPriorityInXenotype>282</displayPriorityInXenotype>
+  </GeneCategoryDef>
+  <GeneCategoryDef>
+    <defName>GeneCategoryDef_Cheech_FurPatternAccent</defName>
+    <label>cosmetic - fur pattern accent</label>
+    <displayPriorityInXenotype>283</displayPriorityInXenotype>
+  </GeneCategoryDef>
+
+</Defs>

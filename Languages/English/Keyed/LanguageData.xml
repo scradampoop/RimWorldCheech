@@ -5,4 +5,11 @@
 	<FactionGreetingWary_Cheech>{0} hisses a greeting and asks what business you need done.</FactionGreetingWary_Cheech>
 	<FactionGreetingWarm_Cheech>Barks out enthusiastically, {0} greets {NEGOTIATOR_labelShort} and asks what {LEADER_pronoun} can do to help you.</FactionGreetingWarm_Cheech>
 	<MilitaryAidSent_Cheech>{0} agrees to send cheech fighters to help you.</MilitaryAidSent_Cheech>
+  <ColorPicker.PasteHex>Paste HEX</ColorPicker.PasteHex>
+  <ColorPicker.ColorChannel>Color channel</ColorPicker.ColorChannel>
+  <ColorPicker.ColorA>First</ColorPicker.ColorA>
+  <ColorPicker.ColorB>Second</ColorPicker.ColorB>
+  <ColorPicker.HexCode>Hex</ColorPicker.HexCode>
+  <ColorPicker.Lum>Lum</ColorPicker.Lum>
+  <ColorPicker.ChangeFurPatternColors>Change fur pattern colors</ColorPicker.ChangeFurPatternColors>
 </LanguageData>
