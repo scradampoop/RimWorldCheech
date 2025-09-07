@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-  <!--<GeneDef>
-    <defName>GeneDef_Cheech_Pattern_Tux_Skin</defName>
-    <label>cheech pattern: tux</label>
-    <labelShortAdj>tuxedo</labelShortAdj>
+  <GeneDef Name="GeneDef_Cheech_FurPatternFill" Abstract="True">
+    <geneClass>Cheechin.GeneFurPatternFill</geneClass>
     <biostatCpx>0</biostatCpx>
     <biostatMet>0</biostatMet>
-    <description>Looks like the Steenk!</description>
-    <displayCategory>Miscellaneous</displayCategory>
-    <displayOrderInCategory>1</displayOrderInCategory>
+    <displayCategory>GeneCategoryDef_Cheech_FurPatternFill</displayCategory>
+    <description>Lower-layer, larger markings like patches or shading.</description>
+    <displayOrderInCategory>100</displayOrderInCategory>
+    <iconColor>(0.75,0.75,0.75)</iconColor>
     <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
     <exclusionTags>
-      <li>BodyPatternSkin</li>
+      <li>FurPatternFill</li>
     </exclusionTags>
     <renderNodeProperties>
       <li>
-        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
+        <nodeClass>Cheechin.PawnRenderNode_FurPatternFill</nodeClass>
         <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <debugLabel>Body Pattern Skin</debugLabel>
-        <baseLayer>6</baseLayer>
-        <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <useRottenColor>true</useRottenColor>
+        <baseLayer>5.2</baseLayer>
+        <colorType>Custom</colorType>
         <parentTagDef>Body</parentTagDef>
+        <rotDrawMode>Fresh,Rotting</rotDrawMode>
+        <useRottenColor>true</useRottenColor>
+        <debugLabel>Fur Pattern Fill</debugLabel>
+      </li>
+    </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
+    <defName>GeneDef_Cheech_FurPatternFill_Tux</defName>
+    <label>tuxedo</label>
+    <labelShortAdj>tuxedo</labelShortAdj>
+    <renderNodeProperties>
+      <li>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/Tux/Tux_Female</Male>
           <Female>Cheech/Fur/Tux/Tux_Female</Female>
@@ -32,37 +49,16 @@
           <Child>Cheech/Fur/Tux/Tux_Female</Child>
           <Baby>Cheech/Fur/Tux/Tux_Female</Baby>
         </bodyTypeGraphicPaths>
-        --><!--<overlayLayer>Body</overlayLayer>--><!--
-        --><!--<colorType>Skin</colorType>--><!--
-        --><!--<shaderTypeDef>CutoutSkin</shaderTypeDef>--><!--
-        --><!--<shaderTypeDef>CutoutComplexBlend</shaderTypeDef>--><!--
-        --><!--<useSkinShader>true</useSkinShader>--><!--
       </li>
     </renderNodeProperties>
   </GeneDef>
 
-  <GeneDef>
-    <defName>GeneDef_Cheech_Pattern_RoundBib_Skin</defName>
-    <label>cheech pattern: RoundBib</label>
-    <labelShortAdj>RoundBib</labelShortAdj>
-    <biostatCpx>0</biostatCpx>
-    <biostatMet>0</biostatMet>
-    <description>TODO: Description</description>
-    <displayCategory>Miscellaneous</displayCategory>
-    <displayOrderInCategory>1</displayOrderInCategory>
-    <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
-    <exclusionTags>
-      <li>BodyPatternSkin</li>
-    </exclusionTags>
+  <GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
+    <defName>GeneDef_Cheech_FurPatternFill_RoundBib</defName>
+    <label>round bib</label>
+    <labelShortAdj>round bibbed</labelShortAdj>
     <renderNodeProperties>
       <li>
-        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <debugLabel>Body Pattern Skin</debugLabel>
-        <baseLayer>6</baseLayer>
-        <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <useRottenColor>true</useRottenColor>
-        <parentTagDef>Body</parentTagDef>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/RoundBib/RoundBib_Hulk</Male>
           <Female>Cheech/Fur/RoundBib/RoundBib_Hulk</Female>
@@ -74,6 +70,6 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
-  </GeneDef>-->
+  </GeneDef>
 
 </Defs>

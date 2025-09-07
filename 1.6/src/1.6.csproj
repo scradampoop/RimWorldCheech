@@ -43,6 +43,15 @@
     <Publicize Include="Assembly-CSharp:RimWorld.Dialog_ColorPickerBase.ButSize" />
   </ItemGroup>
   <ItemGroup>
+    <Using Include="RimWorld" />
+    <Using Include="HarmonyLib" />
+    <Using Include="UnityEngine" />
+    <Using Include="Verse" />
+    <Using Include="System" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.Linq" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>

@@ -15,16 +15,16 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 ![Demo Image](About/Demo.jpg)
 ![Cover Image](About/Preview.png)
 
-## TODO:
-- Implement change-fur like Anthrosonae.
-- Separate fur patterns into new layers above skin/fur layer.
-- Make fur colors independent and manage via Anthrosonae change-fur like modal.
+## TODO / Ideas:
+- Get fur patterns working with tail, head, and ears.
+- Figure out what to do with base coat color(s) and a UI for changing it.
 - Finish the round bib base pattern.
 - Finish the Strips-spots accent pattern.
 - Finish the tux base pattern.
 - Put Meetch patterns into game.
 - Put Tweater-pea patterns into game.
 - Put Leetis patterns into game.
+- Set prefab colors to the colors I like best for what we'd actually set for our leetle gurls.
 - Go through z_samples folder and look for anything else good to put in game.
 - Make sure XML is set up for all base and accent patterns.
 - Add more tails. TBD on how to implement stripes/spots and color patterns on tails. 
@@ -38,10 +38,9 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 - Custom names for faction/race members.
 - Credit source mods in source code summaries once the code starts to stabilize.
 - Figure out the bug with fur patterns not always rendering when naked in various UIs.
-
-## Other Ideas:
 - Abstract out the fur pattern system into shared lib for other mods to use.
 - Figure out how the gradient hair mod works, particularly via character editor, and try to make that work for fur patterns.
+- Add sliders to the color picker UI to adjust brightness, saturation, etc.
 
 ## Known Issues:
 - Fur patterns do not show up correctly in character editor, but they do still seem to work in game.

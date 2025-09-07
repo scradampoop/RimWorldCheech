@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using HarmonyLib;
-using RimWorld;
-using UnityEngine;
-using Verse;
+﻿using System.Reflection;
 using Verse.AI;
 
 namespace Cheechin;
 
-public class ModSettings_Cheech_Xenotype: ModSettings
+public sealed class ModSettings_Cheech_Xenotype: ModSettings
 {
     public bool tempPlaceholderSetting = true;
 
@@ -20,7 +14,7 @@ public class ModSettings_Cheech_Xenotype: ModSettings
     }
 }
 
-public class Mod_Cheech_Xenotype: Mod
+public sealed class Mod_Cheech_Xenotype: Mod
 {
     public static Mod_Cheech_Xenotype? mod;
     public static ModSettings_Cheech_Xenotype? settings;
@@ -44,12 +38,12 @@ public class Mod_Cheech_Xenotype: Mod
     }
 }
 
-public class Thought_PheromoneAttraction: Thought_SituationalSocial
+public sealed class Thought_PheromoneAttraction: Thought_SituationalSocial
 {
     public override float OpinionOffset() => pawn.IsSameXenotypeAs(OtherPawn()) ? (OtherPawn().genes.HasGene(DefsOf.GeneDef_Cheech_Pheromones) ? 20 : 0) : 0;
 }
 
-public class ThoughtWorker_PheromoneAttraction: ThoughtWorker
+public sealed class ThoughtWorker_PheromoneAttraction: ThoughtWorker
 {
     protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn otherPawn)
     {
@@ -63,12 +57,6 @@ public class ThoughtWorker_PheromoneAttraction: ThoughtWorker
     }
 }
 
-/// <summary>
-/// TODO: What is this attribute even for? - if it makes something hot-swappable while the app is running, how would anything even detect this, particularly since it's in a specific namespace?
-/// </summary>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
-public class HotSwappableAttribute: Attribute;
-
 [HarmonyPatch(typeof(Building_StylingStation), nameof(Building_StylingStation.GetFloatMenuOptions))]
 public static class Building_StylingStation_GetFloatMenuOptions_Patch
 {
@@ -77,22 +65,22 @@ public static class Building_StylingStation_GetFloatMenuOptions_Patch
         foreach (var option in options)
         {
             yield return option;
-            if (option.Label == "ChangeStyle".Translate().CapitalizeFirst())
+            if (option.Label == "ChangeStyle".Translate().CapitalizeFirst() && (selPawn.GetGeneFurPatternAccent() != null || selPawn.GetGeneFurPatternFill() != null))
             {
-                GeneFurPatternAccent geneFurPatternAccent = selPawn.GetGeneFurPatternAccent();
-                if (geneFurPatternAccent != null)
-                {
-                    yield return FloatMenuUtility.DecoratePrioritizedTask(new("ColorPicker.ChangeFurPatternColors".Translate().CapitalizeFirst(), delegate
-                    {
-                        selPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(DefsOf.Cheechin_ChangeFurPatternColors, __instance), JobTag.Misc);
-                    }), selPawn, __instance);
-                }
+                yield return FloatMenuUtility.DecoratePrioritizedTask(
+                    new(
+                        "ColorPicker.ChangeFurPatternColors".Translate().CapitalizeFirst(),
+                        () => selPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(DefsOf.Cheechin_ChangeFurPatternColors, __instance), JobTag.Misc)
+                    ),
+                    selPawn,
+                    __instance
+                );
             }
         }
     }
 }
 
-public class JobDriver_ChangeFurPatternColors: JobDriver
+public sealed class JobDriver_ChangeFurPatternColors: JobDriver
 {
     public override bool TryMakePreToilReservations(bool errorOnFailed) => pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
 
@@ -101,16 +89,12 @@ public class JobDriver_ChangeFurPatternColors: JobDriver
         if (ModLister.CheckIdeology("Styling station"))
         {
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell).FailOnDespawnedOrNull(TargetIndex.A);
-            // TODO: Lambda syntax?
-            yield return Toils_General.Do(delegate
-            {
-                Find.WindowStack.Add(new Window_ColorPicker(pawn.GetGeneFurPatternAccent()));
-            });
+            yield return Toils_General.Do(() => Find.WindowStack.Add(new Window_FurPatternColorPicker(pawn)));
         }
     }
 }
 
-[DefOf, HotSwappable, StaticConstructorOnStartup]
+[DefOf, StaticConstructorOnStartup]
 public static class DefsOf
 {
     static DefsOf() => DefOfHelper.EnsureInitializedInCtor(typeof(DefsOf));

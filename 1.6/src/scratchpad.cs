@@ -8,6 +8,9 @@ using Verse;
 
 namespace Cheechin;
 
+/// <summary>
+/// This is just a garbage file scradam keeps around to quickly go to definitions in referenced assemblies and review source code and figure stuff out. This is garbage that is not part of the mod.
+/// </summary>
 [HarmonyPatch(typeof(PawnRenderNode_Fur), "GraphicFor")]
 public static class VanillaExpandedFramework_PawnRenderNode_Fur_GraphicFor_Patch2ssss
 {
@@ -62,8 +65,8 @@ public static class VanillaExpandedFramework_PawnRenderNode_Fur_GraphicFor_Patch
             }
         }
     }
-}
-public static readonly Shader Cutout = ShaderDatabase.LoadShader("Map/Cutout");
+
+    public static readonly Shader Cutout = ShaderDatabase.LoadShader("Map/Cutout");
     public static readonly Shader CutoutHair = ShaderDatabase.LoadShader("Map/CutoutHair");
     public static readonly Shader CutoutPlant = ShaderDatabase.LoadShader("Map/CutoutPlant");
     public static readonly Shader CutoutComplex = ShaderDatabase.LoadShader("Map/CutoutComplex");
@@ -78,3 +81,4 @@ public static readonly Shader Cutout = ShaderDatabase.LoadShader("Map/Cutout");
     public static readonly Shader SolidColor = ShaderDatabase.LoadShader("Map/SolidColor");
     public static readonly Shader SolidColorBehind = ShaderDatabase.LoadShader("Map/SolidColorBehind");
     public static readonly Shader VertexColor = ShaderDatabase.LoadShader("Map/VertexColor");
+}

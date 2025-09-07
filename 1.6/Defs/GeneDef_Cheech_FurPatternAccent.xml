@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-  <Cheechin.FurColorDef>
+  <Cheechin.FurPatternColorDef>
     <defName>Cheechin_FurPreset_Black</defName>
-    <primaryColor>(0,0,0)</primaryColor>
-    <secondaryColor>(255,255,255)</secondaryColor>
+    <colorOne>(0,0,0)</colorOne>
+    <colorTwo>(255,255,255)</colorTwo>
     <selectionWeight>0.63</selectionWeight>
-  </Cheechin.FurColorDef>
+  </Cheechin.FurPatternColorDef>
 
   <GeneDef Name="GeneDef_Cheech_FurPatternAccent" Abstract="True">
     <geneClass>Cheechin.GeneFurPatternAccent</geneClass>
@@ -24,7 +24,7 @@
       <li>
         <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
         <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <baseLayer>7</baseLayer>
+        <baseLayer>5.4</baseLayer>
         <colorType>Custom</colorType>
         <parentTagDef>Body</parentTagDef>
         <rotDrawMode>Fresh,Rotting</rotDrawMode>
@@ -33,10 +33,10 @@
       </li>
     </renderNodeProperties>
     <modExtensions>
-      <li Class="Cheechin.FurColors">
-        <allowedFurColors>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
           <li>Cheechin_FurPreset_Black</li>
-        </allowedFurColors>
+        </predefinedFurPatternColors>
       </li>
     </modExtensions>
   </GeneDef>
@@ -60,11 +60,10 @@
     </renderNodeProperties>
   </GeneDef>
 
-  <!--<GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
-    <defName>GeneDef_Cheech_Pattern_Leopard_Hair</defName>
-    <label>cheech pattern: leopard</label>
-    <labelShortAdj>leopard</labelShortAdj>
-    <description>TODO: Description</description>
+  <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
+    <defName>GeneDef_Cheech_FurPatternAccent_Leopard</defName>
+    <label>leopard spots</label>
+    <labelShortAdj>leopard spotted</labelShortAdj>
     <renderNodeProperties>
       <li>
         <bodyTypeGraphicPaths>
@@ -76,23 +75,14 @@
           <Child>Cheech/Fur/Leopard/Leopard_Thin</Child>
           <Baby>Cheech/Fur/Leopard/Leopard_Thin</Baby>
         </bodyTypeGraphicPaths>
-        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <debugLabel>Body Pattern Hair</debugLabel>
-        <baseLayer>7</baseLayer>
-        <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <colorType>Hair</colorType>
-        <useRottenColor>true</useRottenColor>
-        <parentTagDef>Body</parentTagDef>
       </li>
     </renderNodeProperties>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
-    <defName>GeneDef_Cheech_Pattern_Spots_Hair</defName>
-    <label>cheech pattern: Spots</label>
-    <labelShortAdj>Spots</labelShortAdj>
-    <description>TODO: Description</description>
+    <defName>GeneDef_Cheech_FurPatternAccent_Spots</defName>
+    <label>spots</label>
+    <labelShortAdj>spotted</labelShortAdj>
     <renderNodeProperties>
       <li>
         <bodyTypeGraphicPaths>
@@ -104,23 +94,14 @@
           <Child>Cheech/Fur/Spots/Spots_Thin</Child>
           <Baby>Cheech/Fur/Spots/Spots_Thin</Baby>
         </bodyTypeGraphicPaths>
-        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <debugLabel>Body Pattern Hair</debugLabel>
-        <baseLayer>7</baseLayer>
-        <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <colorType>Hair</colorType>
-        <useRottenColor>true</useRottenColor>
-        <parentTagDef>Body</parentTagDef>
       </li>
     </renderNodeProperties>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
-    <defName>GeneDef_Cheech_Pattern_StripesSharp_Hair</defName>
-    <label>cheech pattern: StripesSharp</label>
-    <labelShortAdj>StripesSharp</labelShortAdj>
-    <description>TODO: Description</description>
+    <defName>GeneDef_Cheech_FurPatternAccent_StripesSharp</defName>
+    <label>sharp stripes</label>
+    <labelShortAdj>sharp striped</labelShortAdj>
     <renderNodeProperties>
       <li>
         <bodyTypeGraphicPaths>
@@ -132,23 +113,14 @@
           <Child>Cheech/Fur/StripesSharp/StripesSharp_Thin</Child>
           <Baby>Cheech/Fur/StripesSharp/StripesSharp_Thin</Baby>
         </bodyTypeGraphicPaths>
-        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <debugLabel>Body Pattern Hair</debugLabel>
-        <baseLayer>7</baseLayer>
-        <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <colorType>Hair</colorType>
-        <useRottenColor>true</useRottenColor>
-        <parentTagDef>Body</parentTagDef>
       </li>
     </renderNodeProperties>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
-    <defName>GeneDef_Cheech_Pattern_StripesSpots_Hair</defName>
-    <label>cheech pattern: stripes spots</label>
+    <defName>GeneDef_Cheech_FurPatternAccent_StripesSpots</defName>
+    <label>stripes and spots</label>
     <labelShortAdj>stripy spotty</labelShortAdj>
-    <description>Looks like the Steenk!</description>
     <renderNodeProperties>
       <li>
         <bodyTypeGraphicPaths>
@@ -160,23 +132,14 @@
           <Child>Cheech/Fur/StripesSpots/StripesSpots_Female</Child>
           <Baby>Cheech/Fur/StripesSpots/StripesSpots_Female</Baby>
         </bodyTypeGraphicPaths>
-        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <debugLabel>Body Pattern Hair</debugLabel>
-        <baseLayer>7</baseLayer>
-        <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <colorType>Hair</colorType>
-        <useRottenColor>true</useRottenColor>
-        <parentTagDef>Body</parentTagDef>
       </li>
     </renderNodeProperties>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
-    <defName>GeneDef_Cheech_Pattern_StripesSquiggles_Hair</defName>
-    <label>cheech pattern: StripesSquiggles</label>
-    <labelShortAdj>StripesSquiggles</labelShortAdj>
-    <description>TODO: Description</description>
+    <defName>GeneDef_Cheech_FurPatternAccent_StripesSquiggles</defName>
+    <label>squiggly stripes</label>
+    <labelShortAdj>squiggly striped</labelShortAdj>
     <renderNodeProperties>
       <li>
         <bodyTypeGraphicPaths>
@@ -188,23 +151,14 @@
           <Child>Cheech/Fur/StripesSquiggles/StripesSquiggles_Thin</Child>
           <Baby>Cheech/Fur/StripesSquiggles/StripesSquiggles_Thin</Baby>
         </bodyTypeGraphicPaths>
-        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <debugLabel>Body Pattern Hair</debugLabel>
-        <baseLayer>7</baseLayer>
-        <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <colorType>Hair</colorType>
-        <useRottenColor>true</useRottenColor>
-        <parentTagDef>Body</parentTagDef>
       </li>
     </renderNodeProperties>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
-    <defName>GeneDef_Cheech_Pattern_StripesV_Hair</defName>
-    <label>cheech pattern: StripesV</label>
-    <labelShortAdj>StripesV</labelShortAdj>
-    <description>TODO: Description</description>
+    <defName>GeneDef_Cheech_FurPatternAccent_StripesV</defName>
+    <label>V stripes</label>
+    <labelShortAdj>V striped</labelShortAdj>
     <renderNodeProperties>
       <li>
         <bodyTypeGraphicPaths>
@@ -216,16 +170,8 @@
           <Child>Cheech/Fur/StripesV/StripesV_Thin</Child>
           <Baby>Cheech/Fur/StripesV/StripesV_Thin</Baby>
         </bodyTypeGraphicPaths>
-        <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <debugLabel>Body Pattern Hair</debugLabel>
-        <baseLayer>7</baseLayer>
-        <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <colorType>Hair</colorType>
-        <useRottenColor>true</useRottenColor>
-        <parentTagDef>Body</parentTagDef>
       </li>
     </renderNodeProperties>
-  </GeneDef>-->
+  </GeneDef>
 
 </Defs>

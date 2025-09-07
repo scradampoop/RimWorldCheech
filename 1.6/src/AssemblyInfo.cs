@@ -10,5 +10,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("For Your Health!")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("cbeecbe2-2fdc-47e4-86f6-cbeecbcbeecb")]
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: Guid("cbeecbe2-ceec-ceec-ceec-cbeecbcbeecb")]
+[assembly: AssemblyVersion("0.1.*")]

@@ -1,7 +1,4 @@
 ﻿using System.Globalization;
-using System.Linq;
-using UnityEngine;
-using Verse;
 
 namespace Cheechin;
 
@@ -12,7 +9,9 @@ public static class Utility
 {
     public static bool IsSameXenotypeAs(this Pawn? pawn, Pawn? other) => pawn?.genes?.Xenotype == other?.genes?.Xenotype;
 
-    public static GeneFurPatternAccent? GetGeneFurPatternAccent(this Pawn pawn, bool activeCheck = true) => pawn.genes?.GenesListForReading.OfType<GeneFurPatternAccent>().FirstOrDefault(x => x.Active || activeCheck == false);
+    public static GeneFurPatternFill? GetGeneFurPatternFill(this Pawn pawn, bool activeCheck = true) => pawn.genes?.GenesListForReading.OfType<GeneFurPatternFill>().FirstOrDefault(p => p.Active || !activeCheck);
+
+    public static GeneFurPatternAccent? GetGeneFurPatternAccent(this Pawn pawn, bool activeCheck = true) => pawn.genes?.GenesListForReading.OfType<GeneFurPatternAccent>().FirstOrDefault(p => p.Active || !activeCheck);
 
     /// <summary>
     /// Calculate the brightness level (0 to 100) from a color
@@ -61,7 +60,7 @@ public static class Utility
             adjustedColor.a
         );
     }
-    
+
     public static bool TryGetColorFromHex(string hex, out Color color)
     {
         color = Color.white;

@@ -1,45 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using RimWorld;
-using UnityEngine;
-using Verse;
+﻿namespace Cheechin;
 
-namespace Cheechin;
-
-[StaticConstructorOnStartup, HotSwappable]
-public class Window_ColorPicker: Window
+[StaticConstructorOnStartup]
+public sealed class Window_FurPatternColorPicker: Window
 {
-    private Color colorOne;
+    private readonly Color patternColorFillOriginal;
 
-    private readonly Color oldColorOne;
+    private readonly Color patternColorAccentOriginal;
 
-    private Color colorTwo;
+    private Color patternColorFill;
 
-    private readonly Color oldColorTwo;
+    private Color patternColorAccent;
 
-    private string hexColorOne;
-    
-    private string hexColorTwo;
-    
-    private float luminosityOne;
-    
-    private float luminosityTwo;
-    
+    private string patternColorFillHex;
+
+    private string patternColorAccentHex;
+
+    private float patternColorFillLuminosity;
+
+    private float patternColorAccentLuminosity;
+
     private string luminosityBuf1;
-    
+
     private string luminosityBuf2;
 
-    private bool colorTwoChosen;
+    private bool accentColorChosen;
 
-    private readonly GeneFurPatternAccent geneFurPatternAccent;
+    private readonly GeneFurPatternFill? geneFurPatternFill;
+
+    private readonly GeneFurPatternAccent? geneFurPatternAccent;
 
     private bool hsvColorWheelDragging;
 
     private string[] textfieldBuffersOne = new string[6];
-    
+
     private string[] textfieldBuffersTwo = new string[6];
-    
+
     private Color textfieldColorBufferOne, textfieldColorBufferTwo;
 
     private string previousFocusedControlName;
@@ -47,78 +42,104 @@ public class Window_ColorPicker: Window
     public static Widgets.ColorComponents visibleColorTextFields = Widgets.ColorComponents.Hue | Widgets.ColorComponents.Sat;
 
     public static Widgets.ColorComponents editableColorTextFields = Widgets.ColorComponents.Hue | Widgets.ColorComponents.Sat;
-    
+
     public override Vector2 InitialSize => new(800f, 410f);
-    
-    private readonly List<FurColorDef> furColors;
-    
+
+    private readonly FurPatternColorDef[] predefinedFurPatternFillColors;
+
+    private readonly FurPatternColorDef[] predefinedFurPatternAccentColors;
+
     private Rot4 pawnRot = Rot4.South;
-    
-    public Window_ColorPicker(GeneFurPatternAccent geneFurPatternAccent)
+
+    public Window_FurPatternColorPicker(Pawn pawn)
     {
+        geneFurPatternFill = pawn.GetGeneFurPatternFill();
+        geneFurPatternAccent = pawn.GetGeneFurPatternAccent();
         doCloseX = true;
-        colorOne = geneFurPatternAccent.colorOne;
-        oldColorOne = colorOne;
-        colorTwo = geneFurPatternAccent.colorTwo ?? Color.white;
-        oldColorTwo = colorTwo;
-        hexColorOne = "#" + ColorUtility.ToHtmlStringRGB(colorOne);
-        hexColorTwo = "#" + ColorUtility.ToHtmlStringRGB(colorTwo);
-        luminosityOne = colorOne.CalculateBrightnessLevel();
-        luminosityTwo = colorTwo.CalculateBrightnessLevel();
-        this.geneFurPatternAccent = geneFurPatternAccent;
+        patternColorFill = patternColorFillOriginal = geneFurPatternFill?.colorOne ?? Color.black;
+        patternColorAccent = patternColorAccentOriginal = geneFurPatternAccent?.colorOne ?? Color.black;
+        patternColorFillHex = "#" + ColorUtility.ToHtmlStringRGB(patternColorFill);
+        patternColorAccentHex = "#" + ColorUtility.ToHtmlStringRGB(patternColorAccent);
+        patternColorFillLuminosity = patternColorFill.CalculateBrightnessLevel();
+        patternColorAccentLuminosity = patternColorAccent.CalculateBrightnessLevel();
         forcePause = true;
-        absorbInputAroundWindow = true;
-        closeOnClickedOutside = true;
+        absorbInputAroundWindow = false;
+        closeOnClickedOutside = false;
         closeOnAccept = false;
-        furColors = [];
-        var extension = geneFurPatternAccent.def.GetModExtension<FurColors>();
-        foreach (var furColorDef in extension.allowedFurColors.OrderBy(x => x.displayOrder))
-            furColors.Add(furColorDef);
+        predefinedFurPatternFillColors = geneFurPatternFill?.def.GetModExtension<FurPatternColors>().predefinedFurPatternColors.OrderBy(x => x.displayOrder).ToArray() ?? [];
+        predefinedFurPatternAccentColors = geneFurPatternAccent?.def.GetModExtension<FurPatternColors>().predefinedFurPatternColors.OrderBy(x => x.displayOrder).ToArray() ?? [];
     }
 
     private static void HeaderRow(ref RectDivider layout)
     {
         using (new TextBlock(GameFont.Medium))
         {
-            TaggedString taggedString = "ColorPicker.ChangeFurPatternColors".Translate().CapitalizeFirst();
-            RectDivider rectDivider = layout.NewRow(Text.CalcHeight(taggedString, layout.Rect.width));
+            var taggedString = "ColorPicker.ChangeFurPatternColors".Translate().CapitalizeFirst();
+            var rectDivider = layout.NewRow(Text.CalcHeight(taggedString, layout.Rect.width));
             GUI.SetNextControlName(Dialog_ColorPickerBase.focusableControlNames[0]);
             Widgets.Label(rectDivider, taggedString);
-        }
-    }
-
-    private void BottomButtons(ref RectDivider layout)
-    {
-        RectDivider rectDivider = layout.NewRow(Dialog_ColorPickerBase.ButSize.y, VerticalJustification.Bottom);
-        if (Widgets.ButtonText(rectDivider.NewCol(Dialog_ColorPickerBase.ButSize.x), "Cancel".Translate()))
-            Close();
-
-        if (Widgets.ButtonText(rectDivider.NewCol(Dialog_ColorPickerBase.ButSize.x, HorizontalJustification.Right), "Accept".Translate()))
-        {
-            if (colorOne != oldColorOne)
-                geneFurPatternAccent.colorOne = colorOne.WithBrightness((int)luminosityOne);
-
-            if (colorTwo != oldColorTwo)
-                geneFurPatternAccent.colorTwo = colorTwo.WithBrightness((int)luminosityTwo);
-
-            Close();
         }
     }
 
     public override void Close(bool doCloseSound = true)
     {
         base.Close(doCloseSound);
-        geneFurPatternAccent.ApplyColors();
+        geneFurPatternFill?.ApplyColors();
+        geneFurPatternAccent?.ApplyColors();
+    }
+
+    private void BottomButtons(ref RectDivider layout)
+    {
+        var rectDivider = layout.NewRow(Dialog_ColorPickerBase.ButSize.y, VerticalJustification.Bottom);
+        if (Widgets.ButtonText(rectDivider.NewCol(Dialog_ColorPickerBase.ButSize.x), "Cancel".Translate()))
+            Close();
+
+        if (Widgets.ButtonText(rectDivider.NewCol(Dialog_ColorPickerBase.ButSize.x, HorizontalJustification.Right), "Accept".Translate()))
+        {
+            if (geneFurPatternFill != null && patternColorFill != patternColorFillOriginal)
+                geneFurPatternFill.colorOne = patternColorFill.WithBrightness((int)patternColorFillLuminosity);
+
+            if (geneFurPatternAccent != null && patternColorAccent != patternColorAccentOriginal)
+                geneFurPatternAccent.colorOne = patternColorAccent.WithBrightness((int)patternColorAccentLuminosity);
+
+            Close();
+        }
+    }
+
+    private void ResetColorValues(Color color)
+    {
+        if (accentColorChosen)
+        {
+            patternColorAccentLuminosity = color.CalculateBrightnessLevel();
+            luminosityBuf2 = patternColorAccentLuminosity.ToString();
+            patternColorAccentHex = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)patternColorAccentLuminosity));
+        }
+        else
+        {
+            patternColorFillLuminosity = color.CalculateBrightnessLevel();
+            luminosityBuf1 = patternColorFillLuminosity.ToString();
+            patternColorFillHex = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)patternColorFillLuminosity));
+        }
+    }
+
+    private string ResetHexValues(Color color)
+    {
+        if (accentColorChosen)
+            patternColorAccentHex = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)patternColorAccentLuminosity));
+        else
+            patternColorFillHex = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)patternColorFillLuminosity));
+
+        return patternColorFillHex;
     }
 
     private void ColorFields(ref RectDivider layout, ref Color color, string hexValue, ref float lumValue, ref string lumBuf, ref string[] textfieldBuffers, ref Color textfieldColorBuffer, out Vector2 size)
     {
-        RectAggregator aggregator = new RectAggregator(new(layout.Rect.position, new(125f, 0f)), 195906069);
+        var aggregator = new RectAggregator(new(layout.Rect.position, new(125f, 0f)), 195906069);
         bool num = Widgets.ColorTextfields(ref aggregator, ref color, ref textfieldBuffers, ref textfieldColorBuffer, previousFocusedControlName, "colorTextfields", editableColorTextFields, visibleColorTextFields);
         size = aggregator.Rect.size;
         if (num)
         {
-            Color.RGBToHSV(color, out var H, out var S, out var _);
+            Color.RGBToHSV(color, out var H, out var S, out _);
             color = Color.HSVToRGB(H, S, 1f);
             hexValue = ResetHexValues(color);
         }
@@ -136,7 +157,7 @@ public class Window_ColorPicker: Window
             lumValue = 1f;
             lumBuf = lumValue.ToString();
         }
-        if (lumBuf.NullOrEmpty() is false && oldLum != lumValue)
+        if (!lumBuf.NullOrEmpty() && oldLum != lumValue)
             hexValue = ResetHexValues(color);
 
         if (Event.current.type == EventType.Layout)
@@ -161,46 +182,21 @@ public class Window_ColorPicker: Window
     private static void ColorReadback(Rect rect, Color color, Color oldColor)
     {
         rect.SplitVertically((rect.width - 26f) / 2f, out var left, out var right);
-        RectDivider rectDivider = new RectDivider(left, 195906069);
-        TaggedString label = "CurrentColor".Translate().CapitalizeFirst();
-        TaggedString label2 = "OldColor".Translate().CapitalizeFirst();
+        var rectDivider = new RectDivider(left, 195906069);
+        var label = "CurrentColor".Translate().CapitalizeFirst();
+        var label2 = "OldColor".Translate().CapitalizeFirst();
         float width = Mathf.Max(100f, label.GetWidthCached(), label2.GetWidthCached());
-        RectDivider rectDivider2 = rectDivider.NewRow(Text.LineHeight);
+        var rectDivider2 = rectDivider.NewRow(Text.LineHeight);
         Widgets.Label(rectDivider2.NewCol(width), label);
         Widgets.DrawBoxSolid(rectDivider2, color);
-        RectDivider rectDivider3 = rectDivider.NewRow(Text.LineHeight);
+        var rectDivider3 = rectDivider.NewRow(Text.LineHeight);
         Widgets.Label(rectDivider3.NewCol(width), label2);
         Widgets.DrawBoxSolid(rectDivider3, oldColor);
-        RectDivider rectDivider4 = new RectDivider(right, 195906069);
+        var rectDivider4 = new RectDivider(right, 195906069);
         rectDivider4.NewCol(26f);
     }
 
-    private static void TabControl()
-    {
-        if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Tab)
-        {
-            bool num = !Event.current.shift;
-            Event.current.Use();
-            string text = GUI.GetNameOfFocusedControl();
-            if (text.NullOrEmpty())
-                text = Dialog_ColorPickerBase.focusableControlNames[0];
-
-            int num2 = Dialog_ColorPickerBase.focusableControlNames.IndexOf(text);
-            if (num2 < 0)
-                num2 = Dialog_ColorPickerBase.focusableControlNames.Count;
-
-            num2 = ((!num) ? (num2 - 1) : (num2 + 1));
-            if (num2 >= Dialog_ColorPickerBase.focusableControlNames.Count)
-                num2 = 0;
-
-            else if (num2 < 0)
-                num2 = Dialog_ColorPickerBase.focusableControlNames.Count - 1;
-
-            GUI.FocusControl(Dialog_ColorPickerBase.focusableControlNames[num2]);
-        }
-    }
-    
-    private static readonly Texture2D RotateButton = ContentFinder<Texture2D>.Get("UI/Widgets/RotRight");
+    private static readonly Texture2D s_rotateButton = ContentFinder<Texture2D>.Get("UI/Widgets/RotRight");
 
     public override void DoWindowContents(Rect inRect)
     {
@@ -208,41 +204,48 @@ public class Window_ColorPicker: Window
         {
             var portrait = new Rect(inRect.x, inRect.y, 190, 240);
             Widgets.DrawMenuSection(portrait);
-            var oldColors = (geneFurPatternAccent.colorOne, geneFurPatternAccent.colorTwo);
-            geneFurPatternAccent.colorOne = colorOne.WithBrightness((int)luminosityOne);
-            geneFurPatternAccent.colorTwo = colorTwo.WithBrightness((int)luminosityTwo);
-            geneFurPatternAccent.ApplyColors();
-            RenderTexture image = PortraitsCache.Get(geneFurPatternAccent.pawn, new(200, 200), pawnRot, new(0, 0, 0.1f), healthStateOverride: PawnHealthState.Mobile, cameraZoom: 1.1f, renderClothes: true, renderHeadgear: false);
-            geneFurPatternAccent.colorOne = oldColors.colorOne;
-            geneFurPatternAccent.colorTwo = oldColors.colorTwo;
-            geneFurPatternAccent.ApplyColors();
+            var oldFillColor = geneFurPatternFill?.colorOne ?? Color.black;
+            var oldAccentColor = geneFurPatternAccent?.colorOne ?? Color.black;
+            if (geneFurPatternFill != null)
+                geneFurPatternFill.colorOne = patternColorFill.WithBrightness((int)patternColorFillLuminosity);
+            if (geneFurPatternAccent != null)
+                geneFurPatternAccent.colorOne = patternColorAccent.WithBrightness((int)patternColorAccentLuminosity);
+            geneFurPatternFill?.ApplyColors();
+            geneFurPatternAccent?.ApplyColors();
+            var image = PortraitsCache.Get(geneFurPatternAccent?.pawn ?? geneFurPatternFill?.pawn, new(200, 200), pawnRot, new(0, 0, 0.1f), healthStateOverride: PawnHealthState.Mobile, cameraZoom: 1.1f, renderClothes: false, renderHeadgear: false);
+            if (geneFurPatternFill != null)
+                geneFurPatternFill.colorOne = oldFillColor;
+            if (geneFurPatternAccent != null)
+                geneFurPatternAccent.colorOne = oldAccentColor;
+            geneFurPatternFill?.ApplyColors();
+            geneFurPatternAccent?.ApplyColors();
             GUI.DrawTexture(portrait, image, ScaleMode.ScaleAndCrop);
             var buttonRotate = new Rect(portrait.xMax - 24, portrait.y, 24, 24);
-            if (Widgets.ButtonImage(buttonRotate, RotateButton))
+            if (Widgets.ButtonImage(buttonRotate, s_rotateButton))
                 pawnRot = pawnRot.Rotated(RotationDirection.Clockwise);
 
             var layoutRect = new Rect(inRect.x + 200, inRect.y, inRect.width - 200, 240);
             RectDivider layout = new RectDivider(layoutRect, 195906069);
             HeaderRow(ref layout);
             layout.NewRow(0f);
-            var color = colorTwoChosen is false ? colorOne : colorTwo;
+            var color = accentColorChosen ? patternColorAccent : patternColorFill;
             var oldColor = color;
             ColorPalette(ref layout, ref color, out var paletteHeight);
             if (oldColor != color)
                 ResetColorValues(color);
 
             Vector2 size;
-            if (colorTwoChosen is false)
-                ColorFields(ref layout, ref color, hexColorOne, ref luminosityOne, ref luminosityBuf1, ref textfieldBuffersOne, ref textfieldColorBufferOne, out size);
+            if (accentColorChosen)
+                ColorFields(ref layout, ref color, patternColorAccentHex, ref patternColorAccentLuminosity, ref luminosityBuf2, ref textfieldBuffersTwo, ref textfieldColorBufferTwo, out size);
             else
-                ColorFields(ref layout, ref color, hexColorTwo, ref luminosityTwo, ref luminosityBuf2, ref textfieldBuffersTwo, ref textfieldColorBufferTwo, out size);
+                ColorFields(ref layout, ref color, patternColorFillHex, ref patternColorFillLuminosity, ref luminosityBuf1, ref textfieldBuffersOne, ref textfieldColorBufferOne, out size);
 
             float height = Mathf.Max(paletteHeight, 128f, size.y);
             RectDivider rectDivider = layout.NewRow(height);
             rectDivider.NewCol(size.x);
             rectDivider.NewCol(250f, HorizontalJustification.Right);
             oldColor = color;
-            Widgets.HSVColorWheel(rectDivider.Rect.ContractedBy((rectDivider.Rect.width - 128f) / 2f, 
+            Widgets.HSVColorWheel(rectDivider.Rect.ContractedBy((rectDivider.Rect.width - 128f) / 2f,
                 (rectDivider.Rect.height - 128f) / 2f), ref color, ref hsvColorWheelDragging, 1f);
             if (oldColor != color)
                 ResetColorValues(color);
@@ -251,67 +254,59 @@ public class Window_ColorPicker: Window
                 inRect.height - portrait.height - (24 + 15)), 65436135);
             BottomButtons(ref layout);
             layout.NewRow(0f, VerticalJustification.Bottom);
-            if (colorTwoChosen is false)
-                ColorReadback(layout, colorOne.WithBrightness((int)luminosityOne), oldColorOne);
+            if (accentColorChosen)
+            {
+                ColorReadback(layout, patternColorAccent.WithBrightness((int)patternColorAccentLuminosity), patternColorAccentOriginal);
+                patternColorAccent = color;
+            }
             else
-                ColorReadback(layout, colorTwo.WithBrightness((int)luminosityTwo), oldColorTwo);
-
-            if (colorTwoChosen is false)
-                colorOne = color;
-            else
-                colorTwo = color;
+            {
+                ColorReadback(layout, patternColorFill.WithBrightness((int)patternColorFillLuminosity), patternColorFillOriginal);
+                patternColorFill = color;
+            }
 
             var buttonsRect = new Rect(inRect.x, portrait.yMax + 10, 117, 24);
-            Widgets.Label(buttonsRect, "ColorPicker.ColorChannel".Translate());
+            Widgets.Label(buttonsRect, "ColorPicker.FurPattern".Translate());
             buttonsRect = new(buttonsRect.xMax, buttonsRect.y, 50, buttonsRect.width);
-            var colorChannel = colorTwoChosen is false ? "ColorPicker.ColorA".Translate() : "ColorPicker.ColorB".Translate();
-            Widgets.Label(buttonsRect, colorChannel);
-            if (Widgets.RadioButton(new(buttonsRect.xMax, buttonsRect.y), colorTwoChosen == false))
-                colorTwoChosen = false;
+            Widgets.Label(buttonsRect, (accentColorChosen ? "ColorPicker.ColorAccent" : "ColorPicker.ColorFill").Translate());
 
-            if (Widgets.RadioButton(new(buttonsRect.xMax + 40, buttonsRect.y), colorTwoChosen == true))
-                colorTwoChosen = true;
-            
-            TabControl();
+            if (Widgets.RadioButton(new(buttonsRect.xMax, buttonsRect.y), !accentColorChosen))
+                accentColorChosen = false;
+
+            if (Widgets.RadioButton(new(buttonsRect.xMax + 40, buttonsRect.y), accentColorChosen))
+                accentColorChosen = true;
+
+            if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Tab)
+            {
+                bool num = !Event.current.shift;
+                Event.current.Use();
+                string text = GUI.GetNameOfFocusedControl();
+                if (text.NullOrEmpty())
+                    text = Dialog_ColorPickerBase.focusableControlNames[0];
+
+                int num2 = Dialog_ColorPickerBase.focusableControlNames.IndexOf(text);
+                if (num2 < 0)
+                    num2 = Dialog_ColorPickerBase.focusableControlNames.Count;
+
+                num2 += num ? 1 : -1;
+                if (num2 >= Dialog_ColorPickerBase.focusableControlNames.Count)
+                    num2 = 0;
+
+                else if (num2 < 0)
+                    num2 = Dialog_ColorPickerBase.focusableControlNames.Count - 1;
+
+                GUI.FocusControl(Dialog_ColorPickerBase.focusableControlNames[num2]);
+            }
+
             if (Event.current.type == EventType.Layout)
                 previousFocusedControlName = GUI.GetNameOfFocusedControl();
         }
     }
 
-    private void ResetColorValues(Color color)
-    {
-        if (colorTwoChosen is false)
-        {
-            luminosityOne = color.CalculateBrightnessLevel();
-            luminosityBuf1 = luminosityOne.ToString();
-            hexColorOne = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)luminosityOne));
-        }
-        else
-        {
-            luminosityTwo = color.CalculateBrightnessLevel();
-            luminosityBuf2 = luminosityTwo.ToString();
-            hexColorTwo = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)luminosityTwo));
-        }
-    }
-
-    private string ResetHexValues(Color color)
-    {
-        if (colorTwoChosen is false)
-        {
-            hexColorOne = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)luminosityOne));
-            return hexColorOne;
-        }
-        else
-        {
-            hexColorTwo = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)luminosityTwo));
-            return hexColorOne;
-        }
-    }
-
     private void ColorSelectorExtraOnGui(Color color, Rect boxRect)
     {
-        var firstDef = (colorTwoChosen is false ? furColors.FirstOrDefault(x => x.blacklistPrimary is false && x.primaryColor == color) :
-            furColors.FirstOrDefault(x => x.blacklistSecondary is false && x.secondaryColor.HasValue && x.secondaryColor.Value == color));
+        var firstDef = (accentColorChosen ? predefinedFurPatternFillColors : predefinedFurPatternAccentColors).FirstOrDefault(x => !x.blacklistPrimary && x.colorOne == color);
+
         if (firstDef != null)
             TooltipHandler.TipRegion(boxRect, firstDef.LabelCap);
     }
@@ -320,13 +315,11 @@ public class Window_ColorPicker: Window
     {
         using (new TextBlock(TextAnchor.MiddleLeft))
         {
-            RectDivider rectDivider = layout;
-            RectDivider rectDivider2 = rectDivider.NewCol(250f, HorizontalJustification.Right);
-            var colors = (colorTwoChosen is false ? furColors.Where(x => x.blacklistPrimary is false).Select(x => x.primaryColor).Distinct().ToList() :
-                furColors.Where(x => x.blacklistSecondary is false && x.secondaryColor.HasValue).Select(x => x.secondaryColor.Value).Distinct()).ToList();
+            var rectDivider = layout;
+            var rectDivider2 = rectDivider.NewCol(250f, HorizontalJustification.Right);
+            var colors = (accentColorChosen ? predefinedFurPatternAccentColors : predefinedFurPatternFillColors).Where(x => !x.blacklistPrimary).Select(x => x.colorOne).Distinct().ToList();
             colors.SortByColor(x => x);
-            Widgets.ColorSelector(rectDivider2, ref color, colors.ToList(), out paletteHeight, 
-                extraOnGUI: ColorSelectorExtraOnGui);
+            Widgets.ColorSelector(rectDivider2, ref color, colors, out paletteHeight, extraOnGUI: ColorSelectorExtraOnGui);
         }
     }
 }
