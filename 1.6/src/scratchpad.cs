@@ -82,3 +82,49 @@ public static class VanillaExpandedFramework_PawnRenderNode_Fur_GraphicFor_Patch
     public static readonly Shader SolidColorBehind = ShaderDatabase.LoadShader("Map/SolidColorBehind");
     public static readonly Shader VertexColor = ShaderDatabase.LoadShader("Map/VertexColor");
 }
+public class TattooDef : StyleItemDef
+{
+    public TattooType tattooType;
+    public bool visibleNorth = true;
+
+    public override Graphic GraphicFor(Pawn pawn, Color color)
+    {
+        if (this.noGraphic)
+            return (Graphic) null;
+        string maskPath = this.tattooType == TattooType.Body ? pawn.story.bodyType.bodyNakedGraphicPath : pawn.story.headType.graphicPath;
+        return GraphicDatabase.Get<Graphic_Multi>(this.texPath, this.overrideShaderTypeDef?.Shader ?? ShaderDatabase.CutoutSkinOverlay, Vector2.one, color, Color.white, (GraphicData) null, maskPath);
+    }
+}
+public abstract class PawnRenderNode_Tattoo : PawnRenderNode
+{
+    protected const float TattooOpacity = 0.8f;
+
+    public PawnRenderNode_Tattoo(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree)
+        : base(pawn, props, tree)
+    {
+    }
+
+    public override Color ColorFor(Pawn pawn)
+    {
+        Color color = base.ColorFor(pawn);
+        color.a *= 0.8f;
+        return color;
+    }
+}
+public class PawnRenderNode_Tattoo_Head(
+    Pawn pawn,
+    PawnRenderNodeProperties props,
+    PawnRenderTree tree) : PawnRenderNode_Tattoo(pawn, props, tree)
+{
+    public override GraphicMeshSet MeshSetFor(Pawn pawn)
+    {
+        return pawn.style?.FaceTattoo == null || pawn.style.FaceTattoo.noGraphic ? (GraphicMeshSet) null : HumanlikeMeshPoolUtility.GetHumanlikeHairSetForPawn(pawn);
+    }
+
+    public override Graphic GraphicFor(Pawn pawn)
+    {
+        if (!ModLister.CheckIdeology("Head tattoo"))
+            return (Graphic) null;
+        return pawn.style?.FaceTattoo == null || pawn.style.FaceTattoo.noGraphic ? (Graphic) null : pawn.style.FaceTattoo.GraphicFor(pawn, this.ColorFor(pawn));
+    }
+}

@@ -27,6 +27,15 @@
 			<li>GeneDef_Cheech_Head</li>
 			<li>GeneDef_Cheech_Tail</li>
 			<li>GeneDef_Cheech_Fur_Tufted_White</li>
+      <li>GeneDef_Cheech_FurPatternFill_Tux</li>
+      <li>GeneDef_Cheech_FurPatternAccent_Jaguar</li>
+      <li>GeneDef_Cheech_FurPatternAccent_Leopard</li>
+      <li>GeneDef_Cheech_FurPatternAccent_Spots</li>
+      <li>GeneDef_Cheech_FurPatternAccent_StripesSharp</li>
+      <li>GeneDef_Cheech_FurPatternAccent_StripesSpots</li>
+      <li>GeneDef_Cheech_FurPatternAccent_StripesSquiggles</li>
+      <li>GeneDef_Cheech_FurPatternAccent_StripesV</li>
+      <li>GeneDef_Cheech_HeadPatternAccent_Jaguar</li>
       <li>Hair_BaldOnly</li>
       <li>Beard_NoBeardOnly</li>
       <li>GeneDef_Cheech_Pheromones</li>

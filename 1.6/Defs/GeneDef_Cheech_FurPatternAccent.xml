@@ -12,6 +12,7 @@
     <geneClass>Cheechin.GeneFurPatternAccent</geneClass>
     <biostatCpx>0</biostatCpx>
     <biostatMet>0</biostatMet>
+    <!--<endogeneCategory>Melanin</endogeneCategory>-->
     <displayCategory>GeneCategoryDef_Cheech_FurPatternAccent</displayCategory>
     <description>Finer detail markings like stripes or spots.</description>
     <displayOrderInCategory>100</displayOrderInCategory>
@@ -47,6 +48,7 @@
     <labelShortAdj>jaguar spotted</labelShortAdj>
     <renderNodeProperties>
       <li>
+        <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/Jaguar/Jaguar_Male</Male>
           <Female>Cheech/Fur/Jaguar/Jaguar_Female</Female>
@@ -66,6 +68,7 @@
     <labelShortAdj>leopard spotted</labelShortAdj>
     <renderNodeProperties>
       <li>
+        <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/Leopard/Leopard_Male</Male>
           <Female>Cheech/Fur/Leopard/Leopard_Female</Female>
@@ -85,6 +88,7 @@
     <labelShortAdj>spotted</labelShortAdj>
     <renderNodeProperties>
       <li>
+        <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/Spots/Spots_Male</Male>
           <Female>Cheech/Fur/Spots/Spots_Female</Female>
@@ -104,6 +108,7 @@
     <labelShortAdj>sharp striped</labelShortAdj>
     <renderNodeProperties>
       <li>
+        <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/StripesSharp/StripesSharp_Male</Male>
           <Female>Cheech/Fur/StripesSharp/StripesSharp_Female</Female>
@@ -123,6 +128,7 @@
     <labelShortAdj>stripy spotty</labelShortAdj>
     <renderNodeProperties>
       <li>
+        <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/StripesSpots/StripesSpots_Female</Male>
           <Female>Cheech/Fur/StripesSpots/StripesSpots_Female</Female>
@@ -142,6 +148,7 @@
     <labelShortAdj>squiggly striped</labelShortAdj>
     <renderNodeProperties>
       <li>
+        <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/StripesSquiggles/StripesSquiggles_Male</Male>
           <Female>Cheech/Fur/StripesSquiggles/StripesSquiggles_Female</Female>
@@ -161,6 +168,7 @@
     <labelShortAdj>V striped</labelShortAdj>
     <renderNodeProperties>
       <li>
+        <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/StripesV/StripesV_Male</Male>
           <Female>Cheech/Fur/StripesV/StripesV_Female</Female>

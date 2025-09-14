@@ -23,7 +23,7 @@
         <colorType>Skin</colorType>
         <useSkinShader>true</useSkinShader>
         <useRottenColor>true</useRottenColor>
-				<rotDrawMode>Fresh, Rotting</rotDrawMode>
+				<rotDrawMode>Fresh,Rotting</rotDrawMode>
         <visibleFacing>
           <li>East</li>
           <li>North</li>

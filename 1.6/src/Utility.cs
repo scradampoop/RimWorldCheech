@@ -9,9 +9,7 @@ public static class Utility
 {
     public static bool IsSameXenotypeAs(this Pawn? pawn, Pawn? other) => pawn?.genes?.Xenotype == other?.genes?.Xenotype;
 
-    public static GeneFurPatternFill? GetGeneFurPatternFill(this Pawn pawn, bool activeCheck = true) => pawn.genes?.GenesListForReading.OfType<GeneFurPatternFill>().FirstOrDefault(p => p.Active || !activeCheck);
-
-    public static GeneFurPatternAccent? GetGeneFurPatternAccent(this Pawn pawn, bool activeCheck = true) => pawn.genes?.GenesListForReading.OfType<GeneFurPatternAccent>().FirstOrDefault(p => p.Active || !activeCheck);
+    public static TGene? GetGene<TGene>(this Pawn pawn) where TGene: Gene => pawn.genes?.GenesListForReading.OfType<TGene>().FirstOrDefault(p => p.Active);
 
     /// <summary>
     /// Calculate the brightness level (0 to 100) from a color

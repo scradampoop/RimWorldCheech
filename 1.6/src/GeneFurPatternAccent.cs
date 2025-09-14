@@ -22,36 +22,13 @@ public sealed class FurPatternColorDef: Def
 }
 
 /// <summary>
-/// TBD: Based on Anthrosonae version. Skeptical this patch is necessary here, or at least, should be able to just call SetAllGraphicsDirty from given pawn param instead of the genes.
+/// Inherited from Anthrosonae source code. Not sure if it's needed.
 /// </summary>
 [HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), typeof(PawnGenerationRequest))]
 public static class PawnGenerator_GeneratePawn_Patch
 {
-    public static void Postfix(ref Pawn? __result)
-    {
-        // __result.drawer.renderer.SetAllGraphicsDirty();
-        __result?.GetGeneFurPatternFill()?.ApplyColors();
-        __result?.GetGeneFurPatternAccent()?.ApplyColors();
-    }
+    public static void Postfix(ref Pawn? __result) => __result?.drawer.renderer.SetAllGraphicsDirty();
 }
-
-public class PawnRenderNode_FurPatternFill(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode(pawn, props, tree)
-{
-    public override Graphic? GraphicFor(Pawn pawnGraphicFor) => GeneFurPattern.GraphicFor(pawnGraphicFor.GetGeneFurPatternFill()!);
-}
-
-public class PawnRenderNode_FurPatternAccent(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode(pawn, props, tree)
-{
-    public override Graphic? GraphicFor(Pawn pawnGraphicFor) => GeneFurPattern.GraphicFor(pawnGraphicFor.GetGeneFurPatternAccent()!);
-}
-
-/// <summary>
-/// Declaring separate classes for fill vs accent because the rendering code doesn't seem to like multiple render nodes of the same type.
-/// </summary>
-public sealed class GeneFurPatternFill: GeneFurPattern;
-
-/// <inheritdoc cref="GeneFurPatternFill"/>
-public sealed class GeneFurPatternAccent: GeneFurPattern;
 
 public abstract class GeneFurPattern: Gene
 {
@@ -64,32 +41,6 @@ public abstract class GeneFurPattern: Gene
     /// </summary>
     public Color? colorTwo;
 
-    /// <summary>
-    /// Common renderer for both the fill and accent pattern genes.
-    /// </summary>
-    public static Graphic? GraphicFor(GeneFurPattern geneFurPattern)
-    {
-        // TODO: PawnRenderNode_FurPatternAccent and Fill are referenced by the base gene def, but the texture paths are defined by the derived gene defs. Is there a way to get the texture path and colors with fewer operations and without reflection? - or does it matter? Not sure how often this is called.
-        var bodyTypeGraphicPaths = geneFurPattern.def.renderNodeProperties.FirstOrDefault(r => r.bodyTypeGraphicPaths?.Any() == true).bodyTypeGraphicPaths;
-        var story = geneFurPattern.pawn.story;
-        for (int index = 0; index < bodyTypeGraphicPaths.Count; ++index)
-        {
-            if (bodyTypeGraphicPaths[index].bodyType == story.bodyType)
-            {
-                return GraphicDatabase.Get<Graphic_Multi>(
-                    path: bodyTypeGraphicPaths[index].texturePath,
-                    shader: ShaderDatabase.CutoutSkinOverlay,
-                    drawSize: Vector2.one,
-                    color: geneFurPattern.colorOne,
-                    colorTwo: geneFurPattern.colorTwo ?? Color.white,
-                    data: null,
-                    maskPath: story.furDef?.GetFurBodyGraphicPath(geneFurPattern.pawn) ?? story.bodyType.bodyNakedGraphicPath
-                );
-            }
-        }
-        return null;
-    }
-
     public override void PostAdd()
     {
         base.PostAdd();
@@ -99,11 +50,9 @@ public abstract class GeneFurPattern: Gene
             furPatternColor = result;
             colorOne = furPatternColor.colorOne;
             colorTwo = furPatternColor.colorTwo;
-            ApplyColors();
+            pawn?.drawer.renderer.SetAllGraphicsDirty();
         }
     }
-
-    public void ApplyColors() => pawn?.drawer.renderer.SetAllGraphicsDirty();
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
@@ -125,3 +74,83 @@ public abstract class GeneFurPattern: Gene
         Scribe_Values.Look(ref colorTwo, nameof(colorTwo));
     }
 }
+
+/// <summary>
+/// Declaring separate classes for fill vs accent because the rendering code doesn't seem to like multiple render nodes of the same type.
+/// </summary>
+public sealed class GeneFurPatternFill: GeneFurPattern;
+
+/// <inheritdoc cref="GeneFurPatternFill"/>
+public sealed class GeneFurPatternAccent: GeneFurPattern;
+
+/// <inheritdoc cref="GeneFurPatternFill"/>
+public sealed class GeneHeadPatternFill: GeneFurPattern;
+
+/// <inheritdoc cref="GeneFurPatternFill"/>
+public sealed class GeneHeadPatternAccent: GeneFurPattern;
+
+public abstract class PawnRenderNode_FurPattern<TGeneFurPattern>(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode(pawn, props, tree) where TGeneFurPattern: GeneFurPattern
+{
+    public override Color ColorFor(Pawn pawnGraphicFor) => pawnGraphicFor.GetGene<TGeneFurPattern>()!.colorOne;
+
+    /// <summary>
+    /// Common body renderer for both the fill and accent pattern genes.
+    /// </summary>
+    public override Graphic? GraphicFor(Pawn pawnGraphicFor)
+    {
+        // PawnRenderNode_FurPatternAccent and Fill are referenced by the base gene def, but the texture paths are defined by the derived gene defs. Is there a way to get the texture path and colors with fewer operations and without reflection? - or does it matter? Not sure how often this is called.
+        var geneFurPattern = pawnGraphicFor.GetGene<TGeneFurPattern>()!;
+        var bodyTypeGraphicPaths = geneFurPattern.def.renderNodeProperties.FirstOrDefault(r => r.bodyTypeGraphicPaths?.Any() == true).bodyTypeGraphicPaths;
+        var story = pawnGraphicFor.story;
+        for (int index = 0; index < bodyTypeGraphicPaths.Count; ++index)
+        {
+            if (bodyTypeGraphicPaths[index].bodyType == story.bodyType)
+            {
+                return GraphicDatabase.Get<Graphic_Multi>(
+                    path: bodyTypeGraphicPaths[index].texturePath,
+                    shader: ShaderDatabase.CutoutSkinOverlay,
+                    drawSize: Vector2.one,
+                    color: geneFurPattern.colorOne,
+                    colorTwo: geneFurPattern.colorTwo ?? Color.white,
+                    data: null,
+                    maskPath: story.furDef?.GetFurBodyGraphicPath(pawnGraphicFor) ?? story.bodyType.bodyNakedGraphicPath
+                );
+            }
+        }
+        return null;
+    }
+}
+
+public abstract class PawnRenderNode_HeadPattern<TGeneFurPattern>(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode_FurPattern<TGeneFurPattern>(pawn, props, tree) where TGeneFurPattern: GeneFurPattern
+{
+    /// <summary>
+    /// Common head pattern renderer for both the fill and accent pattern genes.
+    /// </summary>
+    public override Graphic GraphicFor(Pawn pawnGraphicFor)
+    {
+        var geneHeadPattern = pawnGraphicFor.GetGene<TGeneFurPattern>()!;
+        return GraphicDatabase.Get<Graphic_Multi>(
+            path: geneHeadPattern.def.renderNodeProperties.FirstOrDefault(r => r.texPath != null).texPath,
+            shader: ShaderDatabase.CutoutSkinOverlay,
+            drawSize: Vector2.one,
+            color: geneHeadPattern.colorOne,
+            colorTwo: geneHeadPattern.colorTwo ?? Color.white,
+            data: null,
+            maskPath: pawnGraphicFor.story.headType.graphicPath
+        );
+    }
+}
+
+/// <summary>
+/// We probably can't put generics into XML defs, so we have a few concrete pointers for the XML defs to reference.
+/// </summary>
+public sealed class PawnRenderNode_FurPatternFill(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode_FurPattern<GeneFurPatternFill>(pawn, props, tree);
+
+/// <inheritdoc cref="PawnRenderNode_FurPatternFill"/>
+public sealed class PawnRenderNode_FurPatternAccent(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode_FurPattern<GeneFurPatternAccent>(pawn, props, tree);
+
+/// <inheritdoc cref="PawnRenderNode_FurPatternFill"/>
+public sealed class PawnRenderNode_HeadPatternFill(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode_HeadPattern<GeneHeadPatternFill>(pawn, props, tree);
+
+/// <inheritdoc cref="PawnRenderNode_FurPatternFill"/>
+public sealed class PawnRenderNode_HeadPatternAccent(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode_HeadPattern<GeneHeadPatternAccent>(pawn, props, tree);

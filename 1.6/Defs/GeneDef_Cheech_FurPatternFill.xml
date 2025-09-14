@@ -5,6 +5,7 @@
     <geneClass>Cheechin.GeneFurPatternFill</geneClass>
     <biostatCpx>0</biostatCpx>
     <biostatMet>0</biostatMet>
+    <!--<endogeneCategory>Melanin</endogeneCategory>-->
     <displayCategory>GeneCategoryDef_Cheech_FurPatternFill</displayCategory>
     <description>Lower-layer, larger markings like patches or shading.</description>
     <displayOrderInCategory>100</displayOrderInCategory>
@@ -40,6 +41,7 @@
     <labelShortAdj>tuxedo</labelShortAdj>
     <renderNodeProperties>
       <li>
+        <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/Tux/Tux_Female</Male>
           <Female>Cheech/Fur/Tux/Tux_Female</Female>
@@ -59,6 +61,7 @@
     <labelShortAdj>round bibbed</labelShortAdj>
     <renderNodeProperties>
       <li>
+        <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/RoundBib/RoundBib_Hulk</Male>
           <Female>Cheech/Fur/RoundBib/RoundBib_Hulk</Female>

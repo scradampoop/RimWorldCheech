@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+  <GeneDef Name="GeneDef_Cheech_HeadPatternAccent" Abstract="True">
+    <geneClass>Cheechin.GeneHeadPatternAccent</geneClass>
+    <biostatCpx>0</biostatCpx>
+    <biostatMet>0</biostatMet>
+    <!--<endogeneCategory>Melanin</endogeneCategory>-->
+    <displayCategory>GeneCategoryDef_Cheech_FurPatternAccent</displayCategory>
+    <description>Finer detail markings like stripes or spots.</description>
+    <displayOrderInCategory>110</displayOrderInCategory>
+    <iconColor>(0.75,0.75,0.75)</iconColor>
+    <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
+    <exclusionTags>
+      <li>HeadPatternAccent</li>
+    </exclusionTags>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>Cheechin.PawnRenderNode_HeadPatternAccent</nodeClass>
+        <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+        <baseLayer>50.4</baseLayer>
+        <colorType>Custom</colorType>
+        <parentTagDef>Head</parentTagDef>
+        <rotDrawMode>Fresh,Rotting</rotDrawMode>
+        <useRottenColor>true</useRottenColor>
+        <debugLabel>Head Pattern Accent</debugLabel>
+      </li>
+    </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_HeadPatternAccent">
+    <defName>GeneDef_Cheech_HeadPatternAccent_Jaguar</defName>
+    <label>jaguar spotted face</label>
+    <labelShortAdj>jaguar facial spotted</labelShortAdj>
+    <renderNodeProperties>
+      <li>
+        <useGraphic>false</useGraphic>
+        <texPath>Cheech/Head/OMark1</texPath>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+</Defs>

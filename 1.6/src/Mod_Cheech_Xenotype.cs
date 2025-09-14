@@ -65,7 +65,7 @@ public static class Building_StylingStation_GetFloatMenuOptions_Patch
         foreach (var option in options)
         {
             yield return option;
-            if (option.Label == "ChangeStyle".Translate().CapitalizeFirst() && (selPawn.GetGeneFurPatternAccent() != null || selPawn.GetGeneFurPatternFill() != null))
+            if (option.Label == "ChangeStyle".Translate().CapitalizeFirst() && selPawn.genes?.GenesListForReading.OfType<GeneFurPattern>().Any(p => p.Active) == true)
             {
                 yield return FloatMenuUtility.DecoratePrioritizedTask(
                     new(
