@@ -7,7 +7,7 @@ Inspired and based upon the Orassans mod by Diana (Kitty) Winters at https://ste
 **Q:** Why are they called 'Cheech' or 'Cheechers'?
 <br/> **A:** scradam and ShawShaw have brain damage. That's literally what they call cats IRL, and now you probably will too. (Sorry.)
 <br/> **Q:** Why is the root namespace "Cheechin"?
-<br/> **A:** That's what cheechers do. They cheech! They be cheechin' (slang for cheeching). When you work on this mod, you be cheechin' too.
+<br/> **A:** That's what cheechers do. They cheech! They be cheechin' (slang for cheeching). When you use or work on this mod, you be cheechin' too.
 
 ## Demo:
 
@@ -16,8 +16,8 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 ![Cover Image](About/Preview.png)
 
 ## TODO / Ideas:
-- Get fur pattern color pickers working with tail and ears.
-- Figure out what to do with base coat color(s) and a UI for changing it, or maybe ask Anthrosonae team if I can PR a variant of the Orassans textures.
+- Figure out what to do with base coat color(s) and a UI for changing it.
+- Maybe ask Anthrosonae team if I can PR a variant of the Orassans textures.
 - Finish the round bib base pattern.
 - Finish the Stripes-spots accent pattern.
 - Finish the tux base pattern.
@@ -28,20 +28,18 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 - Make sure XML has everything currently in the texture folders.
 - Go through z_samples folder and look for anything else good to put in game.
 - Add more tails. TBD on how to implement stripes/spots and color patterns on tails. 
-- Replace tufts icon with smaller one with transparent background so it shows the gene background behind it. normalize color so it looks consistent with other .75 icons.
-- Put a link to the github repo in the About so people always know where to find the source code.
+- Replace gene icons.
 - Changing fur color should require tincture flower stuff like normal color changes.
 - Custom names for faction/race members.
-- Credit source mods in source code summaries once the code starts to stabilize.
 - Figure out how the gradient hair mod works, particularly via character editor, and try to make that work for fur patterns.
-- Make patterns seletable via Pawn Editor mod.
+- Make patterns selectable via Pawn Editor mod.
 - Allow pasting of RGBA hex codes into color picker.
-- Add alpha slider to color picker.
-- Add sliders to the color picker UI to adjust hue/sat/lum.
+- See if we can get alpha channel working for colors.
 - Go through the ShaderDatabase class again and confirm if we're using the best shadrers for our purposes.
-
-## Known Issues:
-- Fur patterns do not show up correctly in character editor, but they do still seem to work in game.
+- Credit Anthrosonae team for example code and color picker.
+- Credit Diana (Kitty) Winters for Orassans mod and textures.
+- Credit https://github.com/fluffy-mods/ColourPicker for the color picker code.
+- Credit source mods in source code summaries once the code starts to stabilize for any other textures or code we're using.
 
 ## Garbage:
 

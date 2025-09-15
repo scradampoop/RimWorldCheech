@@ -10,15 +10,14 @@ public sealed class FurPatternColorDef: Def
     public Color colorOne;
 
     /// <summary>
-    /// TBD: Either eliminate colorTwo or set to Color.white by default if we don't use it (yet?).
+    /// Only used by textures that have complex masks and aren't using the body or head graphic as a mask.
     /// </summary>
-    public Color? colorTwo;
+    public Color colorTwo;
 
+    /// <summary>
+    /// The likelihood of this color being selected at random from the pool of predefined colors during pawn generation.
+    /// </summary>
     public float selectionWeight;
-
-    public int displayOrder;
-
-    public bool blacklistPrimary;
 }
 
 /// <summary>
@@ -37,9 +36,9 @@ public abstract class GeneFurPattern: Gene
     public Color colorOne;
 
     /// <summary>
-    /// TBD: Either eliminate colorTwo or set to Color.white by default if we don't use it (yet?).
+    /// Only used by textures that have complex masks and aren't using the body graphic as a mask.
     /// </summary>
-    public Color? colorTwo;
+    public Color colorTwo;
 
     public override void PostAdd()
     {
@@ -76,7 +75,7 @@ public abstract class GeneFurPattern: Gene
 }
 
 /// <summary>
-/// Declaring separate classes for fill vs accent because the rendering code doesn't seem to like multiple render nodes of the same type.
+/// Declaring separate classes for different gene types so we can more readily find them via reflection.
 /// </summary>
 public sealed class GeneFurPatternFill: GeneFurPattern;
 
@@ -88,6 +87,12 @@ public sealed class GeneHeadPatternFill: GeneFurPattern;
 
 /// <inheritdoc cref="GeneFurPatternFill"/>
 public sealed class GeneHeadPatternAccent: GeneFurPattern;
+
+/// <inheritdoc cref="GeneFurPatternFill"/>
+public sealed class GeneEarsWithPattern: GeneFurPattern;
+
+/// <inheritdoc cref="GeneFurPatternFill"/>
+public sealed class GeneTailWithPattern: GeneFurPattern;
 
 public abstract class PawnRenderNode_FurPattern<TGeneFurPattern>(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode(pawn, props, tree) where TGeneFurPattern: GeneFurPattern
 {
@@ -111,7 +116,7 @@ public abstract class PawnRenderNode_FurPattern<TGeneFurPattern>(Pawn pawn, Pawn
                     shader: ShaderDatabase.CutoutSkinOverlay,
                     drawSize: Vector2.one,
                     color: geneFurPattern.colorOne,
-                    colorTwo: geneFurPattern.colorTwo ?? Color.white,
+                    colorTwo: geneFurPattern.colorTwo,
                     data: null,
                     maskPath: story.furDef?.GetFurBodyGraphicPath(pawnGraphicFor) ?? story.bodyType.bodyNakedGraphicPath
                 );
@@ -134,7 +139,7 @@ public abstract class PawnRenderNode_HeadPattern<TGeneFurPattern>(Pawn pawn, Paw
             shader: ShaderDatabase.CutoutSkinOverlay,
             drawSize: Vector2.one,
             color: geneHeadPattern.colorOne,
-            colorTwo: geneHeadPattern.colorTwo ?? Color.white,
+            colorTwo: geneHeadPattern.colorTwo,
             data: null,
             maskPath: pawnGraphicFor.story.headType.graphicPath
         );
@@ -154,3 +159,21 @@ public sealed class PawnRenderNode_HeadPatternFill(Pawn pawn, PawnRenderNodeProp
 
 /// <inheritdoc cref="PawnRenderNode_FurPatternFill"/>
 public sealed class PawnRenderNode_HeadPatternAccent(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode_HeadPattern<GeneHeadPatternAccent>(pawn, props, tree);
+
+/// <inheritdoc cref="PawnRenderNode_FurPatternFill"/>
+public sealed class PawnRenderNode_EarsWithPattern(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode_AttachmentHead(pawn, props, tree)
+{
+    public override Graphic GraphicFor(Pawn pawnGraphicFor)
+    {
+        var geneEars = pawnGraphicFor.GetGene<GeneEarsWithPattern>()!;
+        return GraphicDatabase.Get<Graphic_Multi>(
+            path: props.texPath,
+            shader: ShaderDatabase.CutoutComplex,
+            drawSize: Vector2.one,
+            color: geneEars.colorOne,
+            colorTwo: geneEars.colorTwo,
+            data: null,
+            maskPath: null
+        );
+    }
+}

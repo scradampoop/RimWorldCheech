@@ -1,5 +1,13 @@
 <?xml version="1.0" ?>
 <Defs>
+  
+  <Cheechin.FurPatternColorDef>
+    <defName>Cheechin_FurPreset_Test</defName>
+    <colorOne>(50,200,0)</colorOne>
+    <colorTwo>(200,0,50)</colorTwo>
+    <selectionWeight>0.63</selectionWeight>
+  </Cheechin.FurPatternColorDef>
+
   <!--TODO: use cat ears as base instead?-->
   <!--<GeneDef ParentName="Ears_Cat">-->
   <GeneDef ParentName="GeneEarsBase">
@@ -27,7 +35,7 @@
         <parentTagDef>Head</parentTagDef>
         <useSkinShader>true</useSkinShader>
         <useRottenColor>true</useRottenColor>
-        <rotDrawMode>Fresh, Rotting</rotDrawMode>
+        <rotDrawMode>Fresh,Rotting</rotDrawMode>
         <drawData>
           <defaultData>
             <layer>70</layer>
@@ -53,4 +61,37 @@
       </suffixSymbols>
     </symbolPack>-->
   </GeneDef>
+
+  <GeneDef ParentName="GeneEarsBase">
+    <geneClass>Cheechin.GeneEarsWithPattern</geneClass>
+    <defName>GeneDef_Cheech_EarTest</defName>
+    <label>cheech test ears</label>
+    <description>Cosmetic only. Cheech test ears.</description>
+    <iconPath>Cheech/Icons/Icon_CheechEars</iconPath>		
+    <biostatMet>0</biostatMet>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>Cheechin.PawnRenderNode_EarsWithPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+        <texPath>Cheech/Ears/AnthrocatEars</texPath>
+        <colorType>Custom</colorType>
+        <parentTagDef>Head</parentTagDef>
+        <useRottenColor>true</useRottenColor>
+        <rotDrawMode>Fresh,Rotting</rotDrawMode>
+        <drawData>
+          <defaultData>
+            <layer>70</layer>
+          </defaultData>
+        </drawData>
+      </li>
+    </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Test</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
 </Defs>

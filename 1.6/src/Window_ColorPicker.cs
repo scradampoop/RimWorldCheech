@@ -1,5 +1,8 @@
 ﻿namespace Cheechin;
 
+/// <summary>
+/// Based on Anthrosonae mod's color picker.
+/// </summary>
 [StaticConstructorOnStartup]
 public sealed class Window_FurPatternColorPicker: Window
 {
@@ -7,7 +10,11 @@ public sealed class Window_FurPatternColorPicker: Window
     private const int BodyAccent = 1;
     private const int HeadFill = 2;
     private const int HeadAccent = 3;
-    private const int PatternCount = 4;
+    private const int EarsFill = 4;
+    private const int EarsAccent = 5;
+    private const int TailFill = 6;
+    private const int TailAccent = 7;
+    private const int PatternCount = 8;
 
     private readonly Color[] patternColorsOriginal = new Color[PatternCount];
 
@@ -25,7 +32,7 @@ public sealed class Window_FurPatternColorPicker: Window
 
     private bool hsvColorWheelDragging;
 
-    private readonly string[][] textfieldBuffers = [new string[6],new string[6],new string[6],new string[6]];
+    private readonly string[][] textfieldBuffers = [new string[6],new string[6],new string[6],new string[6],new string[6],new string[6],new string[6],new string[6]];
 
     private readonly Color[] textfieldColorBuffers = new Color[PatternCount];
 
@@ -41,6 +48,17 @@ public sealed class Window_FurPatternColorPicker: Window
 
     private readonly Pawn pawn;
 
+    /// <summary>
+    /// This color picker class started to get ugly when we use colorTwo in some cases and not others. Adam swears he doesn't normally write code this weird. He just didn't want to refactor it all just yet.
+    /// </summary>
+    private static ref Color Rt(int i, GeneFurPattern[] g) => ref (i is EarsAccent or TailAccent ? ref g[i].colorTwo : ref g[i].colorOne);
+
+    /// <inheritdoc cref="Rt"/>
+    private static Color Ot(int i, FurPatternColorDef d) => i is EarsAccent or TailAccent ? d.colorTwo : d.colorOne;
+
+    /// <inheritdoc cref="Rt"/>
+    private static Color Ot(int i, GeneFurPattern?[] g) => (i is EarsAccent or TailAccent ? g[i]?.colorTwo : g[i]?.colorOne) ?? Color.black;
+
     public Window_FurPatternColorPicker(Pawn pawn)
     {
         this.pawn = pawn;
@@ -48,17 +66,19 @@ public sealed class Window_FurPatternColorPicker: Window
         geneFurPatterns[BodyAccent] = pawn.GetGene<GeneFurPatternAccent>();
         geneFurPatterns[HeadFill] = pawn.GetGene<GeneHeadPatternFill>();
         geneFurPatterns[HeadAccent] = pawn.GetGene<GeneHeadPatternAccent>();
+        geneFurPatterns[EarsAccent] = geneFurPatterns[EarsFill] = pawn.GetGene<GeneEarsWithPattern>();
+        geneFurPatterns[TailAccent] = geneFurPatterns[TailFill] = pawn.GetGene<GeneTailWithPattern>();
         for (int i = BodyFill; i < PatternCount; ++i){
-            patternColors[i] = patternColorsOriginal[i] = geneFurPatterns[i]?.colorOne ?? Color.black;
+            patternColors[i] = patternColorsOriginal[i] = Ot(i, geneFurPatterns);
             patternColorsHex[i] = "#" + ColorUtility.ToHtmlStringRGB(patternColors[i]);
             patternColorsLuminosity[i] = patternColors[i].CalculateBrightnessLevel();
-            predefinedPatternColors[i] = geneFurPatterns[i]?.def.GetModExtension<FurPatternColors>().predefinedFurPatternColors.OrderBy(x => x.displayOrder).ToArray() ?? [];
+            predefinedPatternColors[i] = geneFurPatterns[i]?.def.GetModExtension<FurPatternColors>().predefinedFurPatternColors.OrderBy(d => Ot(i, d).grayscale).ToArray() ?? [];
         }
         selectedPattern = geneFurPatterns.FirstIndexOf(g => g != null);
         doCloseX = true;
         forcePause = true;
         absorbInputAroundWindow = false;
-        closeOnClickedOutside = false;
+        closeOnClickedOutside = true;
         closeOnAccept = false;
     }
 
@@ -85,16 +105,17 @@ public sealed class Window_FurPatternColorPicker: Window
         {
             var portrait = new Rect(inRect.x, inRect.y, 190, 240);
             Widgets.DrawMenuSection(portrait);
-            var oldColors = geneFurPatterns.Select(g => g?.colorOne ?? Color.black).ToArray();
+            Color[] oldColors = new Color[PatternCount];
             for (int i = BodyFill; i < PatternCount; ++i){
+                oldColors[i] = Ot(i, geneFurPatterns);
                 if (geneFurPatterns[i] != null)
-                    geneFurPatterns[i]!.colorOne = patternColors[i].WithBrightness((int)patternColorsLuminosity[i]);
+                    Rt(i, geneFurPatterns!) = patternColors[i].WithBrightness((int)patternColorsLuminosity[i]);
             }
             pawn.drawer.renderer.SetAllGraphicsDirty();
             var image = PortraitsCache.Get(pawn, new(200, 200), pawnRot, new(0, 0, 0.1f), healthStateOverride: PawnHealthState.Mobile, cameraZoom: 1.1f, renderClothes: false, renderHeadgear: false);
             for (int i = BodyFill; i < PatternCount; ++i){
                 if (geneFurPatterns[i] != null)
-                    geneFurPatterns[i]!.colorOne = oldColors[i];
+                    Rt(i, geneFurPatterns!) = oldColors[i];
             }
             pawn.drawer.renderer.SetAllGraphicsDirty();
             GUI.DrawTexture(portrait, image, ScaleMode.ScaleAndCrop);
@@ -120,7 +141,25 @@ public sealed class Window_FurPatternColorPicker: Window
             layout.NewRow(0f);
             var color = patternColors[selectedPattern];
             var oldColor = color;
-            ColorPalette(ref layout, ref color, out var paletteHeight);
+
+            #region ColorPalette
+
+            float paletteHeight;
+            using (new TextBlock(TextAnchor.MiddleLeft))
+            {
+                var rectDivider7 = layout;
+                var rectDivider8 = rectDivider7.NewCol(250f, HorizontalJustification.Right);
+                var colors = predefinedPatternColors[selectedPattern].Select(x => Ot(selectedPattern, x)).Distinct().ToList();
+                colors.SortByColor(x => x);
+                Widgets.ColorSelector(rectDivider8, ref color, colors, out paletteHeight, extraOnGUI: (sColor, boxRect) => {
+                    var firstDef = predefinedPatternColors[selectedPattern].FirstOrDefault(x => Ot(selectedPattern, x) == sColor);
+                    if (firstDef != null)
+                        TooltipHandler.TipRegion(boxRect, firstDef.LabelCap);
+                });
+            }
+
+            #endregion
+
             if (oldColor != color)
                 ResetColorValues(color);
 
@@ -180,6 +219,9 @@ public sealed class Window_FurPatternColorPicker: Window
             if (Event.current.type == EventType.Layout)
                 previousFocusedControlName = GUI.GetNameOfFocusedControl();
 
+            if (Widgets.ButtonText(new(hexRectLabel.x, hexRectLabel.yMax + 4, 125, 32), "ColorPicker.FineTune".Translate()))
+                Find.WindowStack.Add(new Dialog_ColourPicker(color, ResetColorValues, new(windowRect.xMin + portrait.width + 17, windowRect.yMin + 14)));
+
             #endregion
 
             float height = Mathf.Max(paletteHeight, 128f, size.y);
@@ -201,9 +243,9 @@ public sealed class Window_FurPatternColorPicker: Window
 
             if (Widgets.ButtonText(rectDivider5.NewCol(Dialog_ColorPickerBase.ButSize.x, HorizontalJustification.Right), "Accept".Translate()))
             {
-                for (int i1 = BodyFill; i1 < PatternCount; ++i1){
-                    if (geneFurPatterns[i1] != null && patternColors[i1] != patternColorsOriginal[i1])
-                        geneFurPatterns[i1]!.colorOne = patternColors[i1].WithBrightness((int)patternColorsLuminosity[i1]);
+                for (int i = BodyFill; i < PatternCount; ++i){
+                    if (geneFurPatterns[i] != null && patternColors[i] != patternColorsOriginal[i])
+                        Rt(i, geneFurPatterns!) = patternColors[i].WithBrightness((int)patternColorsLuminosity[i]);
                 }
                 Close();
             }
@@ -233,21 +275,24 @@ public sealed class Window_FurPatternColorPicker: Window
             #endregion
 
             patternColors[selectedPattern] = color;
-            var buttonsRect = new Rect(inRect.x, portrait.yMax + 10, 117, 24);
-            Widgets.Label(buttonsRect, $"ColorPicker.{selectedPattern switch {BodyFill => nameof(BodyFill), BodyAccent => nameof(BodyAccent), HeadFill => nameof(HeadFill), /*HeadAccent*/_ => nameof(HeadAccent)}}".Translate());
+            var buttonsRect = new Rect(inRect.x, portrait.yMax + 10, 80, 24);
+            Widgets.Label(buttonsRect, $"ColorPicker.{selectedPattern switch {
+                BodyFill => nameof(BodyFill),
+                BodyAccent => nameof(BodyAccent),
+                HeadFill => nameof(HeadFill),
+                HeadAccent => nameof(HeadAccent),
+                EarsFill => nameof(EarsFill),
+                EarsAccent => nameof(EarsAccent),
+                TailFill => nameof(TailFill),
+                TailAccent => nameof(TailAccent),
+                _/* Shouldn't ever happen. :S */ => nameof(BodyFill)
+            }}".Translate());
             buttonsRect = new(buttonsRect.xMax, buttonsRect.y, 50, buttonsRect.width);
 
-            if (Widgets.RadioButton(new(buttonsRect.xMax, buttonsRect.y), selectedPattern == BodyFill))
-                selectedPattern = BodyFill;
-
-            if (Widgets.RadioButton(new(buttonsRect.xMax + 40, buttonsRect.y), selectedPattern == BodyAccent))
-                selectedPattern = BodyAccent;
-
-            if (Widgets.RadioButton(new(buttonsRect.xMax + 80, buttonsRect.y), selectedPattern == HeadFill))
-                selectedPattern = HeadFill;
-
-            if (Widgets.RadioButton(new(buttonsRect.xMax + 120, buttonsRect.y), selectedPattern == HeadAccent))
-                selectedPattern = HeadAccent;
+            for (int i = BodyFill; i < PatternCount; ++i){
+                if (Widgets.RadioButton(new(buttonsRect.xMax + 36 * i, buttonsRect.y), selectedPattern == i))
+                    selectedPattern = i;
+            }
 
             if (Event.current.type == EventType.KeyDown)
             {
@@ -279,26 +324,6 @@ public sealed class Window_FurPatternColorPicker: Window
 
             if (Event.current.type == EventType.Layout)
                 previousFocusedControlName = GUI.GetNameOfFocusedControl();
-        }
-    }
-
-    private void ColorSelectorExtraOnGui(Color color, Rect boxRect)
-    {
-        var firstDef = predefinedPatternColors[selectedPattern].FirstOrDefault(x => !x.blacklistPrimary && x.colorOne == color);
-
-        if (firstDef != null)
-            TooltipHandler.TipRegion(boxRect, firstDef.LabelCap);
-    }
-
-    private void ColorPalette(ref RectDivider layout, ref Color color, out float paletteHeight)
-    {
-        using (new TextBlock(TextAnchor.MiddleLeft))
-        {
-            var rectDivider = layout;
-            var rectDivider2 = rectDivider.NewCol(250f, HorizontalJustification.Right);
-            var colors = predefinedPatternColors[selectedPattern].Where(x => !x.blacklistPrimary).Select(x => x.colorOne).Distinct().ToList();
-            colors.SortByColor(x => x);
-            Widgets.ColorSelector(rectDivider2, ref color, colors, out paletteHeight, extraOnGUI: ColorSelectorExtraOnGui);
         }
     }
 }
