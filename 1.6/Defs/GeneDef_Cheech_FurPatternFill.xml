@@ -11,6 +11,8 @@
     <displayOrderInCategory>100</displayOrderInCategory>
     <iconColor>(0.75,0.75,0.75)</iconColor>
     <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
+    <randomChosen>true</randomChosen>
+    <selectionWeight>0.1</selectionWeight>
     <exclusionTags>
       <li>FurPatternFill</li>
     </exclusionTags>
@@ -36,6 +38,46 @@
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
+    <defName>GeneDef_Cheech_FurPatternFill_Mottled</defName>
+    <label>mottled fill</label>
+    <labelShortAdj>mottled</labelShortAdj>
+    <renderNodeProperties>
+      <li>
+        <useGraphic>false</useGraphic>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/MottledFill/MottledFill_Male</Male>
+          <Female>Cheech/Fur/MottledFill/MottledFill_Female</Female>
+          <Hulk>Cheech/Fur/MottledFill/MottledFill_Hulk</Hulk>
+          <Fat>Cheech/Fur/MottledFill/MottledFill_Fat</Fat>
+          <Thin>Cheech/Fur/MottledFill/MottledFill_Thin</Thin>
+          <Child>Cheech/Fur/MottledFill/MottledFill_Child</Child>
+          <Baby>Cheech/Fur/MottledFill/MottledFill_Child</Baby>
+        </bodyTypeGraphicPaths>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
+    <defName>GeneDef_Cheech_FurPatternFill_Patches</defName>
+    <label>base patches</label>
+    <labelShortAdj>patchy</labelShortAdj>
+    <renderNodeProperties>
+      <li>
+        <useGraphic>false</useGraphic>
+        <bodyTypeGraphicPaths>
+          <Male>Cheech/Fur/PatchesLower/PatchesLower_Male</Male>
+          <Female>Cheech/Fur/PatchesLower/PatchesLower_Female</Female>
+          <Hulk>Cheech/Fur/PatchesLower/PatchesLower_Hulk</Hulk>
+          <Fat>Cheech/Fur/PatchesLower/PatchesLower_Fat</Fat>
+          <Thin>Cheech/Fur/PatchesLower/PatchesLower_Thin</Thin>
+          <Child>Cheech/Fur/PatchesLower/PatchesLower_Child</Child>
+          <Baby>Cheech/Fur/PatchesLower/PatchesLower_Child</Baby>
+        </bodyTypeGraphicPaths>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
     <defName>GeneDef_Cheech_FurPatternFill_Tux</defName>
     <label>tuxedo</label>
     <labelShortAdj>tuxedo</labelShortAdj>
@@ -43,33 +85,13 @@
       <li>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
-          <Male>Cheech/Fur/Tux/Tux_Female</Male>
+          <Male>Cheech/Fur/Tux/Tux_Male</Male>
           <Female>Cheech/Fur/Tux/Tux_Female</Female>
-          <Hulk>Cheech/Fur/Tux/Tux_Female</Hulk>
-          <Fat>Cheech/Fur/Tux/Tux_Female</Fat>
-          <Thin>Cheech/Fur/Tux/Tux_Female</Thin>
-          <Child>Cheech/Fur/Tux/Tux_Female</Child>
-          <Baby>Cheech/Fur/Tux/Tux_Female</Baby>
-        </bodyTypeGraphicPaths>
-      </li>
-    </renderNodeProperties>
-  </GeneDef>
-
-  <GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
-    <defName>GeneDef_Cheech_FurPatternFill_RoundBib</defName>
-    <label>round bib</label>
-    <labelShortAdj>round bibbed</labelShortAdj>
-    <renderNodeProperties>
-      <li>
-        <useGraphic>false</useGraphic>
-        <bodyTypeGraphicPaths>
-          <Male>Cheech/Fur/RoundBib/RoundBib_Hulk</Male>
-          <Female>Cheech/Fur/RoundBib/RoundBib_Hulk</Female>
-          <Hulk>Cheech/Fur/RoundBib/RoundBib_Hulk</Hulk>
-          <Fat>Cheech/Fur/RoundBib/RoundBib_Hulk</Fat>
-          <Thin>Cheech/Fur/RoundBib/RoundBib_Hulk</Thin>
-          <Child>Cheech/Fur/RoundBib/RoundBib_Hulk</Child>
-          <Baby>Cheech/Fur/RoundBib/RoundBib_Hulk</Baby>
+          <Hulk>Cheech/Fur/Tux/Tux_Hulk</Hulk>
+          <Fat>Cheech/Fur/Tux/Tux_Fat</Fat>
+          <Thin>Cheech/Fur/Tux/Tux_Thin</Thin>
+          <Child>Cheech/Fur/Tux/Tux_Child</Child>
+          <Baby>Cheech/Fur/Tux/Tux_Child</Baby>
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>

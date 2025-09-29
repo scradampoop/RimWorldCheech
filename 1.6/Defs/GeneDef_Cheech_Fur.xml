@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-  <GeneDef>
-		<defName>GeneDef_Cheech_Fur_Tufted_White</defName>
+  <GeneDef ParentName="GeneSkinColorMelanin">
+		<defName>GeneDef_Cheech_Fur_Tufted</defName>
     <fur>FurDef_Cheech_Tufts</fur>
-		<label>cheech base coat: white</label>
+		<label>cheech base coat</label>
 		<labelShortAdj>tufted</labelShortAdj>
     <biostatCpx>0</biostatCpx>
     <biostatMet>0</biostatMet>
+    <skinColorBase>(255, 255, 255)</skinColorBase>
+    <minMelanin>0</minMelanin>
 		<description>Base cheech coat.</description>
-		<displayCategory>Miscellaneous</displayCategory>
+    <displayCategory>Cosmetic_Skin</displayCategory>
 		<displayOrderInCategory>400</displayOrderInCategory>
 		<iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
 		<skinIsHairColor>false</skinIsHairColor>
@@ -19,7 +21,6 @@
       <li>BeardStyle</li>
       <li>Bodies</li>
       <li>Body</li>-->
-
       <li>Skin</li>
       <li>Fur</li>
     </exclusionTags>
@@ -30,14 +31,15 @@
         <workerClass>PawnRenderNodeWorker_Fur</workerClass>
         <baseLayer>5</baseLayer>
         <rotDrawMode>Fresh, Rotting</rotDrawMode>
-        <colorType>Custom</colorType>
+        <colorType>Skin</colorType>
         <parentTagDef>Body</parentTagDef>
       </li>
     </renderNodeProperties>
 		<modExtensions>
 			<li Class="VEF.Genes.GeneExtension">
         <furHidesBody>True</furHidesBody>
-        <dontColourFur>True</dontColourFur>
+        <useSkinColorForFur>True</useSkinColorForFur>
+        <!--<dontColourFur>True</dontColourFur>-->
         <!--<useSkinAndHairColorsForFur>True</useSkinAndHairColorsForFur>-->
 				<!--<useSkinColorForFur>True</useSkinColorForFur>-->
 				<!--<useMaskForFur>True</useMaskForFur>-->
@@ -45,6 +47,7 @@
 		</modExtensions>
 	</GeneDef>
 
+  <!--
   <GeneDef>
     <defName>GeneDef_Cheech_Fur_Tufted_Skin</defName>
     <fur>FurDef_Cheech_Tufts</fur>
@@ -117,8 +120,7 @@
       </li>
     </modExtensions>
   </GeneDef>
-
-  <!--<GeneDef>
+  <GeneDef>
     <defName>GeneDef_Cheech_Fur_Cheetah2</defName>
     <label>2cheech pattern1</label>
     <labelShortAdj>cheech pattern1y</labelShortAdj>

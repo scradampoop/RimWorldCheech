@@ -6,45 +6,46 @@
 [StaticConstructorOnStartup]
 public sealed class Window_FurPatternColorPicker: Window
 {
-    private const int BodyFill = 0;
-    private const int BodyAccent = 1;
-    private const int HeadFill = 2;
-    private const int HeadAccent = 3;
-    private const int EarsFill = 4;
-    private const int EarsAccent = 5;
-    private const int TailFill = 6;
-    private const int TailAccent = 7;
-    private const int PatternCount = 8;
+    private const int Skin = 0;
+    private const int BodyFill = 1;
+    private const int BodyAccent = 2;
+    private const int HeadFill = 3;
+    private const int HeadAccent = 4;
+    private const int EarsFill = 5;
+    private const int EarsAccent = 6;
+    private const int TailFill = 7;
+    private const int TailAccent = 8;
+    private const int ColorCount = 9;
 
-    private readonly Color[] patternColorsOriginal = new Color[PatternCount];
+    private readonly Color[] originalColors = new Color[ColorCount];
 
-    private readonly Color[] patternColors = new Color[PatternCount];
+    private readonly Color[] selectedColors = new Color[ColorCount];
 
-    private readonly string[] patternColorsHex = new string[PatternCount];
+    private readonly string[] selectedColorsAsHex = new string[ColorCount];
 
-    private readonly float[] patternColorsLuminosity = new float[PatternCount];
+    private readonly float[] selectedColorsLuminosity = new float[ColorCount];
 
-    private string[] luminosityBuf = new string[PatternCount];
+    private string[] selectedColorsLuminosityAsString = new string[ColorCount];
 
     private int selectedPattern;
 
-    private readonly GeneFurPattern?[] geneFurPatterns = new GeneFurPattern[PatternCount];
+    private readonly GeneFurPattern?[] geneFurPatterns = new GeneFurPattern[ColorCount];
 
     private bool hsvColorWheelDragging;
 
-    private readonly string[][] textfieldBuffers = [new string[6],new string[6],new string[6],new string[6],new string[6],new string[6],new string[6],new string[6]];
+    private readonly string[][] textFieldBuffers = [new string[6],new string[6],new string[6],new string[6],new string[6],new string[6],new string[6],new string[6],new string[6]];
 
-    private readonly Color[] textfieldColorBuffers = new Color[PatternCount];
+    private readonly Color[] textFieldColorBuffers = new Color[ColorCount];
 
     private string previousFocusedControlName;
 
-    public const Widgets.ColorComponents colorTextFields = Widgets.ColorComponents.Hue | Widgets.ColorComponents.Sat;
+    public const Widgets.ColorComponents hueAndSatFields = Widgets.ColorComponents.Hue | Widgets.ColorComponents.Sat;
 
     public override Vector2 InitialSize => new(800f, 410f);
 
-    private readonly FurPatternColorDef[][] predefinedPatternColors = new FurPatternColorDef[PatternCount][];
+    private readonly FurPatternColorDef[][] predefinedPatternColors = new FurPatternColorDef[ColorCount][];
 
-    private Rot4 pawnRot = Rot4.South;
+    private Rot4 pawnFacingDirection = Rot4.South;
 
     private readonly Pawn pawn;
 
@@ -62,19 +63,20 @@ public sealed class Window_FurPatternColorPicker: Window
     public Window_FurPatternColorPicker(Pawn pawn)
     {
         this.pawn = pawn;
+        geneFurPatterns[Skin] = new GeneFurPatternFill{colorOne = pawn.story.SkinColorBase, colorTwo = Color.white};
         geneFurPatterns[BodyFill] = pawn.GetGene<GeneFurPatternFill>();
         geneFurPatterns[BodyAccent] = pawn.GetGene<GeneFurPatternAccent>();
         geneFurPatterns[HeadFill] = pawn.GetGene<GeneHeadPatternFill>();
         geneFurPatterns[HeadAccent] = pawn.GetGene<GeneHeadPatternAccent>();
         geneFurPatterns[EarsAccent] = geneFurPatterns[EarsFill] = pawn.GetGene<GeneEarsWithPattern>();
         geneFurPatterns[TailAccent] = geneFurPatterns[TailFill] = pawn.GetGene<GeneTailWithPattern>();
-        for (int i = BodyFill; i < PatternCount; ++i){
-            patternColors[i] = patternColorsOriginal[i] = Ot(i, geneFurPatterns);
-            patternColorsHex[i] = "#" + ColorUtility.ToHtmlStringRGB(patternColors[i]);
-            patternColorsLuminosity[i] = patternColors[i].CalculateBrightnessLevel();
-            predefinedPatternColors[i] = geneFurPatterns[i]?.def.GetModExtension<FurPatternColors>().predefinedFurPatternColors.OrderBy(d => Ot(i, d).grayscale).ToArray() ?? [];
+        for (int i = Skin; i < ColorCount; ++i){
+            selectedColors[i] = originalColors[i] = Ot(i, geneFurPatterns);
+            selectedColorsAsHex[i] = "#" + ColorUtility.ToHtmlStringRGB(selectedColors[i]);
+            selectedColorsLuminosity[i] = selectedColors[i].CalculateBrightnessLevel();
+            predefinedPatternColors[i] = geneFurPatterns[i]?.def?.GetModExtension<FurPatternColors>().predefinedFurPatternColors.OrderBy(d => Ot(i, d).grayscale).ToArray() ?? [];
         }
-        selectedPattern = geneFurPatterns.FirstIndexOf(g => g != null);
+        selectedPattern = geneFurPatterns.Skip(1).FirstIndexOf(g => g != null);
         doCloseX = true;
         forcePause = true;
         absorbInputAroundWindow = false;
@@ -90,12 +92,12 @@ public sealed class Window_FurPatternColorPicker: Window
 
     private void ResetColorValues(Color color)
     {
-        patternColorsLuminosity[selectedPattern] = color.CalculateBrightnessLevel();
-        luminosityBuf[selectedPattern] = patternColorsLuminosity[selectedPattern].ToString();
-        patternColorsHex[selectedPattern] = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)patternColorsLuminosity[selectedPattern]));
+        selectedColorsLuminosity[selectedPattern] = color.CalculateBrightnessLevel();
+        selectedColorsLuminosityAsString[selectedPattern] = selectedColorsLuminosity[selectedPattern].ToString();
+        selectedColorsAsHex[selectedPattern] = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)selectedColorsLuminosity[selectedPattern]));
     }
 
-    private string ResetHexValues(Color color) => patternColorsHex[selectedPattern] = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)patternColorsLuminosity[selectedPattern]));
+    private string ResetHexValues(Color color) => selectedColorsAsHex[selectedPattern] = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)selectedColorsLuminosity[selectedPattern]));
 
     private static readonly Texture2D s_rotateButton = ContentFinder<Texture2D>.Get("UI/Widgets/RotRight");
 
@@ -105,23 +107,28 @@ public sealed class Window_FurPatternColorPicker: Window
         {
             var portrait = new Rect(inRect.x, inRect.y, 190, 240);
             Widgets.DrawMenuSection(portrait);
-            Color[] oldColors = new Color[PatternCount];
-            for (int i = BodyFill; i < PatternCount; ++i){
+            Color[] oldColors = new Color[ColorCount];
+            for (int i = Skin; i < ColorCount; ++i){
                 oldColors[i] = Ot(i, geneFurPatterns);
                 if (geneFurPatterns[i] != null)
-                    Rt(i, geneFurPatterns!) = patternColors[i].WithBrightness((int)patternColorsLuminosity[i]);
+                    Rt(i, geneFurPatterns!) = selectedColors[i].WithBrightness((int)selectedColorsLuminosity[i]);
             }
+            var originalSkinColorOverride = pawn.story.skinColorOverride;
+            pawn.story.skinColorOverride = null;
+            pawn.story.SkinColorBase = geneFurPatterns[Skin]!.colorOne;
             pawn.drawer.renderer.SetAllGraphicsDirty();
-            var image = PortraitsCache.Get(pawn, new(200, 200), pawnRot, new(0, 0, 0.1f), healthStateOverride: PawnHealthState.Mobile, cameraZoom: 1.1f, renderClothes: false, renderHeadgear: false);
-            for (int i = BodyFill; i < PatternCount; ++i){
+            var image = PortraitsCache.Get(pawn, new(200, 200), pawnFacingDirection, new(0, 0, 0.1f), healthStateOverride: PawnHealthState.Mobile, cameraZoom: 1.1f, renderClothes: false, renderHeadgear: false);
+            for (int i = Skin; i < ColorCount; ++i){
                 if (geneFurPatterns[i] != null)
                     Rt(i, geneFurPatterns!) = oldColors[i];
             }
+            pawn.story.SkinColorBase = geneFurPatterns[Skin]!.colorOne;
+            pawn.story.skinColorOverride = originalSkinColorOverride;
             pawn.drawer.renderer.SetAllGraphicsDirty();
             GUI.DrawTexture(portrait, image, ScaleMode.ScaleAndCrop);
             var buttonRotate = new Rect(portrait.xMax - 24, portrait.y, 24, 24);
             if (Widgets.ButtonImage(buttonRotate, s_rotateButton))
-                pawnRot = pawnRot.Rotated(RotationDirection.Clockwise);
+                pawnFacingDirection = pawnFacingDirection.Rotated(RotationDirection.Clockwise);
 
             var layoutRect = new Rect(inRect.x + 200, inRect.y, inRect.width - 200, 240);
             RectDivider layout = new RectDivider(layoutRect, 195906069);
@@ -139,7 +146,7 @@ public sealed class Window_FurPatternColorPicker: Window
             #endregion
 
             layout.NewRow(0f);
-            var color = patternColors[selectedPattern];
+            var color = selectedColors[selectedPattern];
             var oldColor = color;
 
             #region ColorPalette
@@ -165,17 +172,17 @@ public sealed class Window_FurPatternColorPicker: Window
 
             #region Hue/Sat/Lum edit fields
 
-            string hexValue = patternColorsHex[selectedPattern];
+            string hexValue = selectedColorsAsHex[selectedPattern];
             var aggregator = new RectAggregator(new(layout.Rect.position, new(125f, 0f)), 195906069);
             bool hueOrSatChanged = Widgets.ColorTextfields(
                 aggregator: ref aggregator,
                 color: ref color,
-                buffers: ref textfieldBuffers[selectedPattern],
-                colorBuffer: ref textfieldColorBuffers[selectedPattern],
+                buffers: ref textFieldBuffers[selectedPattern],
+                colorBuffer: ref textFieldColorBuffers[selectedPattern],
                 previousFocusedControlName: previousFocusedControlName,
-                controlName: nameof(colorTextFields),
-                editable: colorTextFields,
-                visible: colorTextFields
+                controlName: nameof(hueAndSatFields),
+                editable: hueAndSatFields,
+                visible: hueAndSatFields
             );
             var size = aggregator.Rect.size;
             if (hueOrSatChanged)
@@ -188,17 +195,17 @@ public sealed class Window_FurPatternColorPicker: Window
             using (new TextBlock(TextAnchor.MiddleLeft))
                 Widgets.Label(lumRectLabel, "ColorPicker.Lum".Translate());
             var lumRect = new Rect(lumRectLabel.xMax, lumRectLabel.y, 125 - 50, 32);
-            var oldLum = patternColorsLuminosity[selectedPattern];
+            var oldLum = selectedColorsLuminosity[selectedPattern];
             try
             {
-                Widgets.TextFieldNumeric(lumRect, ref patternColorsLuminosity[selectedPattern], ref luminosityBuf[selectedPattern], min: 1f, max: 99f);
+                Widgets.TextFieldNumeric(lumRect, ref selectedColorsLuminosity[selectedPattern], ref selectedColorsLuminosityAsString[selectedPattern], min: 1f, max: 99f);
             }
             catch (Exception ex)
             {
-                patternColorsLuminosity[selectedPattern] = 1f;
-                luminosityBuf[selectedPattern] = patternColorsLuminosity[selectedPattern].ToString();
+                selectedColorsLuminosity[selectedPattern] = 1f;
+                selectedColorsLuminosityAsString[selectedPattern] = selectedColorsLuminosity[selectedPattern].ToString();
             }
-            if (!luminosityBuf[selectedPattern].NullOrEmpty() && oldLum != patternColorsLuminosity[selectedPattern])
+            if (!selectedColorsLuminosityAsString[selectedPattern].NullOrEmpty() && oldLum != selectedColorsLuminosity[selectedPattern])
                 hexValue = ResetHexValues(color);
 
             if (Event.current.type == EventType.Layout)
@@ -243,9 +250,14 @@ public sealed class Window_FurPatternColorPicker: Window
 
             if (Widgets.ButtonText(rectDivider5.NewCol(Dialog_ColorPickerBase.ButSize.x, HorizontalJustification.Right), "Accept".Translate()))
             {
-                for (int i = BodyFill; i < PatternCount; ++i){
-                    if (geneFurPatterns[i] != null && patternColors[i] != patternColorsOriginal[i])
-                        Rt(i, geneFurPatterns!) = patternColors[i].WithBrightness((int)patternColorsLuminosity[i]);
+                for (int i = Skin; i < ColorCount; ++i){
+                    if (geneFurPatterns[i] != null && selectedColors[i] != originalColors[i])
+                        Rt(i, geneFurPatterns!) = selectedColors[i].WithBrightness((int)selectedColorsLuminosity[i]);
+                }
+                if (pawn.story.SkinColorBase != geneFurPatterns[Skin]!.colorOne)
+                {
+                    pawn.story.skinColorOverride = null;
+                    pawn.story.SkinColorBase = geneFurPatterns[Skin]!.colorOne;
                 }
                 Close();
             }
@@ -256,8 +268,8 @@ public sealed class Window_FurPatternColorPicker: Window
 
             #region Current/Old color comparison rectangles
 
-            Color color1 = patternColors[selectedPattern].WithBrightness((int)patternColorsLuminosity[selectedPattern]);
-            Color oldColor1 = patternColorsOriginal[selectedPattern];
+            Color color1 = selectedColors[selectedPattern].WithBrightness((int)selectedColorsLuminosity[selectedPattern]);
+            Color oldColor1 = originalColors[selectedPattern];
             ((Rect)layout).SplitVertically((((Rect)layout).width - 26f) / 2f, out var left, out var right);
             var rectDivider1 = new RectDivider(left, 195906069);
             var label = "CurrentColor".Translate().CapitalizeFirst();
@@ -274,7 +286,7 @@ public sealed class Window_FurPatternColorPicker: Window
 
             #endregion
 
-            patternColors[selectedPattern] = color;
+            selectedColors[selectedPattern] = color;
             var buttonsRect = new Rect(inRect.x, portrait.yMax + 10, 80, 24);
             Widgets.Label(buttonsRect, $"ColorPicker.{selectedPattern switch {
                 BodyFill => nameof(BodyFill),
@@ -285,11 +297,11 @@ public sealed class Window_FurPatternColorPicker: Window
                 EarsAccent => nameof(EarsAccent),
                 TailFill => nameof(TailFill),
                 TailAccent => nameof(TailAccent),
-                _/* Shouldn't ever happen. :S */ => nameof(BodyFill)
+                _/*Skin*/ => nameof(Skin)
             }}".Translate());
             buttonsRect = new(buttonsRect.xMax, buttonsRect.y, 50, buttonsRect.width);
 
-            for (int i = BodyFill; i < PatternCount; ++i){
+            for (int i = Skin; i < ColorCount; ++i){
                 if (Widgets.RadioButton(new(buttonsRect.xMax + 36 * i, buttonsRect.y), selectedPattern == i))
                     selectedPattern = i;
             }
@@ -317,7 +329,7 @@ public sealed class Window_FurPatternColorPicker: Window
                     }
                     else
                     {
-                        luminosityBuf[selectedPattern] = (patternColorsLuminosity[selectedPattern] += Event.current.keyCode is KeyCode.UpArrow or KeyCode.W ? 1f : -1f).ToString();
+                        selectedColorsLuminosityAsString[selectedPattern] = (selectedColorsLuminosity[selectedPattern] += Event.current.keyCode is KeyCode.UpArrow or KeyCode.W ? 1f : -1f).ToString();
                     }
                 }
             }

@@ -69,8 +69,8 @@ public abstract class GeneFurPattern: Gene
     {
         base.ExposeData();
         Scribe_Defs.Look(ref furPatternColor, nameof(furPatternColor));
-        Scribe_Values.Look(ref colorOne, nameof(colorOne));
-        Scribe_Values.Look(ref colorTwo, nameof(colorTwo));
+        Scribe_Values.Look(ref colorOne, nameof(colorOne), Color.black);
+        Scribe_Values.Look(ref colorTwo, nameof(colorTwo), Color.white);
     }
 }
 

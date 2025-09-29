@@ -15,31 +15,34 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 ![Demo Image](About/Demo.jpg)
 ![Cover Image](About/Preview.png)
 
-## TODO / Ideas:
-- Figure out what to do with base coat color(s) and a UI for changing it.
-- Maybe ask Anthrosonae team if I can PR a variant of the Orassans textures.
-- Finish the round bib base pattern.
-- Finish the Stripes-spots accent pattern.
-- Finish the tux base pattern.
-- Put Meetch patterns into game.
-- Put Tweater-pea patterns into game.
-- Put Leetis patterns into game.
-- Set prefab colors to the colors I like best for what we'd actually set for our leetle gurls.
-- Make sure XML has everything currently in the texture folders.
-- Go through z_samples folder and look for anything else good to put in game.
-- Add more tails. TBD on how to implement stripes/spots and color patterns on tails. 
+## Must be done before Steam Workshop release:
+- Fix cheech ear texture.
+- Implement at least one patterened tail texture.
 - Replace gene icons.
-- Changing fur color should require tincture flower stuff like normal color changes.
-- Custom names for faction/race members.
-- Figure out how the gradient hair mod works, particularly via character editor, and try to make that work for fur patterns.
-- Make patterns selectable via Pawn Editor mod.
-- Allow pasting of RGBA hex codes into color picker.
-- See if we can get alpha channel working for colors.
-- Go through the ShaderDatabase class again and confirm if we're using the best shadrers for our purposes.
+- Make sure XML has everything currently in the texture folders and clean up XML defs, etc.
 - Credit Anthrosonae team for example code and color picker.
 - Credit Diana (Kitty) Winters for Orassans mod and textures.
 - Credit https://github.com/fluffy-mods/ColourPicker for the color picker code.
 - Credit source mods in source code summaries once the code starts to stabilize for any other textures or code we're using.
+
+## TODO / Ideas:
+- Replace fat base coat with higher rez one based on Anthrosonae version.
+- Figure out and fix bugs with rendering after adding and removing genes via character editor.
+- Figure out and deal with symbolPack, prefixSymbols, suffixSymbols on genes.
+- Figure out how to implement textures using red/green masks.
+- Maybe ask Anthrosonae team if I can PR a variant of the Orassans textures.
+- Put Meetch patterns into game.
+- Put Tweater-pea patterns into game.
+- Put Leetis patterns into game.
+- Set prefab colors to the colors I like best for what we'd actually set for our leetle gurls.
+- Go through z_samples folder and look for anything else good to put in game.
+- Add more tails. TBD on how to implement stripes/spots and color patterns on tails. 
+- Changing fur color should require tincture flower stuff like normal color changes.
+- Custom names for faction/race members.
+- Figure out how the gradient hair mod works, particularly via character editor, and try to make that work for fur patterns.
+- Make patterns selectable via Pawn Editor mod.
+- See if we can get alpha channel working for colors.
+- Go through the ShaderDatabase class again and confirm if we're using the best shadrers for our purposes.
 
 ## Garbage:
 

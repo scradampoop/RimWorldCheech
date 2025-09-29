@@ -2,9 +2,9 @@
 <Defs>
   
   <Cheechin.FurPatternColorDef>
-    <defName>Cheechin_FurPreset_Test</defName>
-    <colorOne>(50,200,0)</colorOne>
-    <colorTwo>(200,0,50)</colorTwo>
+    <defName>Cheechin_FurPreset_BrownTwo</defName>
+    <colorOne>(52,43,3)</colorOne>
+    <colorTwo>(52,43,3)</colorTwo>
     <selectionWeight>0.63</selectionWeight>
   </Cheechin.FurPatternColorDef>
 
@@ -22,18 +22,19 @@
       <li>Ears</li>
     </exclusionTags>-->
     <defName>GeneDef_Cheech_Ears</defName>
+    <geneClass>Cheechin.GeneEarsWithPattern</geneClass>
     <label>cheech ears</label>
     <description>Cosmetic only. Cheech ears.</description>
     <iconPath>Cheech/Icons/Icon_CheechEars</iconPath>		
     <biostatMet>0</biostatMet>
     <renderNodeProperties>
       <li>
-        <nodeClass>PawnRenderNode_AttachmentHead</nodeClass>
+        <nodeClass>Cheechin.PawnRenderNode_EarsWithPattern</nodeClass>
         <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
         <texPath>Cheech/Ears/Cheech_Ears</texPath>
-        <colorType>Skin</colorType>
+        <colorType>Custom</colorType>
         <parentTagDef>Head</parentTagDef>
-        <useSkinShader>true</useSkinShader>
+        <!--<useSkinShader>true</useSkinShader>-->
         <useRottenColor>true</useRottenColor>
         <rotDrawMode>Fresh,Rotting</rotDrawMode>
         <drawData>
@@ -60,9 +61,16 @@
         <li><symbol>ear</symbol></li>
       </suffixSymbols>
     </symbolPack>-->
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_BrownTwo</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
-  <GeneDef ParentName="GeneEarsBase">
+  <!--<GeneDef ParentName="GeneEarsBase">
     <geneClass>Cheechin.GeneEarsWithPattern</geneClass>
     <defName>GeneDef_Cheech_EarTest</defName>
     <label>cheech test ears</label>
@@ -88,10 +96,10 @@
     <modExtensions>
       <li Class="Cheechin.FurPatternColors">
         <predefinedFurPatternColors>
-          <li>Cheechin_FurPreset_Test</li>
+          <li>Cheechin_FurPreset_BrownTwo</li>
         </predefinedFurPatternColors>
       </li>
     </modExtensions>
-  </GeneDef>
+  </GeneDef>-->
 
 </Defs>
