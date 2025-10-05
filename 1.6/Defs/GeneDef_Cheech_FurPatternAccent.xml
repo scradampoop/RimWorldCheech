@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-  <Cheechin.FurPatternColorDef>
-    <defName>Cheechin_FurPreset_Black</defName>
-    <colorOne>(0,0,0)</colorOne>
-    <colorTwo>(255,255,255)</colorTwo>
-    <selectionWeight>0</selectionWeight>
-  </Cheechin.FurPatternColorDef>
-
   <GeneDef Name="GeneDef_Cheech_FurPatternAccent" Abstract="True">
     <geneClass>Cheechin.GeneFurPatternAccent</geneClass>
     <biostatCpx>0</biostatCpx>
     <biostatMet>0</biostatMet>
-    <!--<endogeneCategory>Melanin</endogeneCategory>-->
     <displayCategory>GeneCategoryDef_Cheech_FurPatternAccent</displayCategory>
     <description>Finer detail markings like stripes or spots.</description>
     <displayOrderInCategory>100</displayOrderInCategory>
-    <iconColor>(0.75,0.75,0.75)</iconColor>
-    <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
     <randomChosen>true</randomChosen>
     <selectionWeight>0.1</selectionWeight>
     <exclusionTags>
@@ -27,7 +17,7 @@
       <li>
         <nodeClass>Cheechin.PawnRenderNode_FurPatternAccent</nodeClass>
         <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <baseLayer>5.4</baseLayer>
+        <baseLayer>7</baseLayer>
         <colorType>Custom</colorType>
         <parentTagDef>Body</parentTagDef>
         <rotDrawMode>Fresh,Rotting</rotDrawMode>
@@ -35,21 +25,16 @@
         <debugLabel>Fur Pattern Accent</debugLabel>
       </li>
     </renderNodeProperties>
-    <modExtensions>
-      <li Class="Cheechin.FurPatternColors">
-        <predefinedFurPatternColors>
-          <li>Cheechin_FurPreset_Black</li>
-        </predefinedFurPatternColors>
-      </li>
-    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_Jaguar</defName>
     <label>jaguar spots</label>
     <labelShortAdj>jaguar spotted</labelShortAdj>
+    <iconPath>Cheech/Fur/Jaguar/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/Jaguar/Jaguar_Male</Male>
@@ -62,14 +47,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_Leopard</defName>
     <label>leopard spots</label>
     <labelShortAdj>leopard spotted</labelShortAdj>
+    <iconPath>Cheech/Fur/Leopard/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/Leopard/Leopard_Male</Male>
@@ -82,14 +76,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_LeopardCrisp</defName>
     <label>crisp leopard spots</label>
     <labelShortAdj>crisp leopard spotted</labelShortAdj>
+    <iconPath>Cheech/Fur/LeopardCrisp/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/LeopardCrisp/LeopardCrisp_Male</Male>
@@ -102,14 +105,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_Mottled</defName>
     <label>mottled accent</label>
     <labelShortAdj>slightly mottled</labelShortAdj>
+    <iconPath>Cheech/Fur/MottledAccent/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/MottledAccent/MottledAccent_Male</Male>
@@ -122,14 +134,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_Patches</defName>
     <label>patchy accent</label>
     <labelShortAdj>patchy accented</labelShortAdj>
+    <iconPath>Cheech/Fur/PatchesUpper/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/PatchesUpper/PatchesUpper_Male</Male>
@@ -142,14 +163,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_Spots</defName>
     <label>spots</label>
     <labelShortAdj>spotted</labelShortAdj>
+    <iconPath>Cheech/Fur/Spots/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/Spots/Spots_Male</Male>
@@ -162,14 +192,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_StripesSharp</defName>
     <label>sharp stripes</label>
     <labelShortAdj>sharp striped</labelShortAdj>
+    <iconPath>Cheech/Fur/StripesSharp/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/StripesSharp/StripesSharp_Male</Male>
@@ -182,14 +221,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_StripesSpots</defName>
     <label>stripes and spots</label>
     <labelShortAdj>stripy spotty</labelShortAdj>
+    <iconPath>Cheech/Fur/StripesSpots/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/StripesSpots/StripesSpots_Male</Male>
@@ -202,14 +250,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_StripesSpotsBold</defName>
     <label>bold stripes and spots</label>
     <labelShortAdj>boldly stripy spotty</labelShortAdj>
+    <iconPath>Cheech/Fur/StripesSpotsBold/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/StripesSpotsBold/StripesSpotsBold_Male</Male>
@@ -222,14 +279,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_StripesSquiggles</defName>
     <label>squiggly stripes</label>
     <labelShortAdj>squiggly striped</labelShortAdj>
+    <iconPath>Cheech/Fur/StripesSquiggles/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/StripesSquiggles/StripesSquiggles_Male</Male>
@@ -242,14 +308,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_StripesV</defName>
     <label>V stripes</label>
     <labelShortAdj>V striped</labelShortAdj>
+    <iconPath>Cheech/Fur/StripesV/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/StripesV/StripesV_Male</Male>
@@ -262,14 +337,23 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
   <GeneDef ParentName="GeneDef_Cheech_FurPatternAccent">
     <defName>GeneDef_Cheech_FurPatternAccent_SwirlsSpots</defName>
     <label>swirls and spots</label>
     <labelShortAdj>swirly spotty</labelShortAdj>
+    <iconPath>Cheech/Fur/SwirlsSpots/icon</iconPath>
     <renderNodeProperties>
       <li>
+        <baseLayer>7</baseLayer>
         <useGraphic>false</useGraphic>
         <bodyTypeGraphicPaths>
           <Male>Cheech/Fur/SwirlsSpots/SwirlsSpots_Male</Male>
@@ -282,6 +366,13 @@
         </bodyTypeGraphicPaths>
       </li>
     </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_Black_Black</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
   </GeneDef>
 
 </Defs>

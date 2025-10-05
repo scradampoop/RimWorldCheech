@@ -1,23 +1,16 @@
 <?xml version="1.0" ?>
 <Defs>
   
-  <Cheechin.FurPatternColorDef>
-    <defName>Cheechin_FurPreset_BrownTwo</defName>
-    <colorOne>(52,43,3)</colorOne>
-    <colorTwo>(52,43,3)</colorTwo>
-    <selectionWeight>0.63</selectionWeight>
-  </Cheechin.FurPatternColorDef>
-
   <!--TODO: use cat ears as base instead?-->
   <!--<GeneDef ParentName="Ears_Cat">-->
   <GeneDef ParentName="GeneEarsBase">
     <!--Inherited:
     <biostatCpx>0</biostatCpx>
+    <randomChosen>true</randomChosen>
     <endogeneCategory>Ears</endogeneCategory>
     <displayCategory>Cosmetic</displayCategory>
     <displayOrderInCategory>70</displayOrderInCategory>
     <iconColor>(0.75, 0.75, 0.75)</iconColor>
-    <randomChosen>true</randomChosen>
     <exclusionTags>
       <li>Ears</li>
     </exclusionTags>-->
@@ -26,6 +19,7 @@
     <label>cheech ears</label>
     <description>Cosmetic only. Cheech ears.</description>
     <iconPath>Cheech/Icons/Icon_CheechEars</iconPath>		
+    <biostatMet>0</biostatMet>
     <biostatMet>0</biostatMet>
     <renderNodeProperties>
       <li>

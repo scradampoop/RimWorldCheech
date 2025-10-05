@@ -1,7 +1,7 @@
 ﻿namespace Cheechin;
 
 /// <summary>
-/// Based on Anthrosonae mod's color picker.
+/// This code is a hideous mutation based on Anthrosonae mod's color picker.
 /// </summary>
 [StaticConstructorOnStartup]
 public sealed class Window_FurPatternColorPicker: Window
@@ -21,7 +21,7 @@ public sealed class Window_FurPatternColorPicker: Window
 
     private readonly Color[] selectedColors = new Color[ColorCount];
 
-    private readonly string[] selectedColorsAsHex = new string[ColorCount];
+    private readonly string[] selectedColorsAsDefVals = new string[ColorCount];
 
     private readonly float[] selectedColorsLuminosity = new float[ColorCount];
 
@@ -37,7 +37,7 @@ public sealed class Window_FurPatternColorPicker: Window
 
     private readonly Color[] textFieldColorBuffers = new Color[ColorCount];
 
-    private string previousFocusedControlName;
+    private string? previousFocusedControlName;
 
     public const Widgets.ColorComponents hueAndSatFields = Widgets.ColorComponents.Hue | Widgets.ColorComponents.Sat;
 
@@ -60,10 +60,12 @@ public sealed class Window_FurPatternColorPicker: Window
     /// <inheritdoc cref="Rt"/>
     private static Color Ot(int i, GeneFurPattern?[] g) => (i is EarsAccent or TailAccent ? g[i]?.colorTwo : g[i]?.colorOne) ?? Color.black;
 
+    private static readonly FurPatternColorDef[] WhiteAndBlackPatternColors = [new(){colorOne = Utility.TransparentGray,colorTwo = Utility.TransparentGray},new(){colorOne = Color.white,colorTwo = Color.white},new(){colorOne = Color.black,colorTwo = Color.black}];
+
     public Window_FurPatternColorPicker(Pawn pawn)
     {
         this.pawn = pawn;
-        geneFurPatterns[Skin] = new GeneFurPatternFill{colorOne = pawn.story.SkinColorBase, colorTwo = Color.white};
+        geneFurPatterns[Skin] = new GeneFurPatternFill{colorOne = pawn.story.skinColorOverride ?? pawn.story.SkinColorBase, colorTwo = Color.white};
         geneFurPatterns[BodyFill] = pawn.GetGene<GeneFurPatternFill>();
         geneFurPatterns[BodyAccent] = pawn.GetGene<GeneFurPatternAccent>();
         geneFurPatterns[HeadFill] = pawn.GetGene<GeneHeadPatternFill>();
@@ -72,9 +74,9 @@ public sealed class Window_FurPatternColorPicker: Window
         geneFurPatterns[TailAccent] = geneFurPatterns[TailFill] = pawn.GetGene<GeneTailWithPattern>();
         for (int i = Skin; i < ColorCount; ++i){
             selectedColors[i] = originalColors[i] = Ot(i, geneFurPatterns);
-            selectedColorsAsHex[i] = "#" + ColorUtility.ToHtmlStringRGB(selectedColors[i]);
+            selectedColorsAsDefVals[i] = selectedColors[i].ToDefVal();
             selectedColorsLuminosity[i] = selectedColors[i].CalculateBrightnessLevel();
-            predefinedPatternColors[i] = geneFurPatterns[i]?.def?.GetModExtension<FurPatternColors>().predefinedFurPatternColors.OrderBy(d => Ot(i, d).grayscale).ToArray() ?? [];
+            predefinedPatternColors[i] = WhiteAndBlackPatternColors.Concat((geneFurPatterns[i]?.def?.GetModExtension<FurPatternColors>().predefinedFurPatternColors ?? []).OrderBy(d => Ot(i, d).grayscale)).GroupBy(d => Ot(i, d)).Select(g => g.First()).ToArray();
         }
         selectedPattern = geneFurPatterns.Skip(1).FirstIndexOf(g => g != null);
         doCloseX = true;
@@ -94,10 +96,8 @@ public sealed class Window_FurPatternColorPicker: Window
     {
         selectedColorsLuminosity[selectedPattern] = color.CalculateBrightnessLevel();
         selectedColorsLuminosityAsString[selectedPattern] = selectedColorsLuminosity[selectedPattern].ToString();
-        selectedColorsAsHex[selectedPattern] = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)selectedColorsLuminosity[selectedPattern]));
+        selectedColorsAsDefVals[selectedPattern] = color.WithBrightness((int)selectedColorsLuminosity[selectedPattern]).ToDefVal();
     }
-
-    private string ResetHexValues(Color color) => selectedColorsAsHex[selectedPattern] = "#" + ColorUtility.ToHtmlStringRGB(color.WithBrightness((int)selectedColorsLuminosity[selectedPattern]));
 
     private static readonly Texture2D s_rotateButton = ContentFinder<Texture2D>.Get("UI/Widgets/RotRight");
 
@@ -114,15 +114,13 @@ public sealed class Window_FurPatternColorPicker: Window
                     Rt(i, geneFurPatterns!) = selectedColors[i].WithBrightness((int)selectedColorsLuminosity[i]);
             }
             var originalSkinColorOverride = pawn.story.skinColorOverride;
-            pawn.story.skinColorOverride = null;
-            pawn.story.SkinColorBase = geneFurPatterns[Skin]!.colorOne;
+            pawn.story.skinColorOverride = geneFurPatterns[Skin]!.colorOne;
             pawn.drawer.renderer.SetAllGraphicsDirty();
             var image = PortraitsCache.Get(pawn, new(200, 200), pawnFacingDirection, new(0, 0, 0.1f), healthStateOverride: PawnHealthState.Mobile, cameraZoom: 1.1f, renderClothes: false, renderHeadgear: false);
             for (int i = Skin; i < ColorCount; ++i){
                 if (geneFurPatterns[i] != null)
                     Rt(i, geneFurPatterns!) = oldColors[i];
             }
-            pawn.story.SkinColorBase = geneFurPatterns[Skin]!.colorOne;
             pawn.story.skinColorOverride = originalSkinColorOverride;
             pawn.drawer.renderer.SetAllGraphicsDirty();
             GUI.DrawTexture(portrait, image, ScaleMode.ScaleAndCrop);
@@ -172,7 +170,7 @@ public sealed class Window_FurPatternColorPicker: Window
 
             #region Hue/Sat/Lum edit fields
 
-            string hexValue = selectedColorsAsHex[selectedPattern];
+            string defValue = selectedColorsAsDefVals[selectedPattern];
             var aggregator = new RectAggregator(new(layout.Rect.position, new(125f, 0f)), 195906069);
             bool hueOrSatChanged = Widgets.ColorTextfields(
                 aggregator: ref aggregator,
@@ -188,8 +186,10 @@ public sealed class Window_FurPatternColorPicker: Window
             if (hueOrSatChanged)
             {
                 Color.RGBToHSV(color, out var H, out var S, out _);
+                float a = color.a;
                 color = Color.HSVToRGB(H, S, 1f);
-                hexValue = ResetHexValues(color);
+                color.a = a;
+                defValue = selectedColorsAsDefVals[selectedPattern] = color.WithBrightness((int)selectedColorsLuminosity[selectedPattern]).ToDefVal();
             }
             var lumRectLabel = new Rect(layout.Rect.x, aggregator.Rect.yMax + 4, 50, 32);
             using (new TextBlock(TextAnchor.MiddleLeft))
@@ -205,29 +205,31 @@ public sealed class Window_FurPatternColorPicker: Window
                 selectedColorsLuminosity[selectedPattern] = 1f;
                 selectedColorsLuminosityAsString[selectedPattern] = selectedColorsLuminosity[selectedPattern].ToString();
             }
+
             if (!selectedColorsLuminosityAsString[selectedPattern].NullOrEmpty() && oldLum != selectedColorsLuminosity[selectedPattern])
-                hexValue = ResetHexValues(color);
+                defValue = color.ToDefVal();
 
             if (Event.current.type == EventType.Layout)
                 previousFocusedControlName = GUI.GetNameOfFocusedControl();
 
-            var hexRectLabel = new Rect(lumRectLabel.x, lumRectLabel.yMax + 4, 50, 32);
+            var alternateColorPickerButtonRect = new Rect(lumRectLabel.x, lumRectLabel.yMax + 14, 160, 32);
+            if (Widgets.ButtonText(alternateColorPickerButtonRect, "ColorPicker.AlternatePicker".Translate()))
+                Find.WindowStack.Add(new Dialog_ColourPicker(color, ResetColorValues, new(windowRect.xMin + portrait.width + 17, windowRect.yMin + 14)));
+
+            var defFieldLabel = new Rect(alternateColorPickerButtonRect.x, alternateColorPickerButtonRect.yMax + 4, 35, 32);
             using (new TextBlock(TextAnchor.MiddleLeft))
-                Widgets.Label(hexRectLabel, "ColorPicker.HexCode".Translate());
-            var hexRect = new Rect(hexRectLabel.xMax, hexRectLabel.y, 125 - 50, 32);
-            string oldValue = hexValue;
-            hexValue = Widgets.TextField(hexRect, hexValue).Trim();
-            if (Utility.TryGetColorFromHex(hexValue, out var tempColor))
+                Widgets.Label(defFieldLabel, "ColorPicker.ModCode".Translate());
+            string oldDefValue = defValue;
+            defValue = Widgets.TextField(new(defFieldLabel.xMax, defFieldLabel.y, 125, 32), defValue).Trim();
+            if (ParseHelper.CanParse(typeof(Color), defValue))
             {
-                color = tempColor;
-                if (hexValue != oldValue)
+                color = ParseHelper.ParseColor(defValue);
+                if (defValue != oldDefValue)
                     ResetColorValues(color);
             }
+
             if (Event.current.type == EventType.Layout)
                 previousFocusedControlName = GUI.GetNameOfFocusedControl();
-
-            if (Widgets.ButtonText(new(hexRectLabel.x, hexRectLabel.yMax + 4, 125, 32), "ColorPicker.FineTune".Translate()))
-                Find.WindowStack.Add(new Dialog_ColourPicker(color, ResetColorValues, new(windowRect.xMin + portrait.width + 17, windowRect.yMin + 14)));
 
             #endregion
 
@@ -237,6 +239,8 @@ public sealed class Window_FurPatternColorPicker: Window
             rectDivider.NewCol(250f, HorizontalJustification.Right);
             oldColor = color;
             Widgets.HSVColorWheel(rectDivider.Rect.ContractedBy((rectDivider.Rect.width - 128f) / 2f, (rectDivider.Rect.height - 128f) / 2f), ref color, ref hsvColorWheelDragging, 1f);
+            // HSVColorWheel doesn't respect alpha, so we need to copy it back.
+            color.a = oldColor.a;
             if (oldColor != color)
                 ResetColorValues(color);
 
@@ -254,11 +258,14 @@ public sealed class Window_FurPatternColorPicker: Window
                     if (geneFurPatterns[i] != null && selectedColors[i] != originalColors[i])
                         Rt(i, geneFurPatterns!) = selectedColors[i].WithBrightness((int)selectedColorsLuminosity[i]);
                 }
-                if (pawn.story.SkinColorBase != geneFurPatterns[Skin]!.colorOne)
+                if (pawn.story.skinColorOverride == null
+                    ? pawn.story.SkinColorBase != geneFurPatterns[Skin]!.colorOne
+                    : pawn.story.skinColorOverride != geneFurPatterns[Skin]!.colorOne
+                )
                 {
-                    pawn.story.skinColorOverride = null;
-                    pawn.story.SkinColorBase = geneFurPatterns[Skin]!.colorOne;
+                    pawn.story.skinColorOverride = geneFurPatterns[Skin]!.colorOne;
                 }
+
                 Close();
             }
 

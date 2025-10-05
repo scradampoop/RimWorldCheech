@@ -14,6 +14,27 @@ namespace Cheechin;
 [HarmonyPatch(typeof(PawnRenderNode_Fur), "GraphicFor")]
 public static class VanillaExpandedFramework_PawnRenderNode_Fur_GraphicFor_Patch2ssss
 {
+    public static bool TryGetColorFromHex(string hex, out Color color)
+    {
+        color = Color.white;
+        if (hex.StartsWith("#"))
+            hex = hex.Substring(1);
+
+        if (hex.Length != 6 && hex.Length != 8)
+            return false;
+
+        int r = int.Parse(hex.Substring(0, 2), NumberStyles.HexNumber);
+        int g = int.Parse(hex.Substring(2, 2), NumberStyles.HexNumber);
+        int b = int.Parse(hex.Substring(4, 2), NumberStyles.HexNumber);
+        int a = 255;
+
+        if (hex.Length == 8)
+            a = int.Parse(hex.Substring(6, 2), NumberStyles.HexNumber);
+
+        color = GenColor.FromBytes(r, g, b, a);
+        return true;
+    }
+
     public static void Postfix(PawnRenderNode_Fur __instance, Pawn pawn, ref Graphic __result)
     {
         if (__instance.gene != null)
@@ -48,8 +69,10 @@ public static class VanillaExpandedFramework_PawnRenderNode_Fur_GraphicFor_Patch
                     PawnRenderNodeWorker_Overlay
                     PawnRenderNodeProperties_Tattoo;
                     GeneExtension;
+                    PawnRenderNodeWorker_AttachmentBody
                 }
                 else if (extension.useSkinColorForFur)
+
                 {
                     __result = GraphicDatabase.Get<Graphic_Multi>(pawn.story.furDef.GetFurBodyGraphicPath(pawn), ShaderUtility.GetSkinShader(pawn), Vector2.one, pawn.story.SkinColor);
 

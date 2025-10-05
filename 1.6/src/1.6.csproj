@@ -26,7 +26,6 @@
     </PackageReference>-->
     <!-- Microsoft.Bcl.Memory includes support for Index Range operators, which is also performed via PolySharp. Adam doesn't yet know how/why this is necessary in some places. -->
     <!--<PackageReference Condition="'$(TargetFramework)' == 'net48'" Include="Microsoft.Bcl.Memory" />-->
-
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Lib.Harmony" Version="2.4.1" />
@@ -34,11 +33,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <!--<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4528" />-->
-    <Publicize Include="Assembly-CSharp:Verse.FloatMenuOption.iconTex" />
     <Publicize Include="Assembly-CSharp:Verse.PawnRenderNode.props" />
     <Publicize Include="Assembly-CSharp:Verse.Pawn.drawer" />
-    <Publicize Include="Assembly-CSharp:RimWorld.Pawn_MutantTracker.def" />
     <Publicize Include="Assembly-CSharp:RimWorld.Dialog_ColorPickerBase.focusableControlNames" />
     <Publicize Include="Assembly-CSharp:RimWorld.Dialog_ColorPickerBase.ButSize" />
   </ItemGroup>
@@ -56,8 +52,6 @@
       <HintPath>C:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <!--<Reference Include="System.Data.DataSetExtensions" />-->
-    <!--<Reference Include="Microsoft.CSharp" />-->
     <Reference Include="UnityEngine">
       <HintPath>C:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
@@ -88,7 +82,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="scratchpad.cs" />
-    <None Include="scratchpad.cs" />
+    <Compile Remove="z_scratchpad.cs" />
+    <None Include="z_scratchpad.cs" />
   </ItemGroup>
 </Project>

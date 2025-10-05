@@ -9,8 +9,6 @@
     <displayCategory>GeneCategoryDef_Cheech_FurPatternAccent</displayCategory>
     <description>Finer detail markings like stripes or spots.</description>
     <displayOrderInCategory>110</displayOrderInCategory>
-    <iconColor>(0.75,0.75,0.75)</iconColor>
-    <iconPath>Cheech/Icons/Icon_FurTufts</iconPath>
     <exclusionTags>
       <li>HeadPatternAccent</li>
     </exclusionTags>
@@ -29,7 +27,7 @@
     <modExtensions>
       <li Class="Cheechin.FurPatternColors">
         <predefinedFurPatternColors>
-          <li>Cheechin_FurPreset_Black</li>
+          <li>Cheechin_FurPreset_Black_Black</li>
         </predefinedFurPatternColors>
       </li>
     </modExtensions>
@@ -39,6 +37,7 @@
     <defName>GeneDef_Cheech_HeadPatternAccent_Jaguar</defName>
     <label>jaguar spotted face</label>
     <labelShortAdj>jaguar facial spotted</labelShortAdj>
+    <iconPath>Cheech/Head/OMark1_south</iconPath>
     <renderNodeProperties>
       <li>
         <useGraphic>false</useGraphic>

@@ -1,12 +1,12 @@
-﻿using System.Globalization;
-
-namespace Cheechin;
+﻿namespace Cheechin;
 
 /// <summary>
 /// Convenience extension methods for misc. lower-level dependencies.
 /// </summary>
 public static class Utility
 {
+    public static readonly Color TransparentGray = new(0.5f,0.5f,0.5f,0f);
+
     public static bool IsSameXenotypeAs(this Pawn? pawn, Pawn? other) => pawn?.genes?.Xenotype == other?.genes?.Xenotype;
 
     public static TGene? GetGene<TGene>(this Pawn pawn) where TGene: Gene => pawn.genes?.GenesListForReading.OfType<TGene>().FirstOrDefault(p => p.Active);
@@ -59,24 +59,11 @@ public static class Utility
         );
     }
 
-    public static bool TryGetColorFromHex(string hex, out Color color)
-    {
-        color = Color.white;
-        if (hex.StartsWith("#"))
-            hex = hex.Substring(1);
+    public static int ToDefVal(this float c) => Mathf.RoundToInt(c * 255f);
 
-        if (hex.Length != 6 && hex.Length != 8)
-            return false;
+    public static string ToDefVal(this Color color) => color.a.ToDefVal() < 255
+        ? $"({color.r.ToDefVal()},{color.g.ToDefVal()},{color.b.ToDefVal()},{color.a.ToDefVal()})"
+        : $"({color.r.ToDefVal()},{color.g.ToDefVal()},{color.b.ToDefVal()})"
+    ;
 
-        int r = int.Parse(hex.Substring(0, 2), NumberStyles.HexNumber);
-        int g = int.Parse(hex.Substring(2, 2), NumberStyles.HexNumber);
-        int b = int.Parse(hex.Substring(4, 2), NumberStyles.HexNumber);
-        int a = 255;
-
-        if (hex.Length == 8)
-            a = int.Parse(hex.Substring(6, 2), NumberStyles.HexNumber);
-
-        color = GenColor.FromBytes(r, g, b, a);
-        return true;
-    }
 }

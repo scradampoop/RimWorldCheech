@@ -20,19 +20,50 @@ public sealed class FurPatternColorDef: Def
     public float selectionWeight;
 }
 
-/// <summary>
-/// Inherited from Anthrosonae source code. Not sure if it's needed.
-/// </summary>
-[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), typeof(PawnGenerationRequest))]
-public static class PawnGenerator_GeneratePawn_Patch
+[HarmonyPatch(typeof(Pawn_GeneTracker), nameof(Pawn_GeneTracker.SetXenotype), typeof(XenotypeDef))]
+public static class HarmonyPatch_Pawn_GeneTracker_SetXenotype
 {
-    public static void Postfix(ref Pawn? __result) => __result?.drawer.renderer.SetAllGraphicsDirty();
+    /// <summary>
+    /// This removes all but at most one gene of each type, just to keep the pawn's gene list simpler than not.
+    /// </summary>
+    public static void Postfix(Pawn_GeneTracker __instance, XenotypeDef xenotype)
+    {
+        if (!(xenotype?.defName?.Equals("XenotypeDef_Cheech", StringComparison.OrdinalIgnoreCase) ?? false))
+            return;
+
+        var random = new System.Random();
+
+        foreach (var geneType in new[]{
+            typeof(GeneFurPatternFill),
+            typeof(GeneFurPatternAccent),
+            typeof(GeneHeadPatternFill),
+            typeof(GeneHeadPatternAccent),
+        })
+        {
+            var genes = __instance.GenesListForReading.Where(g => g.GetType() == geneType).ToArray();
+            int geneIndexToKeep = random.Next(genes.Length + 1);
+            var geneToKeep = geneIndexToKeep >= genes.Length ? null : genes[geneIndexToKeep];
+
+            foreach (var gene in genes.Where(g => g != geneToKeep))
+                __instance.RemoveGene(gene);
+
+            if (geneToKeep != null)
+                geneToKeep.overriddenByGene = null;
+        }
+    }
 }
+
+//[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), typeof(PawnGenerationRequest))]
+//public static class PawnGenerator_GeneratePawn_Patch
+//{
+//    public static void Postfix(ref Pawn? __result)
+//    {
+//        __result?.drawer.renderer.SetAllGraphicsDirty();
+//    }
+//}
 
 public abstract class GeneFurPattern: Gene
 {
-    public FurPatternColorDef? furPatternColor;
-
     public Color colorOne;
 
     /// <summary>
@@ -42,16 +73,59 @@ public abstract class GeneFurPattern: Gene
 
     public override void PostAdd()
     {
-        base.PostAdd();
+        //var endoBodyAccents = pawn.genes.Endogenes.OfType<GeneHeadPatternAccent>();
+        //var xenoBodyAccents = pawn.genes.Xenogenes.OfType<GeneHeadPatternAccent>();
+        //var furryEndoGenes = pawn.genes.Endogenes
+        //    .Where(g => 
+        //        g.def.defName.Equals("GeneDef_Cheech_Fur_Tufted", StringComparison.OrdinalIgnoreCase)
+        //        || g is GeneFurPatternFill
+        //        || g is GeneFurPatternAccent
+        //    )
+        //    .OrderBy(g => g is GeneFurPatternAccent)
+        //    .ThenBy(g => g is GeneFurPatternFill)
+        //    .ThenBy(g => g.def.defName.Equals("GeneDef_Cheech_Fur_Tufted", StringComparison.OrdinalIgnoreCase))
+        //    .ToArray();
+
+        //foreach (var gene in furryEndoGenes)
+        //{
+        //    pawn.genes.Endogenes.Remove(gene);
+        //    pawn.genes.Endogenes.Add(gene);
+        //}
+
+        //var xenoCoatGenes = pawn.genes.Xenogenes.Where(g => g.def.defName.Equals("GeneDef_Cheech_Fur_Tufted", StringComparison.OrdinalIgnoreCase)).ToArray();
+        //foreach (var gene in xenoCoatGenes)
+        //{
+        //    pawn.genes.Xenogenes.Remove(gene);
+        //    //pawn.genes.Xenogenes.Add(gene);
+        //}
+
         var extension = def.GetModExtension<FurPatternColors>();
-        if (extension.predefinedFurPatternColors.TryRandomElementByWeight(x => x.selectionWeight, out var result))
+        if (extension.predefinedFurPatternColors.TryRandomElementByWeight(x => x.selectionWeight, out var randomPatternColor))
         {
-            furPatternColor = result;
-            colorOne = furPatternColor.colorOne;
-            colorTwo = furPatternColor.colorTwo;
-            pawn?.drawer.renderer.SetAllGraphicsDirty();
+            if (colorOne == default)
+                colorOne = randomPatternColor.colorOne;
+
+            if (colorTwo == default)
+                colorTwo = randomPatternColor.colorTwo;
         }
+        base.PostAdd();
     }
+
+    //public override void PostRemove()
+    //{
+    //    var furryEndoGenes = pawn.genes.Endogenes
+    //        .Where(g => g.overriddenByGene == this)
+    //        .ToArray();
+
+    //    if (furryEndoGenes.Length > 0)
+    //    {
+    //        furryEndoGenes[0].overriddenByGene = null;
+    //        foreach(var gene in furryEndoGenes.Skip(1))
+    //            gene.overriddenByGene = furryEndoGenes[0];
+    //    }
+
+    //    base.PostRemove();
+    //}
 
     public override IEnumerable<Gizmo> GetGizmos()
     {
@@ -59,7 +133,7 @@ public abstract class GeneFurPattern: Gene
         {
             yield return new Command_Action
             {
-                defaultLabel = "DEV: Fur pattern colors",
+                defaultLabel = "DEV: Fur Colors",
                 action = () => Find.WindowStack.Add(new Window_FurPatternColorPicker(pawn))
             };
         }
@@ -67,10 +141,9 @@ public abstract class GeneFurPattern: Gene
 
     public override void ExposeData()
     {
-        base.ExposeData();
-        Scribe_Defs.Look(ref furPatternColor, nameof(furPatternColor));
         Scribe_Values.Look(ref colorOne, nameof(colorOne), Color.black);
         Scribe_Values.Look(ref colorTwo, nameof(colorTwo), Color.white);
+        base.ExposeData();
     }
 }
 
@@ -93,6 +166,16 @@ public sealed class GeneEarsWithPattern: GeneFurPattern;
 
 /// <inheritdoc cref="GeneFurPatternFill"/>
 public sealed class GeneTailWithPattern: GeneFurPattern;
+
+/// <summary>
+/// Because we don't want to override skin with hair color like <see cref="PawnRenderNode_Fur"/> does.
+/// </summary>
+public class PawnRenderNode_BaseCoat(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode(pawn, props, tree)
+{
+    protected override Shader DefaultShader => ShaderDatabase.CutoutSkinOverlay;
+
+    public override Graphic GraphicFor(Pawn pawnGraphicFor) => GraphicDatabase.Get<Graphic_Multi>(pawnGraphicFor.story.furDef.GetFurBodyGraphicPath(pawnGraphicFor), ShaderFor(pawnGraphicFor), Vector2.one,  ColorFor(pawnGraphicFor));
+}
 
 public abstract class PawnRenderNode_FurPattern<TGeneFurPattern>(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode(pawn, props, tree) where TGeneFurPattern: GeneFurPattern
 {

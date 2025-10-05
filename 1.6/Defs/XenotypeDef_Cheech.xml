@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-	<XenotypeDef>
+  <XenotypeIconDef>
+    <defName>XenotypeIconDef_Cheech</defName>
+    <texPath>Cheech/Icons/Icon_Paw</texPath>
+  </XenotypeIconDef>
+  
+  <XenotypeDef>
 		<defName>XenotypeDef_Cheech</defName>
 		<label>cheech</label>
 		<description>These are some real niec cheechers, huh.</description>
@@ -12,30 +17,27 @@
 		<!--TODO: Add custom cheech names.-->
     <!--<nameMaker>NamerPersonWaster</nameMaker>-->
 		<!--<chanceToUseNameMaker>0.1</chanceToUseNameMaker>-->
-    <!--TODO: Might be able to use these to give coat variations without clogging up UI.-->
-    <!--<displayPriority>-1000</displayPriority>-->
-    <!--<doubleXenotypeChances>
-      <Pigskin>0.02</Pigskin>
-      <Impid>0.02</Impid>
-      <Yttakin>0.02</Yttakin>
-      <Neanderthal>0.02</Neanderthal>
-      <Waster>0.02</Waster>
-      <Dirtmole>0.02</Dirtmole>
-    </doubleXenotypeChances>-->
 		<genes>
 			<li>GeneDef_Cheech_Ears</li>
 			<li>GeneDef_Cheech_Head</li>
+      <li>GeneDef_Cheech_HeadPatternAccent_Jaguar</li>
 			<li>GeneDef_Cheech_Tail</li>
 			<li>GeneDef_Cheech_Fur_Tufted</li>
+      <li>GeneDef_Cheech_FurPatternFill_Mottled</li>
+      <li>GeneDef_Cheech_FurPatternFill_Patches</li>
       <li>GeneDef_Cheech_FurPatternFill_Tux</li>
       <li>GeneDef_Cheech_FurPatternAccent_Jaguar</li>
       <li>GeneDef_Cheech_FurPatternAccent_Leopard</li>
+      <li>GeneDef_Cheech_FurPatternAccent_LeopardCrisp</li>
+      <li>GeneDef_Cheech_FurPatternAccent_Mottled</li>
+      <li>GeneDef_Cheech_FurPatternAccent_Patches</li>
       <li>GeneDef_Cheech_FurPatternAccent_Spots</li>
       <li>GeneDef_Cheech_FurPatternAccent_StripesSharp</li>
       <li>GeneDef_Cheech_FurPatternAccent_StripesSpots</li>
+      <li>GeneDef_Cheech_FurPatternAccent_StripesSpotsBold</li>
       <li>GeneDef_Cheech_FurPatternAccent_StripesSquiggles</li>
       <li>GeneDef_Cheech_FurPatternAccent_StripesV</li>
-      <li>GeneDef_Cheech_HeadPatternAccent_Jaguar</li>
+      <li>GeneDef_Cheech_FurPatternAccent_SwirlsSpots</li>
       <li>Hair_BaldOnly</li>
       <li>Beard_NoBeardOnly</li>
       <li>GeneDef_Cheech_Pheromones</li>

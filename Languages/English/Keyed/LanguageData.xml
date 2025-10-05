@@ -7,8 +7,8 @@
 	<MilitaryAidSent_Cheech>{0} agrees to send cheech fighters to help you.</MilitaryAidSent_Cheech>
   <ColorPicker.ChangeFurPatternColors>Change fur pattern colors</ColorPicker.ChangeFurPatternColors>
   <ColorPicker.Lum>Lum</ColorPicker.Lum>
-  <ColorPicker.HexCode>Hex</ColorPicker.HexCode>
-  <ColorPicker.FineTune>Fine-Tune Color</ColorPicker.FineTune>
+  <ColorPicker.ModCode>Def</ColorPicker.ModCode>
+  <ColorPicker.AlternatePicker>Alternate Color Picker</ColorPicker.AlternatePicker>
   <ColorPicker.Skin>Skin</ColorPicker.Skin>
   <ColorPicker.BodyFill>Body Fill</ColorPicker.BodyFill>
   <ColorPicker.BodyAccent>Body Accent</ColorPicker.BodyAccent>

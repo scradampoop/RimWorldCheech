@@ -24,25 +24,29 @@
         <useSkinShader>true</useSkinShader>
         <useRottenColor>true</useRottenColor>
 				<rotDrawMode>Fresh,Rotting</rotDrawMode>
-        <visibleFacing>
+        <!--<visibleFacing>
           <li>East</li>
           <li>North</li>
           <li>West</li>
-        </visibleFacing>
+        </visibleFacing>-->
 				<drawData>
 					<scaleOffsetByBodySize>true</scaleOffsetByBodySize>
 					<defaultData>
 						<layer>-2</layer>
 					</defaultData>
 					<dataNorth>
-						<offset>(0, 0.25, -0.45)</offset>
+						<offset>(0,0,-0.25)</offset>
 						<layer>90</layer>
 					</dataNorth>
+          <dataSouth>
+            <offset>(0,0,-0.25)</offset>
+            <!--<layer>90</layer>-->
+          </dataSouth>
 					<dataEast>
-						<offset>(-0.35, -0.1, -0.25)</offset>
+						<offset>(-0.55,0,-0.25)</offset>
 					</dataEast>
 					<dataWest>
-						<offset>(0.35, -0.1, -0.25)</offset>
+						<offset>(0.55,0,-0.25)</offset>
 					</dataWest>
 				</drawData>
 			</li>

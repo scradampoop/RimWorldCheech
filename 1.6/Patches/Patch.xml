@@ -1,29 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
 
-	<Operation Class="PatchOperationAdd">
-		<xpath>/Defs/CultureDef[defName="Astropolitan" or defName="Rustican" or defName="Corunan" or defName="Kriminul"]/styleItemTags</xpath>
-		<value>
-			<li>
-				<tag>Cheech</tag>
-				<baseWeight>1</baseWeight>
-				<weightFactor>1</weightFactor>
-			</li>
-		</value>
-	</Operation>
-
   <Operation Class="PatchOperationAdd">
-    <xpath>/Defs/FactionDef[defName="PirateWaster"]/xenotypeSet/xenotypeChances</xpath>
+    <xpath>Defs/ThoughtDef[defName="Naked"]/nullifyingGenes</xpath>
     <value>
-      <XenotypeDef_Cheech>0.025</XenotypeDef_Cheech>
+      <li>GeneDef_Cheech_Fur_Tufted</li>
     </value>
   </Operation>
 
-  <Operation Class="PatchOperationAdd">
-    <xpath>/Defs/FactionDef[defName="Pirate"]/xenotypeSet/xenotypeChances</xpath>
-    <value>
-      <XenotypeDef_Cheech>0.05</XenotypeDef_Cheech>
-    </value>
+  <Operation Class="PatchOperationSequence">
+    <operations>
+
+      <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Ideology">
+        <xpath>Defs/ThoughtDef[defName="GroinUncovered_Disapproved_Male"]/nullifyingGenes</xpath>
+        <value>
+          <li>GeneDef_Cheech_Fur_Tufted</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Ideology">
+        <xpath>Defs/ThoughtDef[defName="GroinUncovered_Disapproved_Social_Male"]/nullifyingGenes</xpath>
+        <value>
+          <li>GeneDef_Cheech_Fur_Tufted</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Ideology">
+        <xpath>Defs/ThoughtDef[defName="GroinOrChestUncovered_Disapproved_Male"]/nullifyingGenes</xpath>
+        <value>
+          <li>GeneDef_Cheech_Fur_Tufted</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Ideology">
+        <xpath>Defs/ThoughtDef[defName="GroinOrChestUncovered_Disapproved_Social_Male"]/nullifyingGenes</xpath>
+        <value>
+          <li>GeneDef_Cheech_Fur_Tufted</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Ideology">
+        <xpath>Defs/ThoughtDef[defName="GroinChestOrHairUncovered_Disapproved_Male"]/nullifyingGenes</xpath>
+        <value>
+          <li>GeneDef_Cheech_Fur_Tufted</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Ideology">
+        <xpath>Defs/ThoughtDef[defName="GroinChestOrHairUncovered_Disapproved_Social_Male"]/nullifyingGenes</xpath>
+        <value>
+          <li>GeneDef_Cheech_Fur_Tufted</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Ideology">
+        <xpath>Defs/ThoughtDef[defName="GroinChestHairOrFaceUncovered_Disapproved_Male"]/nullifyingGenes</xpath>
+        <value>
+          <li>GeneDef_Cheech_Fur_Tufted</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Ideology">
+        <xpath>Defs/ThoughtDef[defName="GroinChestHairOrFaceUncovered_Disapproved_Social_Male"]/nullifyingGenes</xpath>
+        <value>
+          <li>GeneDef_Cheech_Fur_Tufted</li>
+        </value>
+      </li>
+
+      <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Anomaly">
+        <xpath>Defs/MutantDef[defName="Ghoul"]/disablesGenes</xpath>
+        <value>
+          <li>GeneDef_Cheech_Fur_Tufted</li>
+        </value>
+      </li>
+
+    </operations>
   </Operation>
 
 </Patch>

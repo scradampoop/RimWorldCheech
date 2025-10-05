@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
-	<GeneDef>
+
+  <ThoughtDef>
+    <defName>ThoughtDef_Cheech_PheromoneThought</defName>
+    <thoughtClass>Cheechin.Thought_PheromoneAttraction</thoughtClass>
+    <workerClass>Cheechin.ThoughtWorker_PheromoneAttraction</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>comforting scent</label>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <GeneDef>
 		<defName>GeneDef_Cheech_Pheromones</defName>
 		<label>cheech pheromones</label>
 		<description>Cheechers liek eachover. ^_^</description>
@@ -13,4 +26,5 @@
 			<li>Improved relations with any pawn of the same xenotype.</li>
 		</customEffectDescriptions>
 	</GeneDef>
+
 </Defs>

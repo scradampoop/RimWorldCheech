@@ -17,15 +17,18 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 
 ## Must be done before Steam Workshop release:
 - Fix cheech ear texture.
-- Implement at least one patterened tail texture.
-- Replace gene icons.
+- Fix/implement at least one patterned tail texture.
 - Make sure XML has everything currently in the texture folders and clean up XML defs, etc.
 - Credit Anthrosonae team for example code and color picker.
 - Credit Diana (Kitty) Winters for Orassans mod and textures.
 - Credit https://github.com/fluffy-mods/ColourPicker for the color picker code.
+- Credit Saurid mod as example.
 - Credit source mods in source code summaries once the code starts to stabilize for any other textures or code we're using.
+- Actually test the mod by generating faction members to make sure it all works well enough.
 
 ## TODO / Ideas:
+- Consider different 'races' for different coat patterns like leopard, tabby, calico, tuxedo, etc.
+- Make the cheech faction something like 'nudist' to show off their fur patterns.
 - Replace fat base coat with higher rez one based on Anthrosonae version.
 - Figure out and fix bugs with rendering after adding and removing genes via character editor.
 - Figure out and deal with symbolPack, prefixSymbols, suffixSymbols on genes.
@@ -41,7 +44,6 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 - Custom names for faction/race members.
 - Figure out how the gradient hair mod works, particularly via character editor, and try to make that work for fur patterns.
 - Make patterns selectable via Pawn Editor mod.
-- See if we can get alpha channel working for colors.
 - Go through the ShaderDatabase class again and confirm if we're using the best shadrers for our purposes.
 
 ## Garbage:
