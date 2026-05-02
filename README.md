@@ -16,8 +16,8 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 ![Cover Image](About/Preview.png)
 
 ## Must be done before Steam Workshop release:
-- Fix cheech ear texture.
 - Fix/implement at least one patterned tail texture.
+- Fix/implement head accent and fill texture.
 - Make sure XML has everything currently in the texture folders and clean up XML defs, etc.
 - Credit Anthrosonae team for example code and color picker.
 - Credit Diana (Kitty) Winters for Orassans mod and textures.
@@ -41,15 +41,27 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 - Go through z_samples folder and look for anything else good to put in game.
 - Add more tails. TBD on how to implement stripes/spots and color patterns on tails. 
 - Changing fur color should require tincture flower stuff like normal color changes.
+- Patches that make Cheechers want to eat lizard and rodent xenotypes.
 - Custom names for faction/race members.
 - Figure out how the gradient hair mod works, particularly via character editor, and try to make that work for fur patterns.
 - Make patterns selectable via Pawn Editor mod.
 - Go through the ShaderDatabase class again and confirm if we're using the best shadrers for our purposes.
 
-## Garbage:
+## 'Licensing':
+If you fork this mod and publish a new version to the Steam Workshop or elsewhere that does not use this mod as a dependency, we kindly request that you name your fork something that does not denote your version is 'continued', 'upgraded', 'improved', or any other such terminology that implies your version is largely or wholy better than this version, without my express approval (because otherwise, why not just contribute to this version?).
 
-misc. commands scradam is keeping somewhere for reference:
+#### Unacceptable Examples:
+- Cheech Xenotype Continued
+- Cheech Xenotype Enhanced
+- Cheechers Plus
+- Cheach Xenotype Redux
+- Cheeches: The Next Generation
+- Cheech Xenotype Reborn
+- Cheech Xenotype: Now With More Cheech!
 
-mklink /J "C:\\Steam\\steamapps\\common\\RimWorld\\Mods\\CheechXenoType" "C:\\rw\\RimWorldCheech"
-mklink /J "C:\\rw\\RimWorld" "C:\\Steam\\steamapps\\common\\RimWorld"
-mklink /J "C:\\rw\\workshop" "C:\\Steam\\steamapps\\workshop\\content\\294100"
+#### Acceptable Examples:
+- Felinefolk 2 (based on Cheech Xenotype)
+- Cheech Xenotype: Alternate Universe Edition
+- Cheech Xenotype: Comic-style Remix
+- Fur Patterns 2
+- Cheech Xenotype (official/original author is a bastard)

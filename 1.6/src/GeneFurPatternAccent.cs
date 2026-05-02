@@ -38,6 +38,8 @@ public static class HarmonyPatch_Pawn_GeneTracker_SetXenotype
             typeof(GeneFurPatternAccent),
             typeof(GeneHeadPatternFill),
             typeof(GeneHeadPatternAccent),
+            typeof(GeneEarsWithPattern),
+            typeof(GeneTailWithPattern),
         })
         {
             var genes = __instance.GenesListForReading.Where(g => g.GetType() == geneType).ToArray();
@@ -243,6 +245,11 @@ public sealed class PawnRenderNode_HeadPatternFill(Pawn pawn, PawnRenderNodeProp
 /// <inheritdoc cref="PawnRenderNode_FurPatternFill"/>
 public sealed class PawnRenderNode_HeadPatternAccent(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode_HeadPattern<GeneHeadPatternAccent>(pawn, props, tree);
 
+public sealed class PawnRenderNodeProperties_EarsWithPattern: PawnRenderNodeProperties
+{
+    public string? maskPath;
+}
+
 /// <inheritdoc cref="PawnRenderNode_FurPatternFill"/>
 public sealed class PawnRenderNode_EarsWithPattern(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree): PawnRenderNode_AttachmentHead(pawn, props, tree)
 {
@@ -256,7 +263,7 @@ public sealed class PawnRenderNode_EarsWithPattern(Pawn pawn, PawnRenderNodeProp
             color: geneEars.colorOne,
             colorTwo: geneEars.colorTwo,
             data: null,
-            maskPath: null
+            maskPath: geneEars.def.renderNodeProperties.OfType<PawnRenderNodeProperties_EarsWithPattern>().FirstOrDefault()?.maskPath
         );
     }
 }

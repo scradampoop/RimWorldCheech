@@ -8,6 +8,15 @@ using Verse;
 
 namespace Cheechin;
 
+/*
+## Garbage:
+   
+   misc. commands scradam is keeping somewhere for reference:
+   
+   mklink /J "C:\\Steam\\steamapps\\common\\RimWorld\\Mods\\CheechXenoType" "C:\\rw\\RimWorldCheech"
+   mklink /J "C:\\rw\\RimWorld" "C:\\Steam\\steamapps\\common\\RimWorld"
+   mklink /J "C:\\rw\\workshop" "C:\\Steam\\steamapps\\workshop\\content\\294100"
+    */
 /// <summary>
 /// This is just a garbage file scradam keeps around to quickly go to definitions in referenced assemblies and review source code and figure stuff out. This is garbage that is not part of the mod.
 /// </summary>

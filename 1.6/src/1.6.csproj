@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <LangVersion>13</LangVersion>
+    <LangVersion>14</LangVersion>
     <Nullable>enable</Nullable>
     <AssemblyName>CheechXenotype</AssemblyName>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -19,7 +19,7 @@
     <WarningLevel>1</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Configurations>Release</Configurations>
-    <!-- PolySharp should be enough to enable most C# 13 features in .NetFW and Standard, but occasionally, we have to add an extra package here or there to make it work, and Adam doesn't know why yet. -->
+    <!-- PolySharp should be enough to enable most C# 14 features in .NetFW and Standard, but occasionally, we have to add an extra package here or there to make it work, and Adam doesn't know why yet. -->
     <!--<PackageReference Include="PolySharp">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -28,7 +28,7 @@
     <!--<PackageReference Condition="'$(TargetFramework)' == 'net48'" Include="Microsoft.Bcl.Memory" />-->
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.4.1" />
+    <PackageReference Include="Lib.Harmony" Version="2.4.2" />
     <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -72,10 +72,10 @@
       <HintPath>C:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.InputModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.TextCoreModule">
+    <!--<Reference Include="UnityEngine.TextCoreModule">
       <HintPath>C:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
       <Private>False</Private>
-    </Reference>
+    </Reference>-->
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>C:\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>

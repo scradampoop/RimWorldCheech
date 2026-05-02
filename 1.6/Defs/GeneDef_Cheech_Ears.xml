@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <Defs>
-  
+
   <!--TODO: use cat ears as base instead?-->
   <!--<GeneDef ParentName="Ears_Cat">-->
-  <GeneDef ParentName="GeneEarsBase">
-    <!--Inherited:
+  <GeneDef Name="GeneDef_Cheech_Ears_Average_GreyFill" ParentName="GeneEarsBase" Abstract="True">
+    <!--Inherited from GeneEarsBase:
     <biostatCpx>0</biostatCpx>
     <randomChosen>true</randomChosen>
     <endogeneCategory>Ears</endogeneCategory>
@@ -14,18 +14,14 @@
     <exclusionTags>
       <li>Ears</li>
     </exclusionTags>-->
-    <defName>GeneDef_Cheech_Ears</defName>
     <geneClass>Cheechin.GeneEarsWithPattern</geneClass>
-    <label>cheech ears</label>
-    <description>Cosmetic only. Cheech ears.</description>
-    <iconPath>Cheech/Icons/Icon_CheechEars</iconPath>		
-    <biostatMet>0</biostatMet>
+    <iconPath>Cheech/Icons/Icon_CheechEars</iconPath>
     <biostatMet>0</biostatMet>
     <renderNodeProperties>
       <li>
         <nodeClass>Cheechin.PawnRenderNode_EarsWithPattern</nodeClass>
         <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
-        <texPath>Cheech/Ears/Cheech_Ears</texPath>
+        <texPath>Cheech/Ears/Cheech_Ears_Average_GreyFill</texPath>
         <colorType>Custom</colorType>
         <parentTagDef>Head</parentTagDef>
         <!--<useSkinShader>true</useSkinShader>-->
@@ -55,6 +51,17 @@
         <li><symbol>ear</symbol></li>
       </suffixSymbols>
     </symbolPack>-->
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Ears_Average_GreyFill">
+    <defName>GeneDef_Cheech_Ears_Average_GreyFill_Striped</defName>
+    <label>cheech ears</label>
+    <description>Cosmetic only. Average size Cheech ears with stripes.</description>
+    <renderNodeProperties>
+      <li Class="Cheechin.PawnRenderNodeProperties_EarsWithPattern">
+        <maskPath>Cheech/Ears/m/Cheech_Ears_Average_Striped</maskPath>
+      </li>
+    </renderNodeProperties>
     <modExtensions>
       <li Class="Cheechin.FurPatternColors">
         <predefinedFurPatternColors>
@@ -64,7 +71,137 @@
     </modExtensions>
   </GeneDef>
 
-  <!--<GeneDef ParentName="GeneEarsBase">
+  <GeneDef Name="GeneDef_Cheech_Ears_Large_NoFill" ParentName="GeneEarsBase" Abstract="True">
+    <geneClass>Cheechin.GeneEarsWithPattern</geneClass>
+    <iconPath>Cheech/Icons/Icon_CheechEars</iconPath>
+    <biostatMet>0</biostatMet>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>Cheechin.PawnRenderNode_EarsWithPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+        <texPath>Cheech/Ears/Cheech_Ears_Large_NoFill</texPath>
+        <colorType>Custom</colorType>
+        <parentTagDef>Head</parentTagDef>
+        <useRottenColor>true</useRottenColor>
+        <rotDrawMode>Fresh,Rotting</rotDrawMode>
+        <drawData>
+          <defaultData>
+            <layer>70</layer>
+          </defaultData>
+        </drawData>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Ears_Large_NoFill">
+    <defName>GeneDef_Cheech_Ears_Large_NoFill_Solid</defName>
+    <label>large cheech ears</label>
+    <description>Cosmetic only. Large Cheech ears with no fill and solid colors.</description>
+    <renderNodeProperties>
+      <li Class="Cheechin.PawnRenderNodeProperties_EarsWithPattern">
+        <maskPath>Cheech/Ears/m/Cheech_Ears_Large_Solid</maskPath>
+      </li>
+    </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_BrownTwo</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef Name="GeneDef_Cheech_Ears_Large_PinkFill" ParentName="GeneEarsBase" Abstract="True">
+    <geneClass>Cheechin.GeneEarsWithPattern</geneClass>
+    <iconPath>Cheech/Icons/Icon_CheechEars</iconPath>
+    <biostatMet>0</biostatMet>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>Cheechin.PawnRenderNode_EarsWithPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+        <texPath>Cheech/Ears/Cheech_Ears_Large_PinkFill</texPath>
+        <colorType>Custom</colorType>
+        <parentTagDef>Head</parentTagDef>
+        <useRottenColor>true</useRottenColor>
+        <rotDrawMode>Fresh,Rotting</rotDrawMode>
+        <drawData>
+          <defaultData>
+            <layer>70</layer>
+          </defaultData>
+        </drawData>
+      </li>
+    </renderNodeProperties>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Ears_Large_PinkFill">
+    <defName>GeneDef_Cheech_Ears_Large_PinkFill_Solid</defName>
+    <label>large cheech ears</label>
+    <description>Cosmetic only. Large Cheech ears with pink fill and solid colors.</description>
+    <renderNodeProperties>
+      <li Class="Cheechin.PawnRenderNodeProperties_EarsWithPattern">
+        <maskPath>Cheech/Ears/m/Cheech_Ears_Large_Solid</maskPath>
+      </li>
+    </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_BrownTwo</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <GeneDef ParentName="GeneDef_Cheech_Ears_Large_PinkFill">
+    <defName>GeneDef_Cheech_Ears_Large_PinkFill_Spots</defName>
+    <label>large cheech ears</label>
+    <description>Cosmetic only. Large Cheech ears with pink fill and spots.</description>
+    <renderNodeProperties>
+      <li Class="Cheechin.PawnRenderNodeProperties_EarsWithPattern">
+        <maskPath>Cheech/Ears/m/Cheech_Ears_Large_Spots</maskPath>
+      </li>
+    </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_BrownTwo</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
+  </GeneDef>
+
+  <!--
+  <GeneDef ParentName="GeneEarsBase">
+    <defName>GeneDef_Cheech_Ears</defName>
+    <geneClass>Cheechin.GeneEarsWithPattern</geneClass>
+    <label>cheech ears</label>
+    <description>Cosmetic only. Cheech ears.</description>
+    <iconPath>Cheech/Icons/Icon_CheechEars</iconPath>
+    <biostatMet>0</biostatMet>
+    <renderNodeProperties>
+      <li>
+        <nodeClass>Cheechin.PawnRenderNode_EarsWithPattern</nodeClass>
+        <workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
+        <texPath>Cheech/Ears/Cheech_Ears</texPath>
+        <colorType>Custom</colorType>
+        <parentTagDef>Head</parentTagDef>
+        <useRottenColor>true</useRottenColor>
+        <rotDrawMode>Fresh,Rotting</rotDrawMode>
+        <drawData>
+          <defaultData>
+            <layer>70</layer>
+          </defaultData>
+        </drawData>
+      </li>
+    </renderNodeProperties>
+    <modExtensions>
+      <li Class="Cheechin.FurPatternColors">
+        <predefinedFurPatternColors>
+          <li>Cheechin_FurPreset_BrownTwo</li>
+        </predefinedFurPatternColors>
+      </li>
+    </modExtensions>
+  </GeneDef>
+  <GeneDef ParentName="GeneEarsBase">
     <geneClass>Cheechin.GeneEarsWithPattern</geneClass>
     <defName>GeneDef_Cheech_EarTest</defName>
     <label>cheech test ears</label>

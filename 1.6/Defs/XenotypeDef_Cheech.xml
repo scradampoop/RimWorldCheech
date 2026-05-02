@@ -18,7 +18,11 @@
     <!--<nameMaker>NamerPersonWaster</nameMaker>-->
 		<!--<chanceToUseNameMaker>0.1</chanceToUseNameMaker>-->
 		<genes>
-			<li>GeneDef_Cheech_Ears</li>
+      <!--<li>GeneDef_Cheech_Ears</li>-->
+			<li>GeneDef_Cheech_Ears_Average_GreyFill_Striped</li>
+      <li>GeneDef_Cheech_Ears_Large_NoFill_Solid</li>
+      <li>GeneDef_Cheech_Ears_Large_PinkFill_Solid</li>
+      <li>GeneDef_Cheech_Ears_Large_PinkFill_Spots</li>
 			<li>GeneDef_Cheech_Head</li>
       <li>GeneDef_Cheech_HeadPatternAccent_Jaguar</li>
 			<li>GeneDef_Cheech_Tail</li>
