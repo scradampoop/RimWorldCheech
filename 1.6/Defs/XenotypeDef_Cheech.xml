@@ -1,50 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-  <XenotypeIconDef>
-    <defName>XenotypeIconDef_Cheech</defName>
-    <texPath>Cheech/Icons/Icon_Paw</texPath>
-  </XenotypeIconDef>
-  
-  <XenotypeDef>
+	<XenotypeIconDef>
+		<defName>XenotypeIconDef_Cheech</defName>
+		<texPath>Cheech/Icons/Icon_Paw</texPath>
+	</XenotypeIconDef>
+	
+	<XenotypeDef>
 		<defName>XenotypeDef_Cheech</defName>
 		<label>cheech</label>
 		<description>These are some real niec cheechers, huh.</description>
 		<descriptionShort>These are some real niec cheechers, huh.</descriptionShort>
 		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
-    <!--<soundDefOnImplant>CheechRawr</soundDefOnImplant>-->
+		<!--<soundDefOnImplant>CheechRawr</soundDefOnImplant>-->
 		<inheritable>true</inheritable>
 		<!--TODO: Add custom cheech names.-->
-    <!--<nameMaker>NamerPersonWaster</nameMaker>-->
+		<!--<nameMaker>NamerPersonWaster</nameMaker>-->
 		<!--<chanceToUseNameMaker>0.1</chanceToUseNameMaker>-->
 		<genes>
-      <!--<li>GeneDef_Cheech_Ears</li>-->
-			<li>GeneDef_Cheech_Ears_Average_GreyFill_Striped</li>
-      <li>GeneDef_Cheech_Ears_Large_NoFill_Solid</li>
-      <li>GeneDef_Cheech_Ears_Large_PinkFill_Solid</li>
-      <li>GeneDef_Cheech_Ears_Large_PinkFill_Spots</li>
-			<li>GeneDef_Cheech_Head</li>
-      <li>GeneDef_Cheech_HeadPatternAccent_Jaguar</li>
-			<li>GeneDef_Cheech_Tail</li>
+			<li>GeneDef_Cheech_Skin_Random</li>
+			<li>GeneDef_Cheech_Skin_BattleCat</li>
+			<li>GeneDef_Cheech_Skin_PinkPanther</li>
+			<li>GeneDef_Cheech_Skin_NyanCat</li>
+			<li>GeneDef_Cheech_Skin_Garfield</li>
+			<li>GeneDef_Cheech_Skin_SnowLeopard</li>
+			<li>GeneDef_Cheech_Skin_Tiger</li>
+			<li>GeneDef_Cheech_Skin_Cheetah</li>
+			<li>GeneDef_Cheech_Skin_BlackPanther</li>
+			<li>GeneDef_Cheech_Skin_Lion</li>
+			<li>GeneDef_Cheech_Skin_Lynx</li>
+			<li>GeneDef_Cheech_Skin_Ocelot</li>
+			<li>GeneDef_Cheech_Skin_Jaguar</li>
+			<li>GeneDef_Cheech_Skin_Calico</li>
 			<li>GeneDef_Cheech_Fur_Tufted</li>
-      <li>GeneDef_Cheech_FurPatternFill_Mottled</li>
-      <li>GeneDef_Cheech_FurPatternFill_Patches</li>
-      <li>GeneDef_Cheech_FurPatternFill_Tux</li>
-      <li>GeneDef_Cheech_FurPatternAccent_Jaguar</li>
-      <li>GeneDef_Cheech_FurPatternAccent_Leopard</li>
-      <li>GeneDef_Cheech_FurPatternAccent_LeopardCrisp</li>
-      <li>GeneDef_Cheech_FurPatternAccent_Mottled</li>
-      <li>GeneDef_Cheech_FurPatternAccent_Patches</li>
-      <li>GeneDef_Cheech_FurPatternAccent_Spots</li>
-      <li>GeneDef_Cheech_FurPatternAccent_StripesSharp</li>
-      <li>GeneDef_Cheech_FurPatternAccent_StripesSpots</li>
-      <li>GeneDef_Cheech_FurPatternAccent_StripesSpotsBold</li>
-      <li>GeneDef_Cheech_FurPatternAccent_StripesSquiggles</li>
-      <li>GeneDef_Cheech_FurPatternAccent_StripesV</li>
-      <li>GeneDef_Cheech_FurPatternAccent_SwirlsSpots</li>
-      <li>Hair_BaldOnly</li>
-      <li>Beard_NoBeardOnly</li>
-      <li>GeneDef_Cheech_Pheromones</li>
+			<li>GeneDef_Cheech_FurPatternFill_Mottled</li>
+			<li>GeneDef_Cheech_FurPatternFill_Patches</li>
+			<li>GeneDef_Cheech_FurPatternFill_Tux</li>
+			<li>GeneDef_Cheech_FurPatternAccent_Jaguar</li>
+			<li>GeneDef_Cheech_FurPatternAccent_Leopard</li>
+			<li>GeneDef_Cheech_FurPatternAccent_LeopardCrisp</li>
+			<li>GeneDef_Cheech_FurPatternAccent_Mottled</li>
+			<li>GeneDef_Cheech_FurPatternAccent_Patches</li>
+			<li>GeneDef_Cheech_FurPatternAccent_Spots</li>
+			<li>GeneDef_Cheech_FurPatternAccent_StripesSharp</li>
+			<li>GeneDef_Cheech_FurPatternAccent_StripesSpots</li>
+			<li>GeneDef_Cheech_FurPatternAccent_StripesSpotsBold</li>
+			<li>GeneDef_Cheech_FurPatternAccent_StripesSquiggles</li>
+			<li>GeneDef_Cheech_FurPatternAccent_StripesV</li>
+			<li>GeneDef_Cheech_FurPatternAccent_SwirlsSpots</li>
+			<li>GeneDef_Cheech_Head</li>
+			<li>GeneDef_Cheech_HeadPatternFill_Mottled</li>
+			<li>GeneDef_Cheech_HeadPatternAccent_Jaguar</li>
+			<li>GeneDef_Cheech_Ears_Average_GreyFill_Stripes</li>
+			<li>GeneDef_Cheech_Ears_Large_NoFill_Solid</li>
+			<li>GeneDef_Cheech_Ears_Large_PinkFill_Solid</li>
+			<li>GeneDef_Cheech_Ears_Large_PinkFill_Spots</li>
+			<li>GeneDef_Cheech_Tail_Stripes</li>
+			<li>Hair_BaldOnly</li>
+			<li>Beard_NoBeardOnly</li>
+			<li>GeneDef_Cheech_Pheromones</li>
 		</genes>
 	</XenotypeDef>
 

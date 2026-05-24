@@ -1,55 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
-	<GeneDef ParentName="GeneTailBase">
-    <!--Inherited:
-    <displayCategory>Miscellaneous</displayCategory>
-    <randomChosen>true</randomChosen>
-    <exclusionTags>
-      <li>Tail</li>
-    </exclusionTags>-->    
-		<defName>GeneDef_Cheech_Tail</defName>
-		<label>cheech tail</label>
-		<description>Cheech tail.  ^_^</description>
+	<GeneDef Name="GeneDef_Cheech_Tail" ParentName="GeneTailBase" Abstract="True">
+		<!--Inherited:
+		<displayCategory>Miscellaneous</displayCategory>
+		<randomChosen>true</randomChosen>
+		<exclusionTags>
+			<li>Tail</li>
+		</exclusionTags>-->
+		<geneClass>Cheechin.GeneTailWithPattern</geneClass>
 		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
-    <biostatCpx>0</biostatCpx>
-    <biostatMet>0</biostatMet>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
 		<displayOrderInCategory>1000</displayOrderInCategory>
 		<renderNodeProperties>
 			<li>
+				<nodeClass>Cheechin.PawnRenderNode_TailWithPattern</nodeClass>
 				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
 				<texPath>Cheech/Tail/Cheech_Tail</texPath>
+				<colorType>Custom</colorType>
 				<overrideMeshSize>(1, 1)</overrideMeshSize>
 				<parentTagDef>Body</parentTagDef>
-        <colorType>Skin</colorType>
-        <useSkinShader>true</useSkinShader>
-        <useRottenColor>true</useRottenColor>
+				<useRottenColor>true</useRottenColor>
 				<rotDrawMode>Fresh,Rotting</rotDrawMode>
-        <!--<visibleFacing>
-          <li>East</li>
-          <li>North</li>
-          <li>West</li>
-        </visibleFacing>-->
+				<!--<visibleFacing>
+					<li>East</li>
+					<li>North</li>
+					<li>West</li>
+				</visibleFacing>
+Notes/example for changing offsets:
+dataNorth/dataSouth (0, 0, -0.25) — no horizontal shift, pushed down 0.25 cells.
+dataEast (-0.55, 0, -0.25) — shifted 0.55 cells left and 0.25 down (tail hanging off the pawn's left side when they face east).
+dataWest (0.55, 0, -0.25) — mirrored: 0.55 right, 0.25 down.
+				-->
 				<drawData>
 					<scaleOffsetByBodySize>true</scaleOffsetByBodySize>
 					<defaultData>
 						<layer>-2</layer>
 					</defaultData>
 					<dataNorth>
-						<offset>(0,0,-0.25)</offset>
+						<offset>(0,0,-0.22)</offset>
 						<layer>90</layer>
 					</dataNorth>
-          <dataSouth>
-            <offset>(0,0,-0.25)</offset>
-            <!--<layer>90</layer>-->
-          </dataSouth>
+					<dataSouth>
+						<offset>(0,0,-0.12)</offset>
+						<!--<layer>90</layer>-->
+					</dataSouth>
 					<dataEast>
-						<offset>(-0.55,0,-0.25)</offset>
+						<offset>(-0.5,0,-0.23)</offset>
 					</dataEast>
 					<dataWest>
-						<offset>(0.55,0,-0.25)</offset>
+						<offset>(0.5,0,-0.23)</offset>
 					</dataWest>
 				</drawData>
 			</li>
 		</renderNodeProperties>
 	</GeneDef>
+
+	<GeneDef ParentName="GeneDef_Cheech_Tail">
+		<defName>GeneDef_Cheech_Tail_Stripes</defName>
+		<label>cheech tail</label>
+		<description>Striped Cheech tail.  ^_^</description>
+		<renderNodeProperties>
+			<li Class="Cheechin.PawnRenderNodeProperties_PatternMask">
+				<maskPath>Cheech/Tail/m/Cheech_Tail_Stripes</maskPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
 </Defs>

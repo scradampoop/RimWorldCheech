@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-	<GeneDef Name="GeneDef_Cheech_HeadPatternAccent" Abstract="True">
-		<geneClass>Cheechin.GeneHeadPatternAccent</geneClass>
+	<GeneDef Name="GeneDef_Cheech_HeadPatternFill" Abstract="True">
+		<geneClass>Cheechin.GeneHeadPatternFill</geneClass>
 		<biostatCpx>0</biostatCpx>
 		<biostatMet>0</biostatMet>
 		<!--<endogeneCategory>Melanin</endogeneCategory>-->
-		<displayCategory>GeneCategoryDef_Cheech_FurPatternAccent</displayCategory>
-		<description>Finer detail markings like stripes or spots.</description>
+		<displayCategory>GeneCategoryDef_Cheech_FurPatternFill</displayCategory>
+		<description>Lower-layer, larger markings like patches or shading.</description>
 		<displayOrderInCategory>110</displayOrderInCategory>
 		<exclusionTags>
-			<li>HeadPatternAccent</li>
+			<li>HeadPatternFill</li>
 		</exclusionTags>
 		<renderNodeProperties>
 			<li>
-				<nodeClass>Cheechin.PawnRenderNode_HeadPatternAccent</nodeClass>
+				<nodeClass>Cheechin.PawnRenderNode_HeadPatternFill</nodeClass>
 				<workerClass>PawnRenderNodeWorker_FlipWhenCrawling</workerClass>
-				<baseLayer>50.4</baseLayer>
+				<baseLayer>50.2</baseLayer>
 				<colorType>Custom</colorType>
 				<parentTagDef>Head</parentTagDef>
 				<rotDrawMode>Fresh,Rotting</rotDrawMode>
 				<useRottenColor>true</useRottenColor>
-				<debugLabel>Head Pattern Accent</debugLabel>
+				<debugLabel>Head Pattern Fill</debugLabel>
 			</li>
 		</renderNodeProperties>
 	</GeneDef>
 
-	<GeneDef ParentName="GeneDef_Cheech_HeadPatternAccent">
-		<defName>GeneDef_Cheech_HeadPatternAccent_Jaguar</defName>
-		<label>jaguar spotted face</label>
-		<labelShortAdj>jaguar facial spotted</labelShortAdj>
+	<GeneDef ParentName="GeneDef_Cheech_HeadPatternFill">
+		<defName>GeneDef_Cheech_HeadPatternFill_Mottled</defName>
+		<label>mottled fill</label>
+		<labelShortAdj>mottled</labelShortAdj>
 		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
 		<renderNodeProperties>
 			<li>
 				<useGraphic>false</useGraphic>
-				<texPath>Cheech/Head/Jaguar/Jaguar</texPath>
+				<texPath>Cheech/Head/MottledFill/MottledFill</texPath>
 			</li>
 		</renderNodeProperties>
 	</GeneDef>

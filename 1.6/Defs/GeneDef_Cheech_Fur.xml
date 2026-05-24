@@ -1,117 +1,549 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-  <FurDef>
-    <defName>FurDef_Cheech_Tufts</defName>
-    <noGraphic>true</noGraphic>
-    <bodyTypeGraphicPaths>
-      <Male>Cheech/Fur/Tufts/Tufts_Male</Male>
-      <Female>Cheech/Fur/Tufts/Tufts_Female</Female>
-      <Hulk>Cheech/Fur/Tufts/Tufts_Hulk</Hulk>
-      <Fat>Cheech/Fur/Tufts/Tufts_Fat</Fat>
-      <Thin>Cheech/Fur/Tufts/Tufts_Thin</Thin>
-      <Child>Cheech/Fur/Tufts/Tufts_Child</Child>
-      <Baby>Cheech/Fur/Tufts/Tufts_Child</Baby><!-- Always covered by swaddled graphic? -->
-    </bodyTypeGraphicPaths>
-  </FurDef>
+	<FurDef>
+		<defName>FurDef_Cheech_Tufts</defName>
+		<noGraphic>true</noGraphic>
+		<bodyTypeGraphicPaths>
+			<Male>Cheech/Fur/Tufts/Tufts_Male</Male>
+			<Female>Cheech/Fur/Tufts/Tufts_Female</Female>
+			<Hulk>Cheech/Fur/Tufts/Tufts_Hulk</Hulk>
+			<Fat>Cheech/Fur/Tufts/Tufts_Fat</Fat>
+			<Thin>Cheech/Fur/Tufts/Tufts_Thin</Thin>
+			<Child>Cheech/Fur/Tufts/Tufts_Child</Child>
+			<Baby>Cheech/Fur/Tufts/Tufts_Child</Baby><!-- Always covered by swaddled graphic? -->
+		</bodyTypeGraphicPaths>
+	</FurDef>
 
-  <!--
-  For reference:
-  Anthrosonae: 279
-  Skin: 280
-  Hair: 285
-  -->
-  <GeneCategoryDef>
-    <defName>GeneCategoryDef_Cheech_FurPatternFill</defName>
-    <label>cosmetic - fur pattern fill</label>
-    <displayPriorityInXenotype>282</displayPriorityInXenotype>
-  </GeneCategoryDef>
-  <GeneCategoryDef>
-    <defName>GeneCategoryDef_Cheech_FurPatternAccent</defName>
-    <label>cosmetic - fur pattern accent</label>
-    <displayPriorityInXenotype>283</displayPriorityInXenotype>
-  </GeneCategoryDef>
+	<!--
+	For reference:
+	Anthrosonae: 279
+	Skin: 280
+	Hair: 285
+	-->
+	<GeneCategoryDef>
+		<defName>GeneCategoryDef_Cheech_FurPatternFill</defName>
+		<label>cosmetic - fur pattern fill</label>
+		<displayPriorityInXenotype>282</displayPriorityInXenotype>
+	</GeneCategoryDef>
+	<GeneCategoryDef>
+		<defName>GeneCategoryDef_Cheech_FurPatternAccent</defName>
+		<label>cosmetic - fur pattern accent</label>
+		<displayPriorityInXenotype>283</displayPriorityInXenotype>
+	</GeneCategoryDef>
 
-  <JobDef>
-    <defName>Cheechin_ChangeFurPatternColors</defName>
-    <driverClass>Cheechin.JobDriver_ChangeFurPatternColors</driverClass>
-    <reportString>changing fur pattern colors at TargetA.</reportString>
-  </JobDef>
+	<JobDef>
+		<defName>Cheechin_ChangeFurPatternColors</defName>
+		<driverClass>Cheechin.JobDriver_ChangeFurPatternColors</driverClass>
+		<reportString>changing fur pattern colors at TargetA.</reportString>
+	</JobDef>
 
-  <GeneDef>
+	<GeneDef>
 		<defName>GeneDef_Cheech_Fur_Tufted</defName>
-    <fur>FurDef_Cheech_Tufts</fur>
+		<fur>FurDef_Cheech_Tufts</fur>
 		<label>cheech base coat</label>
 		<labelShortAdj>cheechy</labelShortAdj>
-    <biostatCpx>0</biostatCpx>
-    <biostatMet>0</biostatMet>
-    <skinColorOverride>(255,255,255)</skinColorOverride>
-    <randomBrightnessFactor>0</randomBrightnessFactor>
-    <minMelanin>0</minMelanin>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<!--<skinColorOverride>(255,255,255)</skinColorOverride>
+		<randomBrightnessFactor>0</randomBrightnessFactor>-->
+		<minMelanin>0</minMelanin>
 		<description>Base cheech coat.</description>
-    <displayCategory>Cosmetic_Skin</displayCategory>
+		<displayCategory>Cosmetic_Skin</displayCategory>
 		<displayOrderInCategory>400</displayOrderInCategory>
-    <iconPath>Cheech/Fur/Tufts/icon</iconPath>
+		<iconPath>Cheech/Fur/Tufts/icon</iconPath>
 		<skinIsHairColor>false</skinIsHairColor>
-    <tattoosVisible>true</tattoosVisible>
-    <!--<statOffsets>
-      <ComfyTemperatureMin>-10</ComfyTemperatureMin>
-    </statOffsets>
-    <missingGeneRomanceChanceFactor>0.2</missingGeneRomanceChanceFactor>-->
-    <exclusionTags>
-      <!--<li>SkinColorOverride</li>
-      <li>BeardStyle</li>
-      <li>SkinColor</li>
-      <li>Bodies</li>
-      <li>Skin</li>
-      <li>Body</li>-->
-      <li>Fur</li>
-      <li>SkinColorOverride</li>
-    </exclusionTags>
-    <symbolPack>
-      <prefixSymbols>
-        <li><symbol>furry</symbol></li>
-        <li><symbol>catlike</symbol></li>
-      </prefixSymbols>
-      <suffixSymbols>
-        <li><symbol>fur</symbol></li>
-        <li><symbol>coat</symbol></li>
-      </suffixSymbols>
-    </symbolPack>
-    <renderNodeProperties>
-      <li>
-        <debugLabel>Fur</debugLabel>
-        <nodeClass>Cheechin.PawnRenderNode_BaseCoat</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Fur</workerClass>
-        <baseLayer>5</baseLayer>
-        <rotDrawMode>Fresh,Rotting</rotDrawMode>
-        <colorType>Skin</colorType>
-        <parentTagDef>Body</parentTagDef>
-      </li>
-    </renderNodeProperties>
+		<tattoosVisible>true</tattoosVisible>
+		<!--<statOffsets>
+			<ComfyTemperatureMin>-10</ComfyTemperatureMin>
+		</statOffsets>
+		<missingGeneRomanceChanceFactor>0.2</missingGeneRomanceChanceFactor>-->
+		<exclusionTags>
+			<!--<li>SkinColorOverride</li>
+			<li>BeardStyle</li>
+			<li>SkinColor</li>
+			<li>Bodies</li>
+			<li>Skin</li>
+			<li>Body</li>-->
+			<li>Fur</li>
+			<!--<li>SkinColorOverride</li>-->
+		</exclusionTags>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>furry</symbol></li>
+				<li><symbol>catlike</symbol></li>
+			</prefixSymbols>
+			<suffixSymbols>
+				<li><symbol>fur</symbol></li>
+				<li><symbol>coat</symbol></li>
+			</suffixSymbols>
+		</symbolPack>
+		<renderNodeProperties>
+			<li>
+				<debugLabel>Fur</debugLabel>
+				<nodeClass>Cheechin.PawnRenderNode_BaseCoat</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Fur</workerClass>
+				<baseLayer>5</baseLayer>
+				<rotDrawMode>Fresh,Rotting</rotDrawMode>
+				<colorType>Skin</colorType>
+				<parentTagDef>Body</parentTagDef>
+			</li>
+		</renderNodeProperties>
 		<!--<modExtensions>
 			<li Class="VEF.Genes.GeneExtension">-->
-        <!--<furHidesBody>True</furHidesBody>-->
-        <!--<useSkinColorForFur>True</useSkinColorForFur>-->
-        <!--<dontColourFur>True</dontColourFur>-->
-        <!--<useSkinAndHairColorsForFur>True</useSkinAndHairColorsForFur>-->
+				<!--<furHidesBody>True</furHidesBody>-->
+				<!--<useSkinColorForFur>True</useSkinColorForFur>-->
+				<!--<dontColourFur>True</dontColourFur>-->
+				<!--<useSkinAndHairColorsForFur>True</useSkinAndHairColorsForFur>-->
 				<!--<useMaskForFur>True</useMaskForFur>-->
 			<!--</li>
 		</modExtensions>-->
 	</GeneDef>
 
-  <Cheechin.FurPatternColorDef>
-    <defName>Cheechin_FurPreset_Black_Black</defName>
-    <colorOne>(0,0,0)</colorOne>
-    <colorTwo>(0,0,0)</colorTwo>
-    <selectionWeight>0.1</selectionWeight>
-  </Cheechin.FurPatternColorDef>
+	<!-- ===== Pop culture ===== -->
 
-  <Cheechin.FurPatternColorDef>
-    <defName>Cheechin_FurPreset_BrownTwo</defName>
-    <colorOne>(52,43,3)</colorOne>
-    <colorTwo>(52,43,3)</colorTwo>
-    <selectionWeight>0.63</selectionWeight>
-  </Cheechin.FurPatternColorDef>
+	<!--<Cheechin.FurPatternPreset>
+		<defName>Cheechin_FurPreset_BattleCat</defName>
+		<skin>26612a</skin>
+		<skinHigh>37933c</skinHigh>
+		<fill>2a75314c</fill>
+		<fillHigh>2a7531ff</fillHigh>
+		<accent>c0b014</accent>
+		<hair>2a7531</hair>
+		<selectionWeight>0.1</selectionWeight>
+	</Cheechin.FurPatternPreset>-->
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<!-- Inhereted:
+		<biostatCpx>0</biostatCpx>
+		<displayCategory>Cosmetic_Skin</displayCategory>
+		<iconPath>UI/Icons/Genes/Gene_SkinColorOverride</iconPath>
+		<exclusionTags>
+			<li>SkinColorOverride</li>
+		</exclusionTags>
+		<randomBrightnessFactor>0.18</randomBrightnessFactor>
+		-->
+		<defName>GeneDef_Cheech_Skin_BattleCat</defName>
+		<label>battle-cat colored</label>
+		<labelShortAdj>battle-cat</labelShortAdj>
+		<description>Like Battle Cat / Cringer from He-Man.</description>
+		<skinColorOverride>(42,117,49)</skinColorOverride>
+		<!--<randomBrightnessFactor>0</randomBrightnessFactor>-->
+		<!--<displayOrderInCategory>93</displayOrderInCategory>-->
+		<selectionWeight>0.02</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li>
+					<symbol>green</symbol>
+				</li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>26612a</skin>
+				<skinHigh>37933c</skinHigh>
+				<fill>2a75314c</fill>
+				<fillHigh>2a7531ff</fillHigh>
+				<accent>c0b014</accent>
+				<hair>2a7531</hair>
+				<include>stripe</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_Random</defName>
+		<label>randomly colored</label>
+		<labelShortAdj>random</labelShortAdj>
+		<description>Every pattern and color combination is possible.</description>
+		<skinColorOverride>(248,27,203)</skinColorOverride>
+		<selectionWeight>0.3</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>random</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<noPatternWeight>0</noPatternWeight>
+				<skin>000000</skin>
+				<skinHigh>ffffff</skinHigh>
+				<fill>000000</fill>
+				<fillHigh>ffffff</fillHigh>
+				<accent>000000</accent>
+				<accentHigh>ffffff</accentHigh>
+				<headFill>000000</headFill>
+				<headFillHigh>ffffff</headFillHigh>
+				<headAccent>000000</headAccent>
+				<headAccentHigh>ffffff</headAccentHigh>
+				<earsFill>000000</earsFill>
+				<earsFillHigh>ffffff</earsFillHigh>
+				<earsAccent>000000</earsAccent>
+				<earsAccentHigh>ffffff</earsAccentHigh>
+				<tailFill>000000</tailFill>
+				<tailFillHigh>ffffff</tailFillHigh>
+				<tailAccent>000000</tailAccent>
+				<tailAccentHigh>ffffff</tailAccentHigh>
+				<hair>000000</hair>
+				<hairHigh>ffffff</hairHigh>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_PinkPanther</defName>
+		<label>pink-panther colored</label>
+		<labelShortAdj>pink-panther</labelShortAdj>
+		<description>Solid hot-pink coat, like the Pink Panther.</description>
+		<skinColorOverride>(255,143,204)</skinColorOverride>
+		<selectionWeight>0.02</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>pink</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>ff8fcc</skin>
+				<skinHigh>ffa8d6</skinHigh>
+				<fill>ff5fa8</fill>
+				<fillHigh>ff7ab8</fillHigh>
+				<accent>e91c89</accent>
+				<accentHigh>ff3aa0</accentHigh>
+				<include>nopattern</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_NyanCat</defName>
+		<label>nyan-cat colored</label>
+		<labelShortAdj>nyan</labelShortAdj>
+		<description>Grey poptart-cat coloring, like Nyan Cat.</description>
+		<skinColorOverride>(170,170,170)</skinColorOverride>
+		<selectionWeight>0.04</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>grey</symbol></li>
+				<li><symbol>cosmic</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>a8a8a8</skin>
+				<skinHigh>c4c4c4</skinHigh>
+				<fill>8a8a8a</fill>
+				<fillHigh>9c9c9c</fillHigh>
+				<accent>ff6ec7</accent>
+				<accentHigh>ff8fd5</accentHigh>
+				<include>nopattern</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_Garfield</defName>
+		<label>garfield colored</label>
+		<labelShortAdj>garfield</labelShortAdj>
+		<description>Orange tabby with dark stripes, like Garfield.</description>
+		<skinColorOverride>(232,146,48)</skinColorOverride>
+		<selectionWeight>0.05</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>orange</symbol></li>
+				<li><symbol>tabby</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>e89230</skin>
+				<skinHigh>f5a543</skinHigh>
+				<fill>c87520</fill>
+				<fillHigh>d8842c</fillHigh>
+				<accent>3a2410</accent>
+				<accentHigh>5a3a1c</accentHigh>
+				<include>stripe</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<!-- ===== Wild cats ===== -->
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_SnowLeopard</defName>
+		<label>snow-leopard colored</label>
+		<labelShortAdj>snow-leopard</labelShortAdj>
+		<description>Pale, smoky-grey coat broken by dark rosettes — a snow leopard.</description>
+		<skinColorOverride>(232,230,223)</skinColorOverride>
+		<selectionWeight>0.1</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>snow</symbol></li>
+				<li><symbol>ghost</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>e8e6df</skin>
+				<skinHigh>f5f3ec</skinHigh>
+				<fill>c0bdb3</fill>
+				<fillHigh>d4d1c6</fillHigh>
+				<accent>3a3530</accent>
+				<accentHigh>524c45</accentHigh>
+				<include>leopard,spots</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_Tiger</defName>
+		<label>tiger colored</label>
+		<labelShortAdj>tiger</labelShortAdj>
+		<description>Burnt-orange coat with bold black stripes — a tiger.</description>
+		<skinColorOverride>(232,117,21)</skinColorOverride>
+		<selectionWeight>0.1</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>tiger</symbol></li>
+				<li><symbol>striped</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>e87515</skin>
+				<skinHigh>f08c2e</skinHigh>
+				<fill>c25b08</fill>
+				<fillHigh>d46a14</fillHigh>
+				<accent>1a0e07</accent>
+				<accentHigh>2e1c0e</accentHigh>
+				<include>stripe</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_Cheetah</defName>
+		<label>cheetah colored</label>
+		<labelShortAdj>cheetah</labelShortAdj>
+		<description>Tawny coat speckled with crisp black spots — a cheetah.</description>
+		<skinColorOverride>(200,164,96)</skinColorOverride>
+		<selectionWeight>0.1</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>swift</symbol></li>
+				<li><symbol>spotted</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>c8a460</skin>
+				<skinHigh>d9b873</skinHigh>
+				<fill>b8924a</fill>
+				<fillHigh>c8a05a</fillHigh>
+				<accent>1f1610</accent>
+				<accentHigh>3a2a1c</accentHigh>
+				<include>spots,leopardcrisp</include>
+				<exclude>stripes</exclude>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_BlackPanther</defName>
+		<label>black-panther colored</label>
+		<labelShortAdj>black-panther</labelShortAdj>
+		<description>A melanistic coat — almost solid black, with hints of darker rosettes.</description>
+		<skinColorOverride>(26,23,22)</skinColorOverride>
+		<selectionWeight>0.05</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>black</symbol></li>
+				<li><symbol>shadow</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>1a1716</skin>
+				<skinHigh>2a2624</skinHigh>
+				<fill>1a1716</fill>
+				<fillHigh>241f1d</fillHigh>
+				<accent>0d0b0a</accent>
+				<accentHigh>14110f</accentHigh>
+				<include>nopattern</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_Lion</defName>
+		<label>lion colored</label>
+		<labelShortAdj>lion</labelShortAdj>
+		<description>A warm, sandy-gold coat — a lion of the savanna.</description>
+		<skinColorOverride>(200,152,88)</skinColorOverride>
+		<selectionWeight>0.1</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>golden</symbol></li>
+				<li><symbol>regal</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>c89858</skin>
+				<skinHigh>d4a86a</skinHigh>
+				<fill>b88848</fill>
+				<fillHigh>c89858</fillHigh>
+				<accent>8a6028</accent>
+				<accentHigh>a07438</accentHigh>
+				<include>mottled</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_Lynx</defName>
+		<label>lynx colored</label>
+		<labelShortAdj>lynx</labelShortAdj>
+		<description>A muted greyish-brown coat with subtle dark spotting — a lynx.</description>
+		<skinColorOverride>(160,136,104)</skinColorOverride>
+		<selectionWeight>0.1</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>tufted</symbol></li>
+				<li><symbol>dusk</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>a08868</skin>
+				<skinHigh>b39880</skinHigh>
+				<fill>8a7050</fill>
+				<fillHigh>9c8260</fillHigh>
+				<accent>3d2a1c</accent>
+				<accentHigh>553c2a</accentHigh>
+				<include>spots,mottled</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_Ocelot</defName>
+		<label>ocelot colored</label>
+		<labelShortAdj>ocelot</labelShortAdj>
+		<description>A rich golden coat marked with dark rosettes and chains — an ocelot.</description>
+		<skinColorOverride>(200,144,88)</skinColorOverride>
+		<selectionWeight>0.1</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>jungle</symbol></li>
+				<li><symbol>rosette</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>c89058</skin>
+				<skinHigh>d8a070</skinHigh>
+				<fill>a87545</fill>
+				<fillHigh>b88555</fillHigh>
+				<accent>2a1810</accent>
+				<accentHigh>442618</accentHigh>
+				<include>leopard,swirl,spots</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<defName>GeneDef_Cheech_Skin_Jaguar</defName>
+		<label>jaguar colored</label>
+		<labelShortAdj>jaguar</labelShortAdj>
+		<description>A deep golden coat broken by bold black rosettes — a jaguar.</description>
+		<skinColorOverride>(192,140,72)</skinColorOverride>
+		<selectionWeight>0.1</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li><symbol>jaguar</symbol></li>
+				<li><symbol>jungle</symbol></li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>c08c48</skin>
+				<skinHigh>d49c5c</skinHigh>
+				<fill>a87538</fill>
+				<fillHigh>b8854a</fillHigh>
+				<accent>1a0e07</accent>
+				<accentHigh>2e1c0e</accentHigh>
+				<include>jaguar,leopard</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
+
+	<!-- ===== Domestic cats ===== -->
+
+	<GeneDef ParentName="GeneSkinColorOverride">
+		<!-- Inhereted:
+		<biostatCpx>0</biostatCpx>
+		<displayCategory>Cosmetic_Skin</displayCategory>
+		<iconPath>UI/Icons/Genes/Gene_SkinColorOverride</iconPath>
+		<exclusionTags>
+			<li>SkinColorOverride</li>
+		</exclusionTags>
+		<randomBrightnessFactor>0.18</randomBrightnessFactor>
+		-->
+		<defName>GeneDef_Cheech_Skin_Calico</defName>
+		<label>calico colored</label>
+		<labelShortAdj>calico</labelShortAdj>
+		<description>White, orange, and black.</description>
+		<skinColorOverride>(240,240,240)</skinColorOverride>
+		<!--<randomBrightnessFactor>0</randomBrightnessFactor>-->
+		<!--<displayOrderInCategory>93</displayOrderInCategory>-->
+		<selectionWeight>0.1</selectionWeight>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<symbolPack>
+			<prefixSymbols>
+				<li>
+					<symbol>calico</symbol>
+				</li>
+			</prefixSymbols>
+		</symbolPack>
+		<modExtensions>
+			<li Class="Cheechin.FurPatternTheme">
+				<skin>c1c8d4</skin>
+				<skinHigh>d4dce9</skinHigh>
+				<fill>9d4c14</fill>
+				<fillHigh>b97333</fillHigh>
+				<accent>0c0b0b</accent>
+				<accentHigh>1b1919</accentHigh>
+				<include>patches,mottled,tux,swirl</include>
+			</li>
+		</modExtensions>
+	</GeneDef>
 
 </Defs>

@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-  <PawnKindDef ParentName="BasePlayerPawnKind">
-    <defName>PawnKindDef_Cheech_LeedurMunuh</defName>
-    <label>Leedur Munuh</label>
-    <defaultFactionType>PlayerColony</defaultFactionType>
-    <chemicalAddictionChance>0.06</chemicalAddictionChance>
-    <apparelTags>
-      <li>IndustrialBasic</li>
-    </apparelTags>
-    <fixedGender>Female</fixedGender>
-    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
-    <apparelMoney>350~600</apparelMoney>
-    <backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
-    <techHediffsChance>0.03</techHediffsChance>
-    <techHediffsMoney>50~800</techHediffsMoney>
-    <techHediffsTags>
-      <li>Poor</li>
-      <li>Simple</li>
-      <li>ImplantEmpireCommon</li>
-    </techHediffsTags>
-    <techHediffsDisallowTags>
-      <li>PainCauser</li>
-    </techHediffsDisallowTags>
-    <initialResistanceRange>13~21</initialResistanceRange>
-    <xenotypeSet>
-      <xenotypeChances>
-        <XenotypeDef_Cheech>999</XenotypeDef_Cheech>
-      </xenotypeChances>		
-    </xenotypeSet>
-  </PawnKindDef>
+	<PawnKindDef ParentName="BasePlayerPawnKind">
+		<defName>PawnKindDef_Cheech_LeedurMunuh</defName>
+		<label>Leedur Munuh</label>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<chemicalAddictionChance>0.06</chemicalAddictionChance>
+		<apparelTags>
+			<li>IndustrialBasic</li>
+		</apparelTags>
+		<fixedGender>Female</fixedGender>
+		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<apparelMoney>350~600</apparelMoney>
+		<backstoryCryptosleepCommonality>1</backstoryCryptosleepCommonality>
+		<techHediffsChance>0.03</techHediffsChance>
+		<techHediffsMoney>50~800</techHediffsMoney>
+		<techHediffsTags>
+			<li>Poor</li>
+			<li>Simple</li>
+			<li>ImplantEmpireCommon</li>
+		</techHediffsTags>
+		<techHediffsDisallowTags>
+			<li>PainCauser</li>
+		</techHediffsDisallowTags>
+		<initialResistanceRange>13~21</initialResistanceRange>
+		<xenotypeSet>
+			<xenotypeChances>
+				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
+			</xenotypeChances>		
+		</xenotypeSet>
+	</PawnKindDef>
 
-  <PawnKindDef ParentName="VillagerBase">
+	<PawnKindDef ParentName="VillagerBase">
 		<defName>PawnKindDef_Cheech_Villager</defName>
 		<weaponTags>
 			<li>ShortShots</li>
@@ -132,4 +132,5 @@
 			</xenotypeChances>		
 		</xenotypeSet>
 	</PawnKindDef>
+
 </Defs>

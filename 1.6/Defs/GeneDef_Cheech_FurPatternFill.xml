@@ -1,117 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-  <GeneDef Name="GeneDef_Cheech_FurPatternFill" Abstract="True">
-    <geneClass>Cheechin.GeneFurPatternFill</geneClass>
-    <biostatCpx>0</biostatCpx>
-    <biostatMet>0</biostatMet>
-    <displayCategory>GeneCategoryDef_Cheech_FurPatternFill</displayCategory>
-    <description>Lower-layer, larger markings like patches or shading.</description>
-    <displayOrderInCategory>100</displayOrderInCategory>
-    <randomChosen>true</randomChosen>
-    <selectionWeight>0.1</selectionWeight>
-    <exclusionTags>
-      <li>FurPatternFill</li>
-    </exclusionTags>
-    <renderNodeProperties>
-      <li>
-        <nodeClass>Cheechin.PawnRenderNode_FurPatternFill</nodeClass>
-        <workerClass>PawnRenderNodeWorker_Body</workerClass>
-        <baseLayer>6</baseLayer>
-        <colorType>Custom</colorType>
-        <parentTagDef>Body</parentTagDef>
-        <rotDrawMode>Fresh,Rotting</rotDrawMode>
-        <useRottenColor>true</useRottenColor>
-        <debugLabel>Fur Pattern Fill</debugLabel>
-      </li>
-    </renderNodeProperties>
-  </GeneDef>
+	<GeneDef Name="GeneDef_Cheech_FurPatternFill" Abstract="True">
+		<geneClass>Cheechin.GeneFurPatternFill</geneClass>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<displayCategory>GeneCategoryDef_Cheech_FurPatternFill</displayCategory>
+		<description>Lower-layer, larger markings like patches or shading.</description>
+		<displayOrderInCategory>100</displayOrderInCategory>
+		<randomChosen>true</randomChosen>
+		<selectionWeight>0.1</selectionWeight>
+		<exclusionTags>
+			<li>FurPatternFill</li>
+		</exclusionTags>
+		<renderNodeProperties>
+			<li>
+				<nodeClass>Cheechin.PawnRenderNode_FurPatternFill</nodeClass>
+				<workerClass>PawnRenderNodeWorker_Body</workerClass>
+				<baseLayer>6</baseLayer>
+				<colorType>Custom</colorType>
+				<parentTagDef>Body</parentTagDef>
+				<rotDrawMode>Fresh,Rotting</rotDrawMode>
+				<useRottenColor>true</useRottenColor>
+				<debugLabel>Fur Pattern Fill</debugLabel>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
 
-  <GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
-    <defName>GeneDef_Cheech_FurPatternFill_Mottled</defName>
-    <label>mottled fill</label>
-    <labelShortAdj>mottled</labelShortAdj>
-    <iconPath>Cheech/Fur/MottledFill/icon</iconPath>
-    <renderNodeProperties>
-      <li>
-        <baseLayer>6</baseLayer>
-        <useGraphic>false</useGraphic>
-        <bodyTypeGraphicPaths>
-          <Male>Cheech/Fur/MottledFill/MottledFill_Male</Male>
-          <Female>Cheech/Fur/MottledFill/MottledFill_Female</Female>
-          <Hulk>Cheech/Fur/MottledFill/MottledFill_Hulk</Hulk>
-          <Fat>Cheech/Fur/MottledFill/MottledFill_Fat</Fat>
-          <Thin>Cheech/Fur/MottledFill/MottledFill_Thin</Thin>
-          <Child>Cheech/Fur/MottledFill/MottledFill_Child</Child>
-          <Baby>Cheech/Fur/MottledFill/MottledFill_Child</Baby>
-        </bodyTypeGraphicPaths>
-      </li>
-    </renderNodeProperties>
-    <modExtensions>
-      <li Class="Cheechin.FurPatternColors">
-        <predefinedFurPatternColors>
-          <li>Cheechin_FurPreset_Black_Black</li>
-        </predefinedFurPatternColors>
-      </li>
-    </modExtensions>
-  </GeneDef>
+	<GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
+		<defName>GeneDef_Cheech_FurPatternFill_Mottled</defName>
+		<label>mottled fill</label>
+		<labelShortAdj>mottled</labelShortAdj>
+		<iconPath>Cheech/Fur/MottledFill/icon</iconPath>
+		<renderNodeProperties>
+			<li>
+				<baseLayer>6</baseLayer>
+				<useGraphic>false</useGraphic>
+				<bodyTypeGraphicPaths>
+					<Male>Cheech/Fur/MottledFill/MottledFill_Male</Male>
+					<Female>Cheech/Fur/MottledFill/MottledFill_Female</Female>
+					<Hulk>Cheech/Fur/MottledFill/MottledFill_Hulk</Hulk>
+					<Fat>Cheech/Fur/MottledFill/MottledFill_Fat</Fat>
+					<Thin>Cheech/Fur/MottledFill/MottledFill_Thin</Thin>
+					<Child>Cheech/Fur/MottledFill/MottledFill_Child</Child>
+					<Baby>Cheech/Fur/MottledFill/MottledFill_Child</Baby>
+				</bodyTypeGraphicPaths>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
 
-  <GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
-    <defName>GeneDef_Cheech_FurPatternFill_Patches</defName>
-    <label>base patches</label>
-    <labelShortAdj>patchy</labelShortAdj>
-    <iconPath>Cheech/Fur/PatchesLower/icon</iconPath>
-    <renderNodeProperties>
-      <li>
-        <baseLayer>6</baseLayer>
-        <useGraphic>false</useGraphic>
-        <bodyTypeGraphicPaths>
-          <Male>Cheech/Fur/PatchesLower/PatchesLower_Male</Male>
-          <Female>Cheech/Fur/PatchesLower/PatchesLower_Female</Female>
-          <Hulk>Cheech/Fur/PatchesLower/PatchesLower_Hulk</Hulk>
-          <Fat>Cheech/Fur/PatchesLower/PatchesLower_Fat</Fat>
-          <Thin>Cheech/Fur/PatchesLower/PatchesLower_Thin</Thin>
-          <Child>Cheech/Fur/PatchesLower/PatchesLower_Child</Child>
-          <Baby>Cheech/Fur/PatchesLower/PatchesLower_Child</Baby>
-        </bodyTypeGraphicPaths>
-      </li>
-    </renderNodeProperties>
-    <modExtensions>
-      <li Class="Cheechin.FurPatternColors">
-        <predefinedFurPatternColors>
-          <li>Cheechin_FurPreset_Black_Black</li>
-        </predefinedFurPatternColors>
-      </li>
-    </modExtensions>
-  </GeneDef>
+	<GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
+		<defName>GeneDef_Cheech_FurPatternFill_Patches</defName>
+		<label>base patches</label>
+		<labelShortAdj>patchy</labelShortAdj>
+		<iconPath>Cheech/Fur/PatchesLower/icon</iconPath>
+		<renderNodeProperties>
+			<li>
+				<baseLayer>6</baseLayer>
+				<useGraphic>false</useGraphic>
+				<bodyTypeGraphicPaths>
+					<Male>Cheech/Fur/PatchesLower/PatchesLower_Male</Male>
+					<Female>Cheech/Fur/PatchesLower/PatchesLower_Female</Female>
+					<Hulk>Cheech/Fur/PatchesLower/PatchesLower_Hulk</Hulk>
+					<Fat>Cheech/Fur/PatchesLower/PatchesLower_Fat</Fat>
+					<Thin>Cheech/Fur/PatchesLower/PatchesLower_Thin</Thin>
+					<Child>Cheech/Fur/PatchesLower/PatchesLower_Child</Child>
+					<Baby>Cheech/Fur/PatchesLower/PatchesLower_Child</Baby>
+				</bodyTypeGraphicPaths>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
 
-  <GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
-    <defName>GeneDef_Cheech_FurPatternFill_Tux</defName>
-    <label>tuxedo</label>
-    <labelShortAdj>tuxedo</labelShortAdj>
-    <iconPath>Cheech/Fur/Tux/icon</iconPath>
-    <renderNodeProperties>
-      <li>
-        <baseLayer>6</baseLayer>
-        <useGraphic>false</useGraphic>
-        <bodyTypeGraphicPaths>
-          <Male>Cheech/Fur/Tux/Tux_Male</Male>
-          <Female>Cheech/Fur/Tux/Tux_Female</Female>
-          <Hulk>Cheech/Fur/Tux/Tux_Hulk</Hulk>
-          <Fat>Cheech/Fur/Tux/Tux_Fat</Fat>
-          <Thin>Cheech/Fur/Tux/Tux_Thin</Thin>
-          <Child>Cheech/Fur/Tux/Tux_Child</Child>
-          <Baby>Cheech/Fur/Tux/Tux_Child</Baby>
-        </bodyTypeGraphicPaths>
-      </li>
-    </renderNodeProperties>
-    <modExtensions>
-      <li Class="Cheechin.FurPatternColors">
-        <predefinedFurPatternColors>
-          <li>Cheechin_FurPreset_Black_Black</li>
-        </predefinedFurPatternColors>
-      </li>
-    </modExtensions>
-  </GeneDef>
+	<GeneDef ParentName="GeneDef_Cheech_FurPatternFill">
+		<defName>GeneDef_Cheech_FurPatternFill_Tux</defName>
+		<label>tuxedo</label>
+		<labelShortAdj>tuxedo</labelShortAdj>
+		<description>Tuxedo-colored lower-layer color, with the bib portion exposing the base coat color.</description>
+		<iconPath>Cheech/Fur/Tux/icon</iconPath>
+		<renderNodeProperties>
+			<li>
+				<baseLayer>6</baseLayer>
+				<useGraphic>false</useGraphic>
+				<bodyTypeGraphicPaths>
+					<Male>Cheech/Fur/Tux/Tux_Male</Male>
+					<Female>Cheech/Fur/Tux/Tux_Female</Female>
+					<Hulk>Cheech/Fur/Tux/Tux_Hulk</Hulk>
+					<Fat>Cheech/Fur/Tux/Tux_Fat</Fat>
+					<Thin>Cheech/Fur/Tux/Tux_Thin</Thin>
+					<Child>Cheech/Fur/Tux/Tux_Child</Child>
+					<Baby>Cheech/Fur/Tux/Tux_Child</Baby>
+				</bodyTypeGraphicPaths>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
 
 </Defs>

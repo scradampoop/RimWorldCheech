@@ -1,0 +1,22 @@
+## This is a directory/file filter for WinMerge
+## This filter suppresses various binaries found in Visual C# source trees
+name: Cheech Xenotype mod publish comparison filter
+desc: Suppresses various files we don't want to upload to the workshop.
+
+## This is an inclusive (loose) filter
+## (it lets through everything not specified)
+def: include
+
+## Filters for filenames begin with f:
+## Filters for directories begin with d:
+## (Inline comments begin with " ##" and extend to the end of the line)
+
+f: \.psd$
+f: \.user$
+f: \.flt$
+
+d: \\\.claude$
+d: \\bin$	## binary files directory
+d: \\obj$	## object files directory
+d: \\\.git$ ## Git directory
+d: \\\.vs$ ## A hidden folder that stores .suo and *.db files

@@ -28,14 +28,24 @@
 		<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
 	</loadAfter>
 	<packageId>Xenotype.Cheech</packageId>
-  <url>https://github.com/scradampoop/RimWorldCheech</url>
-  <modVersion>v0.1.0, 2025-09-13</modVersion>
-<description>Very early work-in-progress of yet another cat race for Rimworld.
+	<url>https://github.com/scradampoop/RimWorldCheech</url>
+	<modVersion>v0.1.0, 2026-05-24</modVersion>
+<description><![CDATA[
+Very early work-in-progress of yet another cat race for Rimworld.
 
 https://github.com/scradampoop/RimWorldCheech
 (hyperlink from Advanced menu)
 
-       --- Change Log ---
-v0.1.0, published 2025-09-13
-• Initial release</description>
+	--- Change Log ---
+v0.1.0, published 2026-05-24
+• Initial release
+
+	   --- Credits ---
+Diana (Kitty) Winters: Orassans textures and inspiration.
+Anthrosonae mod team: Color picker and gene binding code.
+VRE - Saurid mod team: Example for writing a Xenotype mod.
+FluffierThanThou: Advanced color picker code.
+
+See github for extended credits and hyperlinks.
+]]></description>
 </ModMetaData>
