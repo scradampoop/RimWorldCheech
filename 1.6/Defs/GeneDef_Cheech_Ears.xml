@@ -56,7 +56,7 @@
 
 	<GeneDef ParentName="GeneDef_Cheech_Ears_Average_GreyFill">
 		<defName>GeneDef_Cheech_Ears_Average_GreyFill_Stripes</defName>
-		<label>cheech ears</label>
+		<label>smaller striped ears</label>
 		<description>Cosmetic only. Average size Cheech ears with stripes.</description>
 		<renderNodeProperties>
 			<li Class="Cheechin.PawnRenderNodeProperties_PatternMask">
@@ -124,7 +124,7 @@
 
 	<GeneDef ParentName="GeneDef_Cheech_Ears_Large_PinkFill">
 		<defName>GeneDef_Cheech_Ears_Large_PinkFill_Solid</defName>
-		<label>large cheech ears</label>
+		<label>large ears with pink pinna</label>
 		<description>Cosmetic only. Large Cheech ears with pink fill and solid colors.</description>
 		<renderNodeProperties>
 			<li Class="Cheechin.PawnRenderNodeProperties_PatternMask">
@@ -135,7 +135,7 @@
 
 	<GeneDef ParentName="GeneDef_Cheech_Ears_Large_PinkFill">
 		<defName>GeneDef_Cheech_Ears_Large_PinkFill_Spots</defName>
-		<label>large cheech ears</label>
+		<label>large spotted ears</label>
 		<description>Cosmetic only. Large Cheech ears with pink fill and spots.</description>
 		<renderNodeProperties>
 			<li Class="Cheechin.PawnRenderNodeProperties_PatternMask">

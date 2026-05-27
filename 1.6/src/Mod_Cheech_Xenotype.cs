@@ -57,29 +57,6 @@ public sealed class ThoughtWorker_PheromoneAttraction: ThoughtWorker
 	}
 }
 
-[HarmonyPatch(typeof(Building_StylingStation), nameof(Building_StylingStation.GetFloatMenuOptions))]
-public static class Building_StylingStation_GetFloatMenuOptions_Patch
-{
-	public static IEnumerable<FloatMenuOption> Postfix(IEnumerable<FloatMenuOption> options, Pawn selPawn, Building_StylingStation __instance)
-	{
-		foreach (var option in options)
-		{
-			yield return option;
-			if (option.Label == "ChangeStyle".Translate().CapitalizeFirst() && selPawn.genes?.GenesListForReading.OfType<GeneFurPattern>().Any(p => p.Active) == true)
-			{
-				yield return FloatMenuUtility.DecoratePrioritizedTask(
-					new(
-						"ColorPicker.ChangeFurPatternColors".Translate().CapitalizeFirst(),
-						() => selPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(DefsOf.Cheechin_ChangeFurPatternColors, __instance), JobTag.Misc)
-					),
-					selPawn,
-					__instance
-				);
-			}
-		}
-	}
-}
-
 public sealed class JobDriver_ChangeFurPatternColors: JobDriver
 {
 	public override bool TryMakePreToilReservations(bool errorOnFailed) => pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);

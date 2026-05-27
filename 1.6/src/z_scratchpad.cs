@@ -15,7 +15,10 @@ misc. commands scradam is keeping somewhere for reference:
 
 rmdir "C:\Steam\steamapps\common\RimWorld\Mods\CheechXenotype"
 mklink /J "C:\Steam\steamapps\common\RimWorld\Mods\CheechXenotype" "C:\rw\RimWorldCheech"
+
+rmdir "C:\Steam\steamapps\common\RimWorld\Mods\CheechXenotype"
 mklink /J "C:\Steam\steamapps\common\RimWorld\Mods\CheechXenotype" "C:\rw\publish"
+
 mklink /J "C:\rw\RimWorld" "C:\Steam\steamapps\common\RimWorld"
 mklink /J "C:\rw\workshop" "C:\Steam\steamapps\workshop\content\294100"
 */

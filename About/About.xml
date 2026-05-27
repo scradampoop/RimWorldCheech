@@ -17,26 +17,20 @@
 			<displayName>Rimworld - Biotech</displayName>
 			<steamWorkshopUrl>https://store.steampowered.com/app/1826140/RimWorld__Biotech/</steamWorkshopUrl>
 		</li>
-		<!--<li>
-			<packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
-			<displayName>Vanilla Expanded Framework</displayName>
-			<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2023507013</steamWorkshopUrl>
-			<downloadUrl>https://github.com/Vanilla-Expanded/VanillaExpandedFramework</downloadUrl>
-		</li>-->		
 	</modDependencies>
-	<loadAfter>		
-		<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
-	</loadAfter>
 	<packageId>Xenotype.Cheech</packageId>
 	<url>https://github.com/scradampoop/RimWorldCheech</url>
-	<modVersion>v0.1.0, 2026-05-24</modVersion>
+	<modVersion>v0.2.0, 2026-05-27</modVersion>
 <description><![CDATA[
-Very early work-in-progress of yet another cat race for Rimworld.
+Work-in-progress of yet another cat race for Rimworld.
 
 https://github.com/scradampoop/RimWorldCheech
 (hyperlink from Advanced menu)
 
 	--- Change Log ---
+v0.2.0, published 2026-05-27
+• Rewrote color picker UI
+• Added ability to swap coat pattern genes via color picker UI
 v0.1.0, published 2026-05-24
 • Initial release
 

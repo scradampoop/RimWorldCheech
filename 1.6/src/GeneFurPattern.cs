@@ -101,69 +101,10 @@ public sealed class FurPatternTheme: DefModExtension
 	public ColorRange TailFillColor => new(tailFill, tailFillHigh, BodyFillColor, SkinColor);
 	public ColorRange TailAccentColor => new(tailAccent, tailAccentHigh, BodyAccentColor, SkinColor);
 
-	public ColorRange HairColor => new(hair, hairHigh, HeadAccentColor, SkinColor);
-}
-
-[HarmonyPatch(typeof(Pawn_GeneTracker), nameof(Pawn_GeneTracker.SetXenotype), typeof(XenotypeDef))]
-public static class HarmonyPatch_Pawn_GeneTracker_SetXenotype
-{
 	/// <summary>
-	/// On Cheech xenotype assignment, lock in a single skin/theme gene first, then for each fur pattern gene type, filter candidates against the locked theme's include/exclude lists, dedupe to at most one, and re-roll the surviving gene's colors from the chosen theme.
+	/// Not used yet, but it probably will be used, some day.
 	/// </summary>
-	public static void Postfix(Pawn_GeneTracker __instance, XenotypeDef? xenotype)
-	{
-		if (!(xenotype?.defName?.Equals("XenotypeDef_Cheech", StringComparison.OrdinalIgnoreCase) ?? false))
-			return;
-
-		var random = new System.Random();
-
-		// Locking in a single skin/theme gene weighted by GeneDef.selectionWeight (vanilla exclusionTags should already enforce one ahead of this method, but we dedupe defensively).
-		var skinGenes = __instance.GenesListForReading.Where(g => g.def.defName.StartsWith("GeneDef_Cheech_Skin_", StringComparison.OrdinalIgnoreCase)).ToArray();
-		var skinGeneToKeep = skinGenes.SelectByWeight(0f, random);
-
-		foreach (var g in skinGenes.Where(g => g != skinGeneToKeep))
-			__instance.RemoveGene(g);
-
-		skinGeneToKeep?.overriddenByGene = null;
-
-		var furPatternTheme = skinGeneToKeep?.def.GetModExtension<FurPatternTheme>();
-
-		// For each pattern gene type, filter candidates against the theme, weighted-pick one (or none), and re-roll colors.
-		foreach (var geneType in new[]{
-			typeof(GeneFurPatternFill),
-			typeof(GeneFurPatternAccent),
-			typeof(GeneHeadPatternFill),
-			typeof(GeneHeadPatternAccent),
-			typeof(GeneEarsWithPattern),
-			typeof(GeneTailWithPattern),
-		})
-		{
-			var genes = __instance.GenesListForReading.Where(g => g.GetType() == geneType).ToArray();
-
-			// Apply theme filter; ears/tail fall back to the unfiltered set if the filter would leave them empty, because a Cheech without ears or a tail is just sad.
-			bool geneIsRequired = geneType == typeof(GeneEarsWithPattern) || geneType == typeof(GeneTailWithPattern);
-			var geneCandidates = furPatternTheme == null ? genes : genes.Where(g => furPatternTheme.AllowsPattern(g.def.defName)).ToArray();
-
-			if (geneIsRequired && geneCandidates.Length == 0)
-				geneCandidates = genes;
-
-			// Skip slot: 0 for required gene types or empty pools; otherwise the theme override or, by default, the average of candidate weights — keeping "no pattern" roughly as likely as any one average pattern, which mirrors the prior "+1 unweighted slot" behavior under uniform weights.
-			var geneToKeep = geneCandidates.SelectByWeight(geneIsRequired || geneCandidates.Length == 0 ? 0f : furPatternTheme?.noPatternWeight ?? geneCandidates.Average(g => Math.Max(0f, g.def.selectionWeight)), random);
-
-			foreach (var gene in genes.Where(g => g != geneToKeep))
-				__instance.RemoveGene(gene);
-
-			// We know it's a GeneFurPattern and we could have cast it earlier, but this also serves as a null check.
-			if (geneToKeep is GeneFurPattern furPatternToKeep)
-			{
-				// Resetting colors to default so PostAdd re-rolls from the newly chosen skin/fur-pattern-theme gene.
-				furPatternToKeep.colorOne = default;
-				furPatternToKeep.colorTwo = default;
-				furPatternToKeep.PostAdd();
-				furPatternToKeep.overriddenByGene = null;
-			}
-		}
-	}
+	public ColorRange HairColor => new(hair, hairHigh, HeadAccentColor, SkinColor);
 }
 
 public abstract class GeneFurPattern: Gene
@@ -196,7 +137,7 @@ public abstract class GeneFurPattern: Gene
 }
 
 /// <summary>
-/// Declaring separate classes for different gene types to set their initial color based on the skin them, and also so we can more readily find them via reflection.
+/// Declaring separate classes for different gene types to set their initial color based on the skin theme, and also so we can more readily find them via reflection.
 /// </summary>
 public sealed class GeneFurPatternFill: GeneFurPattern
 {
