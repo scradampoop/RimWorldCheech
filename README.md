@@ -42,7 +42,7 @@
 
 ## Demo:
 Here you can see we're attempting some new things by using pawn skin and hair color along with white and black to increase the readily available and configurable pawn texture palette.
-![Demo Image](About/ExamplePatterns.png)
+![Demo Image](About/ExamplePatterns.jpg)
 ![Cover Image](About/Preview.png)
 ![Color Picker UI](About/ColorPickerMain.png)
 ![Alpha Slider](About/ColorPickerAlternate.png)
