@@ -20,7 +20,7 @@
 	</modDependencies>
 	<packageId>Xenotype.Cheech</packageId>
 	<url>https://github.com/scradampoop/RimWorldCheech</url>
-	<modVersion>v0.2.0, 2026-05-27</modVersion>
+	<modVersion>v0.3.0, 2026-05-30</modVersion>
 <description><![CDATA[
 Work-in-progress of yet another cat race for Rimworld.
 
@@ -28,6 +28,11 @@ https://github.com/scradampoop/RimWorldCheech
 (hyperlink from Advanced menu)
 
 	--- Change Log ---
+v0.3.0, published 2026-05-30
+• Added 5 more face accent patterns
+• Cheeches now occasionally spawn with hair, beards, and/or cheech-specific names
+• Non-combat-centric NPC cheeches spawn only with pants, in order to show off their coats
+• Tail offset fixes and jaguar face accent pattern fix
 v0.2.0, published 2026-05-27
 • Rewrote color picker UI
 • Added ability to swap coat pattern genes via color picker UI

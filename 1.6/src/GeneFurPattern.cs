@@ -101,9 +101,6 @@ public sealed class FurPatternTheme: DefModExtension
 	public ColorRange TailFillColor => new(tailFill, tailFillHigh, BodyFillColor, SkinColor);
 	public ColorRange TailAccentColor => new(tailAccent, tailAccentHigh, BodyAccentColor, SkinColor);
 
-	/// <summary>
-	/// Not used yet, but it probably will be used, some day.
-	/// </summary>
 	public ColorRange HairColor => new(hair, hairHigh, HeadAccentColor, SkinColor);
 }
 
@@ -335,5 +332,62 @@ public sealed class PawnRenderNode_TailWithPattern(Pawn pawn, PawnRenderNodeProp
 			data: null,
 			maskPath: geneTail.def.renderNodeProperties.OfType<PawnRenderNodeProperties_PatternMask>().FirstOrDefault()?.maskPath
 		);
+	}
+}
+
+/// <summary>
+/// A per-body-type positional nudge for an attachment, added on top of vanilla <see cref="DrawData"/>. Vanilla <c>drawData</c> offsets are
+/// per-rotation only; this lets a body type (e.g. Fat) sit at a different attach point than the others. <see cref="offset"/> applies to every facing.
+/// </summary>
+public sealed class BodyTypeOffset
+{
+	public BodyTypeDef bodyType = null!;
+
+	public Vector3 offset;
+
+	private static Vector3 Mirror(Vector3 v) => new(-v.x, v.y, v.z);
+
+	private static Vector3 VerticalOnly(Vector3 v) => new(0, v.y, v.z);
+
+	public Vector3 OffsetFor(Rot4 facing) => facing.AsInt switch
+	{
+		Rot4.NorthInt => VerticalOnly(offset),
+		Rot4.SouthInt => VerticalOnly(offset),
+		Rot4.WestInt => Mirror(offset),
+		_ /*Rot4.EastInt*/ => offset,
+	};
+}
+
+/// <summary>
+/// <see cref="PawnRenderNodeProperties"/> carrying optional <see cref="bodyTypeOffsets"/>, consumed by <see cref="PawnRenderNodeWorker_AttachmentBodyType"/>.
+/// </summary>
+public sealed class PawnRenderNodeProperties_BodyTypeOffsets: PawnRenderNodeProperties
+{
+	public List<BodyTypeOffset> bodyTypeOffsets = null!;
+}
+
+/// <summary>
+/// Body attachment worker that adds a per-body-type offset (from <see cref="PawnRenderNodeProperties_BodyTypeOffsets.bodyTypeOffsets"/>)
+/// on top of the vanilla offset. The nudge is applied raw. It is not scaled by body size. So it reads as a literal correction in cells.
+/// </summary>
+public sealed class PawnRenderNodeWorker_AttachmentBodyType: PawnRenderNodeWorker_AttachmentBody
+{
+	public override Vector3 OffsetFor(PawnRenderNode node, PawnDrawParms parms, out Vector3 pivot)
+	{
+		var result = base.OffsetFor(node, parms, out pivot);
+
+		if (parms.pawn.story?.bodyType is {} bodyType)
+		{
+			foreach (var bto in ((PawnRenderNodeProperties_BodyTypeOffsets)node.Props).bodyTypeOffsets)
+			{
+				if (bto.bodyType == bodyType)
+				{
+					result += bto.OffsetFor(parms.facing);
+					break;
+				}
+			}
+		}
+
+		return result;
 	}
 }

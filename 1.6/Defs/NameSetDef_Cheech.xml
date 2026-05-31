@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+	<!--
+		Custom name pool for cheeches. On generation, each cheech rolls its first name and last name independently against this pool
+		(60% each by default; see FirstNameFromCheechPoolChance / LastNameFromCheechPoolChance in HarmonyPatch_PawnGenerator_GeneratePawn),
+		so a pawn can end up custom-first + vanilla-last, the reverse, both, or neither.
+
+		- firstNames        : unisex, always eligible.
+		- firstNamesMale    : added on top of firstNames for male pawns only (optional).
+		- firstNamesFemale  : added on top of firstNames for female pawns only (optional).
+		- lastNames         : surnames, used for every gender.
+
+		First names may carry an optional everyday nickname (the cat's 'government name' they keep on file at the vet vs. the name
+		everyone actually uses), written "Formal Name|Nickname". When such a name is rolled, the nickname becomes the pawn's displayed
+		nick. Plain entries with no "|" have no nickname and fall back to vanilla nick behavior. Surnames never carry nicknames.
+
+		You can add more <NameSetDef_Cheech> defs (here or in other files) and they all get merged.
+	-->
+	<Cheechin.NameSetDef_Cheech>
+		<defName>NameSetDef_Cheech</defName>
+
+		<firstNames>
+			<li>Apricot</li>
+			<li>Bagel</li>
+			<li>Biscotti</li>
+			<li>Biscuit</li>
+			<li>Boop</li>
+			<li>Boots</li>
+			<li>Brisket</li>
+			<li>Butterbean|Beany</li>
+			<li>Butterscotch|Scotch</li>
+			<li>Cannoli</li>
+			<li>Cappuccino|The Cap'</li>
+			<li>Caramel</li>
+			<li>Cake</li>
+			<li>Catzilla</li>
+			<li>Cheddar</li>
+			<li>Cheshire|Cheshi</li>
+			<li>Chimichanga|Chimi</li>
+			<li>Chonk</li>
+			<li>Cinnamon</li>
+			<li>Cobbler</li>
+			<li>Cricket</li>
+			<li>Croissant|Sanni</li>
+			<li>Crumpet</li>
+			<li>Custard</li>
+			<li>Dim Sum|Dimmy</li>
+			<li>Domino</li>
+			<li>Doodlebug</li>
+			<li>Dumpling</li>
+			<li>Edamame</li>
+			<li>Espresso</li>
+			<li>Falafel</li>
+			<li>Fettuccine|Fetti</li>
+			<li>Floof</li>
+			<li>Fluffernutter</li>
+			<li>Fuzzbutt</li>
+			<li>Gelato</li>
+			<li>Gnocchi</li>
+			<li>Goober</li>
+			<li>Gravy</li>
+			<li>Grumpycat</li>
+			<li>Guacamole|Guac</li>
+			<li>Halloumi|Hallou</li>
+			<li>Hashbrown</li>
+			<li>Hobbes</li>
+			<li>Honeydew|Honey</li>
+			<li>Jellybean</li>
+			<li>Jellyroll</li>
+			<li>Jiji</li>
+			<li>Kimchi</li>
+			<li>Kumquat</li>
+			<li>Latte</li>
+			<li>Linguine</li>
+			<li>Lychee</li>
+			<li>Macaron|Mac</li>
+			<li>Macchiato</li>
+			<li>Marble</li>
+			<li>Marshmallow</li>
+			<li>Marzipan|Marzi</li>
+			<li>Meatball</li>
+			<li>Mocha</li>
+			<li>Mochi</li>
+			<li>Mooch</li>
+			<li>Mozzarella|Mozz</li>
+			<li>Muffin</li>
+			<li>Noodle</li>
+			<li>Nugget</li>
+			<li>Nutmeg</li>
+			<li>Nyancat</li>
+			<li>Olive</li>
+			<li>Pancake</li>
+			<li>Peaches</li>
+			<li>Pepper</li>
+			<li>Persimmon|Sim</li>
+			<li>Pho</li>
+			<li>Picatso</li>
+			<li>Pickle</li>
+			<li>Pierogi</li>
+			<li>Popcorn</li>
+			<li>Pretzel</li>
+			<li>Provolone|Provo</li>
+			<li>Pudding</li>
+			<li>Pumpernickel|Nick</li>
+			<li>Pumpkin</li>
+			<li>Ramen</li>
+			<li>Ravioli</li>
+			<li>Rigatoni|Rigs</li>
+			<li>Saffron|Saff</li>
+			<li>Sesame</li>
+			<li>Snickerdoodle|Snicks</li>
+			<li>Snuggles</li>
+			<li>Soba</li>
+			<li>Sorbet</li>
+			<li>Sox</li>
+			<li>Sprinkles</li>
+			<li>Sprout</li>
+			<li>Squish</li>
+			<li>Sriracha|Ree</li>
+			<li>Sushi</li>
+			<li>Tamale</li>
+			<li>Tangerine</li>
+			<li>Tater Tot|Tots</li>
+			<li>Teriyaki|Tacki</li>
+			<li>Tiramisu|Misu</li>
+			<li>Toebeans</li>
+			<li>Tofu</li>
+			<li>Tortellini|Torti</li>
+			<li>Truffle</li>
+			<li>Twinkie</li>
+			<li>Udon</li>
+			<li>Velveeta</li>
+			<li>Waffles</li>
+			<li>Wasabi</li>
+			<li>Whiskers</li>
+			<li>Wiggles</li>
+			<li>Wonton</li>
+			<li>Zoomies|Zooms</li>
+		</firstNames>
+
+		<firstNamesMale>
+			<li>Abraham Lickin|Abe</li>
+			<li>Admiral Bites|The Admiral</li>
+			<li>Albert Felinestein|Einstein</li>
+			<li>Alexander the Grrreat|Alex</li>
+			<li>Arnold Furzenegger|The Purrminator</li>
+			<li>Aslan</li>
+			<li>Azrael</li>
+			<li>Barack Obameow|Barack</li>
+			<li>Baron von Scratch|The Baron</li>
+			<li>Beauregard|Beauretard</li>
+			<li>Behemoth</li>
+			<li>Benjamin Franklick|Ben</li>
+			<li>Bob Meowley|Bob</li>
+			<li>Brad Kitt|Brad</li>
+			<li>Bruiser</li>
+			<li>Cat Damon</li>
+			<li>Cat Stevens</li>
+			<li>Catpernicus</li>
+			<li>Catsanova</li>
+			<li>Chairman Meow|The Chairman</li>
+			<li>Charles Purrwin|Charly</li>
+			<li>Cheeto</li>
+			<li>Chonkmeister|Chonkster</li>
+			<li>Church</li>
+			<li>Churro</li>
+			<li>Clawde Monet|Clawde</li>
+			<li>Colonel Meow|The Colonel</li>
+			<li>Cringer|Battlecat</li>
+			<li>Dr. Seuss|The Doctor</li>
+			<li>Edgar Allan Paw|Edgar</li>
+			<li>Elon Meowsk|Elon</li>
+			<li>Elvis Pawsley|Elvis</li>
+			<li>Felix</li>
+			<li>Figaro</li>
+			<li>Freddie Purrcury|Freddie</li>
+			<li>Furrdinand|Ferdy</li>
+			<li>Fuzz Aldrin|Fuzz</li>
+			<li>Garfield</li>
+			<li>Genghis Cat|Genghy</li>
+			<li>George Hairyson|George</li>
+			<li>Gizmo</li>
+			<li>Goose</li>
+			<li>Gumbo</li>
+			<li>Hairy Paw-ter|Hairy</li>
+			<li>Heathcliff</li>
+			<li>Jean-Luc Picat|The Captain</li>
+			<li>Jimi Hendpaws|Jimi</li>
+			<li>Johnny Depaw|Johnny</li>
+			<li>Julius Sneezar|Julius</li>
+			<li>Kurt Cobcat|Kurt</li>
+			<li>LeBron Claws|LeBron</li>
+			<li>Leonardo DiCatprio|Leo</li>
+			<li>Lucifer</li>
+			<li>Mango</li>
+			<li>Maximus Purrkins|Max</li>
+			<li>Meatloaf</li>
+			<li>Michael Furrdan|Micky</li>
+			<li>Mick Jaguar|Mick</li>
+			<li>Moose</li>
+			<li>Mr. Bigglesworth|Biggs</li>
+			<li>Mr. Jinx|Jinx</li>
+			<li>Mr. Mistoffelees|Mister</li>
+			<li>Mr. Mittens|Mittens</li>
+			<li>Mr. Snugglesworth|Snugs</li>
+			<li>Mufasa</li>
+			<li>Muhammad Alley|Ali</li>
+			<li>Napoleon Bone-apurr|Napoleon</li>
+			<li>Nikola Catsla|Nicky</li>
+			<li>Nacho</li>
+			<li>Notorious C.A.T.|Naughty C.</li>
+			<li>Ossama bin Pawin'|Ossy</li>
+			<li>Paw McCartney|Dirty P.</li>
+			<li>Pesto</li>
+			<li>Pistachio|Mr. Pisser</li>
+			<li>Purrince|Prince</li>
+			<li>Purrlock Holmes|The Detective</li>
+			<li>Richard Pawkins|Richy</li>
+			<li>Risotto</li>
+			<li>Salem|Bubushu</li>
+			<li>Salvador Dalicat|Salvador</li>
+			<li>Santa Claws</li>
+			<li>Scar</li>
+			<li>Sidney|Sid</li>
+			<li>Simba</li>
+			<li>Sir Isaac Mewton|Isaac</li>
+			<li>Sir Licks-a-lot|Licky</li>
+			<li>Sir Pounce-a-lot|Pouncer</li>
+			<li>Sir Pounceworth|Pouncer</li>
+			<li>Snoop Catt|Snoop</li>
+			<li>Steve Jowls|Steve</li>
+			<li>Sylvester</li>
+			<li>Tank</li>
+			<li>Tigger</li>
+			<li>Tommy</li>
+			<li>Vincent van Floof|The Artist</li>
+			<li>Vladimir Pawtin|Vlad</li>
+			<li>William Shakespurr|The Playwright</li>
+			<li>Winston Furrchill|Winston</li>
+			<li>Wolfgang Amadeus Meowzart|Meowzart</li>
+		</firstNamesMale>
+
+		<firstNamesFemale>
+			<li>Adelynx|Adele</li>
+			<li>Angelina Meowlie|Angie</li>
+			<li>Aretha Furrklin|Arry</li>
+			<li>Billie Eilicks|Billie</li>
+			<li>Cardi Cat|Cardi</li>
+			<li>Catalie Portman</li>
+			<li>Catniss Everdeen|Catniss</li>
+			<li>Catrina|Cat</li>
+			<li>Clementine|Clem</li>
+			<li>Clawdia</li>
+			<li>Cleocatra|Cleo</li>
+			<li>Clover</li>
+			<li>Cocoa</li>
+			<li>Contessa Purrini|Contessa</li>
+			<li>Doja Cat|Doja</li>
+			<li>Dolly Pawton|Dolly</li>
+			<li>Dua Lipaw|D.L.</li>
+			<li>Duchess Fluffybottom|Duchess</li>
+			<li>Ellen DeGenerpaws|Ellen</li>
+			<li>Emily Lickinson|Emily</li>
+			<li>Emmeow Stone|Emma</li>
+			<li>Empanada</li>
+			<li>Frida Catlo|Frida</li>
+			<li>Furrgie</li>
+			<li>Gwen Stefurry|Gwen</li>
+			<li>Halle Furry|Halle</li>
+			<li>Hello Kitty|Haily</li>
+			<li>Jane Pawsten|Jane</li>
+			<li>Janis Joppurr|Janis</li>
+			<li>Jenni-fur Lawrence|Jenny</li>
+			<li>Julia Pawberts|Julia</li>
+			<li>Kitty Purry</li>
+			<li>Lady Gato|Gaga</li>
+			<li>Lady Whiskerton|Lady</li>
+			<li>Lil Bub</li>
+			<li>Luna|Leetis</li>
+			<li>Madame Fluff|The Madame</li>
+			<li>Maple</li>
+			<li>Margaret Scratcher|Maggie</li>
+			<li>Mariah Hairy|Mariah</li>
+			<li>Marie Purrie|Marie</li>
+			<li>Meowdonna|Maddy</li>
+			<li>Meowly Cyrus|Mimi</li>
+			<li>Meowmosa</li>
+			<li>Meryl Sweep|Meryl</li>
+			<li>Michelle Purrfeiffer|Michelle</li>
+			<li>Mira|Meetch</li>
+			<li>Mira|Meetcher</li>
+			<li>Mira|Mweetch</li>
+			<li>Miss Pawsitively|Missy</li>
+			<li>Nala</li>
+			<li>Nicki Meownaj|Nicki</li>
+			<li>Nicole Kibbleman|Nicole</li>
+			<li>Olivia Rodrigato|Olivia</li>
+			<li>Oprah Winfurry|Oprah</li>
+			<li>Paprika|Rika</li>
+			<li>Pawdrey Hepburn|Pawdrey</li>
+			<li>Purrincess Featherpaws|Princess</li>
+			<li>Purrincess Purrsalot|Purrsi</li>
+			<li>Purrihanna|Riri</li>
+			<li>Purrtita|Purdy</li>
+			<li>Purryoncé|Bey</li>
+			<li>Queen Cattington|The Queen</li>
+			<li>Queen Elizapaw|Lizzy</li>
+			<li>Scarlett Johanpurr|Scarlett</li>
+			<li>Serena Williamews|Serena</li>
+			<li>Soffi|Soffi-Leu</li>
+			<li>Stinkerbell|Bee-bun</li>
+			<li>Stinkerbell|Steenk</li>
+			<li>Stinkerbell|Stinkerbee</li>
+			<li>Suki</li>
+			<li>Tardar Sauce|Tard</li>
+			<li>Taylor Swipe|Tay</li>
+			<li>Tina Purrner|Tina</li>
+			<li>Towanda|Pea-pie Brown</li>
+			<li>Towanda|Tweeterpea</li>
+			<li>Towanda|Tweets</li>
+			<li>Whiskerina|Whisky</li>
+		</firstNamesFemale>
+
+		<lastNames>
+			<li>Beanington</li>
+			<li>Bellyrub</li>
+			<li>Biscuitbottom</li>
+			<li>Biscuitworth</li>
+			<li>Bonkington</li>
+			<li>Boopenheim</li>
+			<li>Boopington</li>
+			<li>Boopsworth</li>
+			<li>Brown</li>
+			<li>Cardboardington</li>
+			<li>Catkins</li>
+			<li>Catnipington</li>
+			<li>Catnipworth</li>
+			<li>Catsby</li>
+			<li>Cattington</li>
+			<li>Catzenberg</li>
+			<li>Chatterworth</li>
+			<li>Cheechman</li>
+			<li>Chibblesworth</li>
+			<li>Chonkalez</li>
+			<li>Chonkbottom</li>
+			<li>Chonkburg</li>
+			<li>Chonkenheim</li>
+			<li>Chonkington</li>
+			<li>Clawbottom</li>
+			<li>Clawford</li>
+			<li>Clawhaven</li>
+			<li>Clawington</li>
+			<li>Clawson</li>
+			<li>Clawsworth</li>
+			<li>Cuddleworth</li>
+			<li>Droolworth</li>
+			<li>Fangsworth</li>
+			<li>Fishbreathington</li>
+			<li>Floofbottom</li>
+			<li>Floofenfield</li>
+			<li>Floofhaven</li>
+			<li>Floofington</li>
+			<li>Floofworth</li>
+			<li>Fluffbottom</li>
+			<li>Fluffenpuff</li>
+			<li>Fluffington</li>
+			<li>Flufftonbury</li>
+			<li>Furrari</li>
+			<li>Furrbottom</li>
+			<li>Furrgieson</li>
+			<li>Furrington</li>
+			<li>Furrsworth</li>
+			<li>Grumbleworth</li>
+			<li>Hairballington</li>
+			<li>Hairballsworth</li>
+			<li>Hairnandez</li>
+			<li>Hemingmew</li>
+			<li>Hissington</li>
+			<li>Hisspatrick</li>
+			<li>Hisswick</li>
+			<li>Hissworth</li>
+			<li>Kibblesworth</li>
+			<li>Kibbleton</li>
+			<li>Kitterson</li>
+			<li>Kneadworth</li>
+			<li>Litterbottom</li>
+			<li>Loafbottom</li>
+			<li>Loafenburg</li>
+			<li>Loafington</li>
+			<li>Loafsworth</li>
+			<li>McFluff</li>
+			<li>McMittens</li>
+			<li>McScratch</li>
+			<li>Meowfield</li>
+			<li>Meowgomery</li>
+			<li>Meowminster</li>
+			<li>Meowmore</li>
+			<li>Mewberg</li>
+			<li>Mewcaster</li>
+			<li>Mewhaven</li>
+			<li>Mewington</li>
+			<li>Mewsworth</li>
+			<li>Mewvale</li>
+			<li>Mittenfield</li>
+			<li>Mittenworth</li>
+			<li>Mrowburg</li>
+			<li>Mrowington</li>
+			<li>Murdermittens</li>
+			<li>Naptonshire</li>
+			<li>Nibblesworth</li>
+			<li>Nibbleton</li>
+			<li>Nuzzleton</li>
+			<li>Nuzzleworth</li>
+			<li>O'Hairball</li>
+			<li>Pawderson</li>
+			<li>Pawlowski</li>
+			<li>Pawsbury</li>
+			<li>Pawsington</li>
+			<li>Pawsnoot</li>
+			<li>Pawsworth</li>
+			<li>Pounceberg</li>
+			<li>Pouncebury</li>
+			<li>Pounceington</li>
+			<li>Pounceworth</li>
+			<li>Prowlington</li>
+			<li>Prowlsworth</li>
+			<li>Purrbottom</li>
+			<li>Purrcival</li>
+			<li>Purrdale</li>
+			<li>Purrfield</li>
+			<li>Purrington</li>
+			<li>Purrkins</li>
+			<li>Purrkinson</li>
+			<li>Purrlman</li>
+			<li>Purrnelli</li>
+			<li>Purrsworth</li>
+			<li>Purrwick</li>
+			<li>Scratchbottom</li>
+			<li>Scratcherson</li>
+			<li>Scratchington</li>
+			<li>Scratchowski</li>
+			<li>Scratchworth</li>
+			<li>Scritchfield</li>
+			<li>Scritchwood</li>
+			<li>Skitterton</li>
+			<li>Slinkington</li>
+			<li>Smushface</li>
+			<li>Snackington</li>
+			<li>Snootbottom</li>
+			<li>Snootington</li>
+			<li>Snootworth</li>
+			<li>Snoozeworth</li>
+			<li>Snufflebottom</li>
+			<li>Snuggleton</li>
+			<li>Snuggleworth</li>
+			<li>Snugworth</li>
+			<li>Sockington</li>
+			<li>Springpaw</li>
+			<li>Squishbottom</li>
+			<li>Stalksworth</li>
+			<li>Sunbeamington</li>
+			<li>Tabbington</li>
+			<li>Tabbysworth</li>
+			<li>Tabbyton</li>
+			<li>Tailington</li>
+			<li>Tailsworth</li>
+			<li>Tendergrass-Tyson</li>
+			<li>Toebeanington</li>
+			<li>Toebeansworth</li>
+			<li>Trillington</li>
+			<li>Tuftsbury</li>
+			<li>Tuftvale</li>
+			<li>Tunaworth</li>
+			<li>Vanderpurr</li>
+			<li>Velvetpaws</li>
+			<li>Whiskerbottom</li>
+			<li>Whiskerfield</li>
+			<li>Whiskerhaven</li>
+			<li>Whiskerpuff</li>
+			<li>Whiskersmith</li>
+			<li>Whiskerstein</li>
+			<li>Whiskerton</li>
+			<li>Whiskerworth</li>
+			<li>Yarnbottom</li>
+			<li>Yarnsworth</li>
+			<li>Yowlington</li>
+			<li>Yowlsby</li>
+			<li>Yowlsworth</li>
+			<li>Zoomiebottom</li>
+			<li>Zoomington</li>
+		</lastNames>
+
+	</Cheechin.NameSetDef_Cheech>
+</Defs>

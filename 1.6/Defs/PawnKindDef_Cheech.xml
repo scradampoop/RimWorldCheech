@@ -39,10 +39,19 @@
 		</weaponTags>
 		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
 		<useFactionXenotypes>false</useFactionXenotypes>
+		<nakedChance>1</nakedChance>
+		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<specificApparelRequirements>
+			<li>
+				<bodyPartGroup>Legs</bodyPartGroup>
+				<requiredTag>IndustrialBasic</requiredTag>
+				<ignoreNaked>true</ignoreNaked>
+			</li>
+		</specificApparelRequirements>
 		<xenotypeSet>
 			<xenotypeChances>
 				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
-			</xenotypeChances>			
+			</xenotypeChances>
 		</xenotypeSet>
 	</PawnKindDef>
 
@@ -50,10 +59,19 @@
 		<defName>PawnKindDef_Cheech_VillagerChild</defName>
 		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
 		<useFactionXenotypes>false</useFactionXenotypes>
+		<nakedChance>1</nakedChance>
+		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<specificApparelRequirements>
+			<li>
+				<bodyPartGroup>Legs</bodyPartGroup>
+				<requiredTag>IndustrialBasic</requiredTag>
+				<ignoreNaked>true</ignoreNaked>
+			</li>
+		</specificApparelRequirements>
 		<xenotypeSet>
 			<xenotypeChances>
 				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
-			</xenotypeChances>			
+			</xenotypeChances>
 		</xenotypeSet>
 	</PawnKindDef>
 
@@ -80,10 +98,19 @@
 		</weaponTags>
 		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
 		<useFactionXenotypes>false</useFactionXenotypes>
+		<nakedChance>1</nakedChance>
+		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<specificApparelRequirements>
+			<li>
+				<bodyPartGroup>Legs</bodyPartGroup>
+				<requiredTag>IndustrialBasic</requiredTag>
+				<ignoreNaked>true</ignoreNaked>
+			</li>
+		</specificApparelRequirements>
 		<xenotypeSet>
 			<xenotypeChances>
 				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
-			</xenotypeChances>			
+			</xenotypeChances>
 		</xenotypeSet>
 	</PawnKindDef>
 
@@ -94,16 +121,25 @@
 		</weaponTags>
 		<defaultFactionType>FactionDef_Cheech_OutlanderRough</defaultFactionType>
 		<useFactionXenotypes>false</useFactionXenotypes>
+		<nakedChance>1</nakedChance>
+		<apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+		<specificApparelRequirements>
+			<li>
+				<bodyPartGroup>Legs</bodyPartGroup>
+				<requiredTag>IndustrialBasic</requiredTag>
+				<ignoreNaked>true</ignoreNaked>
+			</li>
+		</specificApparelRequirements>
 		<xenotypeSet>
 			<xenotypeChances>
 				<XenotypeDef_Cheech>999</XenotypeDef_Cheech>
-			</xenotypeChances>		
+			</xenotypeChances>
 		</xenotypeSet>
 	</PawnKindDef>
 
 	<PawnKindDef ParentName="MercenaryGunnerBase">
 		<defName>PawnKindDef_Cheech_MercenaryGunner</defName>
-		<label>cheech gunner</label>
+		<label>thundercat gunner</label>
 		<initialResistanceRange>6~10</initialResistanceRange>
 		<weaponTags Inherit="False">
 			<li>ShortShots</li>
@@ -119,7 +155,7 @@
 
 	<PawnKindDef ParentName="MercenaryEliteBase">
 		<defName>PawnKindDef_Cheech_MercenaryElite</defName>
-		<label>cheech elite</label>
+		<label>thundercat elite</label>
 		<initialResistanceRange>15~23</initialResistanceRange>
 		<weaponTags Inherit="False">
 			<li>ShortShots</li>

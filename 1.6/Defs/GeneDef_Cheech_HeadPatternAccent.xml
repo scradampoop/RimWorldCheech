@@ -27,9 +27,35 @@
 	</GeneDef>
 
 	<GeneDef ParentName="GeneDef_Cheech_HeadPatternAccent">
+		<defName>GeneDef_Cheech_HeadPatternAccent_Cheetah</defName>
+		<label>cheetah face</label>
+		<labelShortAdj>cheetah-like</labelShortAdj>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<renderNodeProperties>
+			<li>
+				<useGraphic>false</useGraphic>
+				<texPath>Cheech/Head/Cheetah/Cheetah</texPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneDef_Cheech_HeadPatternAccent">
+		<defName>GeneDef_Cheech_HeadPatternAccent_Dashes</defName>
+		<label>dashed face</label>
+		<labelShortAdj>dashed</labelShortAdj>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<renderNodeProperties>
+			<li>
+				<useGraphic>false</useGraphic>
+				<texPath>Cheech/Head/Dashes/Dashes</texPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneDef_Cheech_HeadPatternAccent">
 		<defName>GeneDef_Cheech_HeadPatternAccent_Jaguar</defName>
 		<label>jaguar spotted face</label>
-		<labelShortAdj>jaguar facial spotted</labelShortAdj>
+		<labelShortAdj>jaguar spotted</labelShortAdj>
 		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
 		<renderNodeProperties>
 			<li>
@@ -39,4 +65,42 @@
 		</renderNodeProperties>
 	</GeneDef>
 
+	<GeneDef ParentName="GeneDef_Cheech_HeadPatternAccent">
+		<defName>GeneDef_Cheech_HeadPatternAccent_LeopardCrisp</defName>
+		<label>leopard face</label>
+		<labelShortAdj>crisp leopard</labelShortAdj>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<renderNodeProperties>
+			<li>
+				<useGraphic>false</useGraphic>
+				<texPath>Cheech/Head/LeopardCrisp/LeopardCrisp</texPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneDef_Cheech_HeadPatternAccent">
+		<defName>GeneDef_Cheech_HeadPatternAccent_Squiggles</defName>
+		<label>squiggled face</label>
+		<labelShortAdj>squiggled</labelShortAdj>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<renderNodeProperties>
+			<li>
+				<useGraphic>false</useGraphic>
+				<texPath>Cheech/Head/Squiggles/Squiggles</texPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneDef_Cheech_HeadPatternAccent">
+		<defName>GeneDef_Cheech_HeadPatternAccent_StripesV</defName>
+		<label>split-striped face</label>
+		<labelShortAdj>split-striped</labelShortAdj>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<renderNodeProperties>
+			<li>
+				<useGraphic>false</useGraphic>
+				<texPath>Cheech/Head/StripesV/StripesV</texPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
 </Defs>

@@ -14,7 +14,7 @@
 		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
 		<!--<soundDefOnImplant>CheechRawr</soundDefOnImplant>-->
 		<inheritable>true</inheritable>
-		<!--TODO: Add custom cheech names.-->
+		<!-- We have custom name-maker code in a harmony patch, but these tags are the 'normal' way of doing it: -->
 		<!--<nameMaker>NamerPersonWaster</nameMaker>-->
 		<!--<chanceToUseNameMaker>0.1</chanceToUseNameMaker>-->
 		<genes>
@@ -50,14 +50,17 @@
 			<li>GeneDef_Cheech_FurPatternAccent_SwirlsSpots</li>
 			<li>GeneDef_Cheech_Head</li>
 			<li>GeneDef_Cheech_HeadPatternFill_Mottled</li>
+			<li>GeneDef_Cheech_HeadPatternAccent_Cheetah</li>
+			<li>GeneDef_Cheech_HeadPatternAccent_Dashes</li>
 			<li>GeneDef_Cheech_HeadPatternAccent_Jaguar</li>
+			<li>GeneDef_Cheech_HeadPatternAccent_LeopardCrisp</li>
+			<li>GeneDef_Cheech_HeadPatternAccent_Squiggles</li>
+			<li>GeneDef_Cheech_HeadPatternAccent_StripesV</li>
 			<li>GeneDef_Cheech_Ears_Average_GreyFill_Stripes</li>
 			<li>GeneDef_Cheech_Ears_Large_NoFill_Solid</li>
 			<li>GeneDef_Cheech_Ears_Large_PinkFill_Solid</li>
 			<li>GeneDef_Cheech_Ears_Large_PinkFill_Spots</li>
 			<li>GeneDef_Cheech_Tail_Stripes</li>
-			<li>Hair_BaldOnly</li>
-			<li>Beard_NoBeardOnly</li>
 			<li>GeneDef_Cheech_Pheromones</li>
 		</genes>
 	</XenotypeDef>

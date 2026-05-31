@@ -29,8 +29,6 @@
 				<options>
 					<PawnKindDef_Cheech_Villager>5</PawnKindDef_Cheech_Villager>
 					<PawnKindDef_Cheech_TownGuard>10</PawnKindDef_Cheech_TownGuard>
-					<Grenadier_Destructive>10</Grenadier_Destructive>
-					<Mercenary_Slasher>10</Mercenary_Slasher>
 					<PawnKindDef_Cheech_MercenaryGunner>7</PawnKindDef_Cheech_MercenaryGunner>
 					<PawnKindDef_Cheech_MercenaryElite>10</PawnKindDef_Cheech_MercenaryElite>
 					<PawnKindDef_Cheech_TownCouncilman>10</PawnKindDef_Cheech_TownCouncilman>
@@ -57,10 +55,8 @@
 					<Elephant>1</Elephant>
 				</carriers>
 				<guards>
-					<PawnKindDef_Cheech_Villager>3</PawnKindDef_Cheech_Villager>
+					<PawnKindDef_Cheech_Villager>10</PawnKindDef_Cheech_Villager>
 					<PawnKindDef_Cheech_TownGuard>10</PawnKindDef_Cheech_TownGuard>
-					<Grenadier_Destructive>10</Grenadier_Destructive>
-					<Mercenary_Slasher>10</Mercenary_Slasher>
 					<PawnKindDef_Cheech_MercenaryGunner>7</PawnKindDef_Cheech_MercenaryGunner>
 					<PawnKindDef_Cheech_MercenaryElite>10</PawnKindDef_Cheech_MercenaryElite>
 				</guards>
@@ -69,9 +65,9 @@
 				<kindDef>Settlement</kindDef>
 				<options>
 					<PawnKindDef_Cheech_Villager>10</PawnKindDef_Cheech_Villager>
+					<PawnKindDef_Cheech_VillagerChild>10</PawnKindDef_Cheech_VillagerChild>
 					<PawnKindDef_Cheech_TownGuard>10</PawnKindDef_Cheech_TownGuard>
-					<Grenadier_Destructive>10</Grenadier_Destructive>
-					<Mercenary_Slasher>10</Mercenary_Slasher>
+					<PawnKindDef_Cheech_TownCouncilman>10</PawnKindDef_Cheech_TownCouncilman>
 					<PawnKindDef_Cheech_MercenaryGunner>7</PawnKindDef_Cheech_MercenaryGunner>
 					<PawnKindDef_Cheech_MercenaryElite>10</PawnKindDef_Cheech_MercenaryElite>
 					<PawnKindDef_Cheech_TownCouncilman>10</PawnKindDef_Cheech_TownCouncilman>

@@ -5,8 +5,6 @@
 /// </summary>
 public static class Utility
 {
-	//public static readonly Color TransparentGrey = new(0.5f,0.5f,0.5f,0f);
-
 	public static bool IsSameXenotypeAs(this Pawn? pawn, Pawn? other) => pawn?.genes?.Xenotype == other?.genes?.Xenotype;
 
 	public static TGene? GetGene<TGene>(this Pawn pawn) where TGene: Gene => pawn.genes?.GenesListForReading.OfType<TGene>().FirstOrDefault(p => p.Active);

@@ -553,57 +553,12 @@ public sealed class Window_FurPatternColorPicker: Window
 	/// </summary>
 	private void RebuildRenderTreeForGeneChange()
 	{
-		// scradam and Claude attempted to fix the gene render order problem like so, originally, but it wasn't interleaving the xeno and endo genes, so we used a Harmony patch instead.
-		// Re-sorts the pawn's gene lists by render-node <c>baseLayer</c> so the dynamic-render-node setup (which iterates <see cref="Pawn_GeneTracker.GenesListForReading"/> in order) emits child nodes
-		// in layer order, then forces a synchronous tree rebuild + portrait-cache flush. Why this matters: <c>AddGene</c> appends to the end of <c>xenogenes</c>/<c>endogenes</c>, so swapping
-		// (RemoveGene+AddGene) leaves the new gene's render node at the end of its parent's children array. <c>PawnRenderNode.AppendRequests</c> walks children in array-index order and emits
-		// <c>PawnGraphicDrawRequest</c>s in that order. The world view renders those requests at the matrix Z derived from <c>baseLayer</c>, so it still composes correctly. The portrait renders flat
-		// into a RenderTexture, so the per-request Z is meaningless and you see the literal draw-call order — which is why removing+re-adding fill-then-accent has been the only workaround. Reordering
-		// the underlying gene lists in <c>baseLayer</c> order rebuilds the children array in the right order at the next <c>EnsureInitialized</c>, retiring a workaround scradam was previously using
-		// where he removed all and re-added genes in layer order.
-		// StableSortByRenderLayer(pawn.genes.Xenogenes);
-		// StableSortByRenderLayer(pawn.genes.Endogenes);
-		// Pawn_GeneTracker.Notify_GenesChanged eagerly rebuilds cachedGenes in pre-sort order during AddGene/RemoveGene, so invalidating it again now that the underlying lists are sorted.
-		// Traverse.Create(pawn.genes).Field("cachedGenes").SetValue(null);
-
 		// Synchronous. PawnRenderer.SetAllGraphicsDirty defers via LongEventHandler and bails if the tree isn't Resolved, so it can't be relied on to land before the next portrait fetch.
 		pawn.drawer.renderer.renderTree.SetDirty();
 		PortraitsCache.SetDirty(pawn);
 		// Still calling this so silhouette + global texture atlas caches get flushed too.
 		pawn.drawer.renderer.SetAllGraphicsDirty();
 	}
-
-	///// <summary>
-	///// We can remove this once we decide we're going to stick with the Harmony patch.
-	///// </summary>
-	//private static void StableSortByRenderLayer(List<Gene> list)
-	//{
-	//	if (list.Count < 2)
-	//		return;
-	//	// OrderBy is a stable sort, so genes that share a key (e.g. all non-rendering genes at -inf) keep their relative order.
-	//	var ordered = list.OrderBy(MinBaseLayer).ToList();
-	//	list.Clear();
-	//	list.AddRange(ordered);
-	//}
-
-	///// <summary>
-	///// We can remove this once we decide we're going to stick with the Harmony patch.
-	///// </summary>
-	//private static float MinBaseLayer(Gene gene)
-	//{
-	//	var props = gene.def.renderNodeProperties;
-
-	//	if (props == null || props.Count == 0)
-	//		return float.NegativeInfinity;
-
-	//	float min = float.PositiveInfinity;
-
-	//	foreach (var p in props)
-	//		if (p.baseLayer < min)
-	//			min = p.baseLayer;
-
-	//	return float.IsPositiveInfinity(min) ? float.NegativeInfinity : min;
-	//}
 
 	private void Accept()
 	{

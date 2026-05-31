@@ -2,9 +2,13 @@
 
 namespace Cheechin;
 
+/// <summary>
+/// Makes it so a pawn can access the fur pattern color picker UI via the styling station.
+/// </summary>
 [HarmonyPatch(typeof(Building_StylingStation), nameof(Building_StylingStation.GetFloatMenuOptions))]
 public static class HarmonyPatch_Building_StylingStation_GetFloatMenuOptions
 {
+	/// <inheritdoc cref="HarmonyPatch_Building_StylingStation_GetFloatMenuOptions"/>
 	public static IEnumerable<FloatMenuOption> Postfix(IEnumerable<FloatMenuOption> options, Pawn selPawn, Building_StylingStation __instance)
 	{
 		foreach (var option in options)
@@ -34,6 +38,7 @@ public static class HarmonyPatch_Building_StylingStation_GetFloatMenuOptions
 [HarmonyPatch(typeof(DynamicPawnRenderNodeSetup_Genes), nameof(DynamicPawnRenderNodeSetup_Genes.GetDynamicNodes))]
 public static class HarmonyPatch_DynamicPawnRenderNodeSetup_Genes_GetDynamicNodes
 {
+	/// <inheritdoc cref="HarmonyPatch_DynamicPawnRenderNodeSetup_Genes_GetDynamicNodes"/>
 	public static void Postfix(ref IEnumerable<(PawnRenderNode node, PawnRenderNode parent)> __result)
 	{
 		// Don't mess with it if it doesn't have any fur genes.
@@ -45,12 +50,13 @@ public static class HarmonyPatch_DynamicPawnRenderNodeSetup_Genes_GetDynamicNode
 	}
 }
 
+/// <summary>
+/// On cheech xenotype assignment, lock in a single skin/theme gene first, then for each fur pattern gene type, filter candidates against the locked theme's include/exclude lists, dedupe to at most one, and re-roll the surviving gene's colors from the chosen theme.
+/// </summary>
 [HarmonyPatch(typeof(Pawn_GeneTracker), nameof(Pawn_GeneTracker.SetXenotype), typeof(XenotypeDef))]
 public static class HarmonyPatch_Pawn_GeneTracker_SetXenotype
 {
-	/// <summary>
-	/// On Cheech xenotype assignment, lock in a single skin/theme gene first, then for each fur pattern gene type, filter candidates against the locked theme's include/exclude lists, dedupe to at most one, and re-roll the surviving gene's colors from the chosen theme.
-	/// </summary>
+	/// <inheritdoc cref="HarmonyPatch_Pawn_GeneTracker_SetXenotype"/>
 	public static void Postfix(Pawn_GeneTracker __instance, XenotypeDef? xenotype)
 	{
 		if (!(xenotype?.defName?.Equals("XenotypeDef_Cheech", StringComparison.OrdinalIgnoreCase) ?? false))
@@ -104,5 +110,104 @@ public static class HarmonyPatch_Pawn_GeneTracker_SetXenotype
 				furPatternToKeep.overriddenByGene = null;
 			}
 		}
+	}
+}
+
+/// <summary>
+/// Applies the resolved skin theme's story-level visuals to a freshly generated cheech: per-pawn skin color variation, and a shaved head/face by default (keeping the rolled hair/beard only rarely). Runs as a postfix
+/// on the finished pawn because <see cref="PawnGenerator"/> overwrites <c>story.hairDef</c>/<c>beardDef</c> (and the hair color) after gene application, so the <see cref="HarmonyPatch_Pawn_GeneTracker_SetXenotype"/>
+/// postfix is too early for these. We deliberately do NOT use the vanilla Bald/NoBeard restriction genes, so nothing blocks the player from restyling at the styling station afterward.
+/// </summary>
+[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), typeof(PawnGenerationRequest))]
+public static class HarmonyPatch_PawnGenerator_GeneratePawn
+{
+	/// <summary>
+	/// Sparingly letting a freshly generated cheech keep the hair/beard the vanilla generator rolled. Otherwise, they spawn shaved.
+	/// </summary>
+	private const float KeepHairChance = 0.10f;
+	private const float KeepBeardChance = 0.05f;
+
+	/// <summary>
+	/// Independent per-pawn chance to draw the first name from the custom pool instead of keeping vanilla's.
+	/// </summary>
+	private const float FirstNameFromCheechPoolChance = 0.7f;
+
+	/// <summary>
+	/// Independent per-pawn chance to draw the surname from the custom pool instead of keeping vanilla's.
+	/// </summary>
+	private const float LastNameFromCheechPoolChance = 0.7f;
+
+	/// <inheritdoc cref="HarmonyPatch_PawnGenerator_GeneratePawn"/>
+	public static void Postfix(Pawn? __result)
+	{
+		if (__result?.genes == null || __result.story == null)
+			return;
+
+		// The FurPatternTheme lives only on Cheech skin genes, so its presence is what marks this pawn as a cheech.
+		var theme = __result.genes.GenesListForReading.FirstOrDefault(g => g.Active && g.def.defName.StartsWith("GeneDef_Cheech_Skin_", StringComparison.OrdinalIgnoreCase))?.def.GetModExtension<FurPatternTheme>();
+		if (theme == null)
+			return;
+
+		// Replacing the freshly generated cheech's first and/or last name with one drawn from the NameSetDef_Cheech pools. First and last are rolled independently (each at FirstNameFromCheechPoolChance or LastNameFromCheechPoolChance), so a pawn can end up with a custom first + vanilla last, the reverse, both, or neither.
+		if (__result.Name is NameTriple originalName)
+		{
+			var sets = DefDatabase<NameSetDef_Cheech>.AllDefsListForReading;
+			string firstName = originalName.First;
+			string lastName = originalName.Last;
+			CheechName? pickedFirstAndNick = null;
+
+			// Vanilla names babies "Baby" (player faction). Keeping that intact and only considering a surname swap for babies.
+			if (!__result.DevelopmentalStage.Baby() && Rand.Chance(FirstNameFromCheechPoolChance))
+			{
+				var firstNameCandidates = new List<CheechName>();
+				foreach (var set in sets)
+				{
+					firstNameCandidates.AddRange(set.firstNames);
+					if (__result.gender == Gender.Male)
+						firstNameCandidates.AddRange(set.firstNamesMale);
+					else if (__result.gender == Gender.Female)
+						firstNameCandidates.AddRange(set.firstNamesFemale);
+				}
+
+				if (firstNameCandidates.TryRandomElement(out pickedFirstAndNick!))
+					firstName = pickedFirstAndNick.first;
+			}
+
+			if (Rand.Chance(LastNameFromCheechPoolChance))
+			{
+				var lastNameCandidates = new List<string>();
+				foreach (var set in sets)
+					lastNameCandidates.AddRange(set.lastNames);
+				lastNameCandidates.TryRandomElement(out lastName);
+			}
+
+			if (firstName != originalName.First || lastName != originalName.Last)
+			{
+				string nickname = originalName.Nick;
+
+				// A custom first name can carry its own nickname (the cat's everyday name vs. its 'government name' they keep at the vet); that wins outright.
+				if (!string.IsNullOrWhiteSpace(pickedFirstAndNick?.nick))
+					nickname = pickedFirstAndNick!.nick!;
+				// Otherwise, preserve the vanilla nickname, but if it was just an echo of the first/last we replaced, re-echo the new value so the pawn doesn't display a stale name fragment. (Vanilla shuffled nicks are often a copy of first/last.)
+				else if (nickname == originalName.First)
+					nickname = firstName;
+				else if (nickname == originalName.Last)
+					nickname = lastName;
+
+				__result.Name = new NameTriple(firstName, nickname, lastName);
+			}
+		}
+
+		// Per-pawn skin variation drawn from the theme's skin..skinHigh range — single source of truth with the fur and hair colors. (Bypasses vanilla's GeneTuning.SkinColorValueRange clamp, which is intended: Cheech skins are meant to be vivid sometimes.)
+		__result.story.skinColorOverride = theme.SkinColor.Variation;
+		// Tinting whatever hair/beard survived to match the theme. Setting story.HairColor also colors the beard.
+		__result.story.HairColor = theme.HairColor.Variation;
+
+		// Shaved by default; keeping the rolled hair/beard only sparingly. CanWantBeard already gates which pawns can grow one (e.g. male vs female).
+		if (!(__result.story.hairDef != null && __result.story.hairDef != HairDefOf.Bald && Rand.Chance(KeepHairChance)))
+			__result.story.hairDef = HairDefOf.Bald;
+
+		if (__result.style != null && !(__result.style.CanWantBeard && Rand.Chance(KeepBeardChance)))
+			__result.style.beardDef = BeardDefOf.NoBeard;
 	}
 }

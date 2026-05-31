@@ -13,9 +13,9 @@
 		<biostatMet>0</biostatMet>
 		<displayOrderInCategory>1000</displayOrderInCategory>
 		<renderNodeProperties>
-			<li>
+			<li Class="Cheechin.PawnRenderNodeProperties_BodyTypeOffsets">
 				<nodeClass>Cheechin.PawnRenderNode_TailWithPattern</nodeClass>
-				<workerClass>PawnRenderNodeWorker_AttachmentBody</workerClass>
+				<workerClass>Cheechin.PawnRenderNodeWorker_AttachmentBodyType</workerClass>
 				<texPath>Cheech/Tail/Cheech_Tail</texPath>
 				<colorType>Custom</colorType>
 				<overrideMeshSize>(1, 1)</overrideMeshSize>
@@ -52,6 +52,23 @@ dataWest (0.55, 0, -0.25) — mirrored: 0.55 right, 0.25 down.
 						<offset>(0.5,0,-0.23)</offset>
 					</dataWest>
 				</drawData>
+				<!--
+				Per-body-type attach-point corrections, added on top of drawData above. <offset> nudges all facings. +Z is up, +X is right. Tune one body type at a time in-game with the DEV: Fur Colors pawn.
+				-->
+				<bodyTypeOffsets>
+					<li>
+						<bodyType>Male</bodyType>
+						<offset>(0.05, 0, 0.04)</offset>
+					</li>
+					<li>
+						<bodyType>Fat</bodyType>
+						<offset>(-0.03, 0, 0.08)</offset>
+					</li>
+					<li>
+						<bodyType>Hulk</bodyType>
+						<offset>(-0.1, 0, -0.03)</offset>
+					</li>
+				</bodyTypeOffsets>
 			</li>
 		</renderNodeProperties>
 	</GeneDef>

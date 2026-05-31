@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Xml;
 using Verse.AI;
 
 namespace Cheechin;
@@ -69,6 +70,60 @@ public sealed class JobDriver_ChangeFurPatternColors: JobDriver
 			yield return Toils_General.Do(() => Find.WindowStack.Add(new Window_FurPatternColorPicker(pawn)));
 		}
 	}
+}
+
+/// <summary>
+/// A formal first name plus an optional everyday nickname — cats famously carry a 'government name' on file at the vet
+/// and a separate nickname everyone actually uses. Authored compactly in XML as <c>&lt;li&gt;Formal Name&lt;/li&gt;</c> or
+/// <c>&lt;li&gt;Formal Name|Nickname&lt;/li&gt;</c>; when this name is rolled, a present <see cref="nick"/> becomes the pawn's
+/// <see cref="NameTriple.Nick"/> (overriding the vanilla-derived one). Nicknames deliberately track only first names, not surnames.
+/// </summary>
+public sealed class CheechName
+{
+	/// <summary>
+	/// The formal first name (the part on file at the vet).
+	/// </summary>
+	public string first = null!;
+
+	/// <summary>
+	/// The everyday nickname, or <c>null</c> if they just go by their <see cref="first"/> name.
+	/// </summary>
+	public string? nick;
+
+	/// <summary>
+	/// Custom XML parser invoked by reflection during def load (<c>DirectXmlToObject.LoadDataFromXmlCustomMethodName</c>). The element's text is the formal
+	/// name, with an optional <c>"| nickname"</c> suffix — so a name list reads as plain <c>&lt;li&gt;</c> strings whether a given entry has a nick.
+	/// </summary>
+	public void LoadDataFromXmlCustom(XmlNode xmlNode)
+	{
+		first = xmlNode.InnerText.Trim();
+		int pipeCharIndex = first.IndexOf('|');
+		if (pipeCharIndex < 0)
+			return;
+
+		nick = first.Substring(pipeCharIndex + 1).Trim();
+		first = first.Substring(0, pipeCharIndex).Trim();
+	}
+}
+
+/// <summary>
+/// A pool of custom first/last names for cheeches, authored in XML. Multiple defs of this type are aggregated by
+/// <see cref="HarmonyPatch_PawnGenerator_GeneratePawn"/>, so name lists can be split across several files. Fill <see cref="firstNames"/>
+/// and <see cref="lastNames"/> for a unisex pool; the gender-specific first-name lists are optional and merge in on top.
+/// </summary>
+public sealed class NameSetDef_Cheech: Def
+{
+	/// <summary>Unisex first names — always eligible, merged with the gender-specific pool when picking.</summary>
+	public List<CheechName> firstNames = [];
+
+	/// <summary>First names offered only to male cheeches (in addition to <see cref="firstNames"/>).</summary>
+	public List<CheechName> firstNamesMale = [];
+
+	/// <summary>First names offered only to female cheeches (in addition to <see cref="firstNames"/>).</summary>
+	public List<CheechName> firstNamesFemale = [];
+
+	/// <summary>Surnames, used for every gender.</summary>
+	public List<string> lastNames = [];
 }
 
 [DefOf, StaticConstructorOnStartup]

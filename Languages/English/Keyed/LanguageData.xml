@@ -5,9 +5,9 @@
 	<FactionGreetingWary_Cheech>{0} hisses a greeting and asks what business you need done.</FactionGreetingWary_Cheech>
 	<FactionGreetingWarm_Cheech>Meows enthusiastically, {0} greets {NEGOTIATOR_labelShort} and asks what {LEADER_pronoun} can do to help you.</FactionGreetingWarm_Cheech>
 	<MilitaryAidSent_Cheech>{0} agrees to send the ThuynderCats to help you.</MilitaryAidSent_Cheech>
-	<ColorPicker.ChangeFurPatternColors>Change fur pattern colors</ColorPicker.ChangeFurPatternColors>
-  <ColorPicker.GeneNone>(none)</ColorPicker.GeneNone>
-  <ColorPicker.GeneNotApplicable>N/A</ColorPicker.GeneNotApplicable>
+	<ColorPicker.ChangeFurPatternColors>Change fur patterns</ColorPicker.ChangeFurPatternColors>
+	<ColorPicker.GeneNone>(none)</ColorPicker.GeneNone>
+	<ColorPicker.GeneNotApplicable>N/A</ColorPicker.GeneNotApplicable>
 	<ColorPicker.Skin>Skin</ColorPicker.Skin>
 	<ColorPicker.BodyFill>Body Fill</ColorPicker.BodyFill>
 	<ColorPicker.BodyAccent>Body Accent</ColorPicker.BodyAccent>
