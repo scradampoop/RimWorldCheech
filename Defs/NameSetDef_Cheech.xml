@@ -139,6 +139,10 @@
 		</firstNames>
 
 		<firstNamesMale>
+			<!-- Player cat names. -->
+			<li>Meatball Fritz</li>
+			
+			<!-- Extra names. -->
 			<li>Abraham Lickin|Abe</li>
 			<li>Admiral Bites|The Admiral</li>
 			<li>Albert Felinestein|Einstein</li>
@@ -241,6 +245,10 @@
 		</firstNamesMale>
 
 		<firstNamesFemale>
+			<!-- Player cat names. -->
+			<li>Bug Binx</li>
+
+			<!-- Extra names. -->
 			<li>Adelynx|Adele</li>
 			<li>Angelina Meowlie|Angie</li>
 			<li>Aretha Furrklin|Arry</li>

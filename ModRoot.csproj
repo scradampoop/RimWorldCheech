@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="1.6\**\*.*" Exclude="1.6\src\**\*.*" />
+    <Content Include="1.6\**\*.*" />
+    <Content Include="1.7\**\*.*" />
     <Content Include="About\**\*.*" />
+    <Content Include="Defs\**\*.*" />
+    <Content Include="Patches\**\*.*" />
     <Content Include="Languages\**\*.*" />
     <Content Include="Textures\**\*.*" />
   </ItemGroup>

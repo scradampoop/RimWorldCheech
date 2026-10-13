@@ -7,7 +7,7 @@
 - All fur patterns are cosmetic-only genes. No game balance changes.
 - Ability to individually color and pattern 9 different portions of the coat.
 - Add fur coat patterns to other xenotypes. Once a pawn has at least one cheech fur pattern gene, they unlock the ability to color their fur at the styling station.
-- Over 350 fur texture files in all.
+- Over 370 fur texture files in all.
 - 15 different body pattern textures, supporting all body types (male, female, thin, fat, hulk, child):
     - 2 leopard patterns
     - 1 jaguar pattern
@@ -18,15 +18,17 @@
     - 1 swirl pattern
     - 1 tux pattern
 - 7 face patterns to match the body patterns
-- Only 1 tail pattern so far:
-    - 1 striped pattern
-- 4 ear patterns (all mediocre looking, at best):
+- 4 tail variants:
+    - 2 medium length tails, 1 w/ stripes
+    - 1 long tail    
+    - 1 bobtail
+- 4 ear patterns:
     - 2 solid color patterns
     - 1 spotty pattern
     - 1 striped pattern
 
 ## Known issues:
-- **Character Editor**: Adding and removing Cheech genes with Character editor is fine, but it's fiddly. Use the styling station to adjust costmetic Cheech genes if what you get via Character Editor doesn't look right.
+- **Character Editor**: Adding and removing Cheech genes with Character editor is fine, but it's fiddly. Use the styling station to adjust cosmetic Cheech genes if what you get via Character Editor doesn't look right.
 - **Anthrosonae**: Anthrosonae uses a different color picker and system, and while the world view of Anthrosonae pawns looks fine with Cheech genes, scradam hasn't made time to render the Anthrosonae base coat properly via the Cheech color picker UI. Both pickers still seem to work okay, but you'll need to commit the color picker changes to see the effects properly.
 
 ## FAQ:
@@ -46,6 +48,11 @@ Here you can see we're attempting some new things by using pawn skin and hair co
 ![Via Styling Station](About/ViaStylingStation.png)
 
 ## Change Log:
+- 0.4.0, 2026-10-13:
+    - Official 1.7 DLL, built for .Net10
+    - Added 3 more tails
+    - Revised tail and ear texture masks
+    - Added PistFissed cats' names to game: Meatball Fritz and Bug Binx
 - 0.3.0, 2026-05-30:
     - Added 5 more face accent patterns
     - Cheeches now occasionally spawn with hair, beards, and/or cheech-specific names
@@ -66,6 +73,9 @@ If you just have ideas or requests, let us know in the comments. If you have cat
 ## TODO / Ideas:
 - Add remaining Orassans tail textures to game.
 - Add remaining Orassans ear textures to game.
+- Improve ear and tail mask border overlap. I see some uncolored gaps when zooming in.
+- Custom shaders, maybe for masks in particular, since 1.7 has some new capabilities. - or maybe I just need to more carefully consider how I do masks and patterns in general.
+- Figure out how I can hot reload XML defs and maybe the mod assembly, since restarting the game between changes is getting annoying.
 - Search for and beg other catlike-mod authors to let me use derivations of some of their textures to beef up variety further.
 - Redo or augment name and coat pattern feature to allow players to submit an entirely custom cheech, modeled specifically after their cat.
 - Add catnip as a crop. You could use the Orassans textures for it.
@@ -103,10 +113,12 @@ My wife and I both loved the ridiculous adventures we've been on with our lost l
 This world (our real world) can be a tough place where it's easy to dwell on all the ugliness and bad things sometimes. Thank you, Diana, for helping create a place that makes me smile and helps me remember the good things (in RimWorld, of all places, right?!)
 
 ## AI Usage:
-This project uses AI, and scradam makes a point of it because he respects consumer choice to avoid AI. scradam is an AI enthusiast, although scradam condemns fossil fuel usage for AI training. AI was used extensively to assist with coding. Trivial Photoshop AI features were used as well, sparingly. AI will probably be used extensively for localization and will be expanded to assist in other ways as AI evolves and as scradam learns to leverage AI in new, novel ways. Claude has been such a huge stepping-stone just for help with quickly analyzing RimWorld source code and sanity checking that what we're trying to do is the best way to go about it.
+scradam and ShawShaw are industry veterans and professionals in both graphic design and software development. We've both been employed as graphic designers in our early careers, and we've spent most of our careers as professional programmers. We have a combined 50+ years of daily, professional experience in graphic design and software development. scradam in particular has been programming in C# literally since day 1 of its version 1.0 release, and ShawShaw is still an extremely adept artist who is regularly commissioned in her spare time. scradam and ShawShaw started work on this project in 2024, before the advent of agentic AI. We condemn fossil fuel usage for nearly all major purposes, and particularly for datacenters. We implore our governments and industry titans to invest in renewable energy.
+
+That said, **this project uses agentic AI**, mostly for coding assistance. Nearly all industry professionals use AI extensively now, and one day soon, for better or worse, AI may indeed very likely put scradam personally out of his job.
 
 ## Donations & Support:
-If you can just say you like the mod in the comments, that would mean a lot. scradam and ShawShaw spent over a year, off and on, trying to get this mod working in their miniscule amounts of free time, so just knowing someone else likes it would be huge. Beyond that, donate to your favorite animal welfare charity or shelter, and if you want to do it in scradam or ShawShaw's honor, just tell us you did so. Humane treatment of animals is a cause very dear to scradam's heart, and if you can help there, it's a huge inspiration for scradam to continue work on this mod.
+If you can just say you like the mod in the comments, that would mean a lot. scradam and ShawShaw spent over a year, off and on, trying to get this mod working in their minuscule amounts of free time, so just knowing someone else likes it would be huge. Beyond that, donate to your favorite animal welfare charity or shelter, and if you want to do it in scradam or ShawShaw's honor, just tell us you did so. Humane treatment of animals is a cause very dear to scradam's heart, and if you can help there, it's a huge inspiration for scradam to continue work on this mod.
 
 Animal cruelty:\
 ✅😊👍🌈 in RimWorld.\
@@ -115,7 +127,7 @@ Animal cruelty:\
 ## 'Licensing':
 If you want to re-use individual assets or code from this mod, no credit to scradam or ShawShaw is needed, although scradam requests you credit and ask permission of the original authors that we credited, where appropriate, since this mod is standing on their shoulders. e.g. Ask Diana if you want to use her Orassans textures. All of the code in this mod is basically written by scradam and Claude at this point, and you are free to use it as you like (MIT license) without any constraints or credit needed.
 
-If you fork this mod and publish a new version to the Steam Workshop or elsewhere that does not use this mod as a dependency, scradam kindly requests that you name your fork something that does not denote your version is 'continued', 'upgraded', 'improved', or any other such terminology that implies your version is largely or wholy better than this version, without first obtaining scradam's express approval (because otherwise, why not just contribute to this existing version via the public github?).
+If you fork this mod and publish a new version to the Steam Workshop or elsewhere that does not use this mod as a dependency, scradam kindly requests that you name your fork something that does not denote your version is 'continued', 'upgraded', 'improved', or any other such terminology that implies your version is largely or wholly better than this version, without first obtaining scradam's express approval (because otherwise, why not just contribute to this existing version via the public github?).
 
 #### Unacceptable Examples:
 - Cheech Xenotype Continued

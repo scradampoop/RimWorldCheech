@@ -1,0 +1,113 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- One project builds every supported game version. Each TargetFramework maps to a RimWorld version, its game assemblies, and its {version}/Assemblies output folder (picked by RimWorld's default version-folder lookup). To drop a version, remove its TFM here; its last-built DLL stays put. -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
+    <RimWorldVersion>1.6</RimWorldVersion>
+    <!-- Offloaded copy of the 1.6 install (Steam's RimWorld folder now holds 1.7). -->
+    <RimWorldManaged>C:\rw\RimWorld16\RimWorldWin64_Data\Managed</RimWorldManaged>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <!-- PolySharp should be enough to enable most C# 14 features in .NetFW and Standard, but occasionally, we have to add an extra package here or there to make it work, and Adam doesn't know why yet. -->
+    <!--<PackageReference Include="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>-->
+    <!-- Microsoft.Bcl.Memory includes support for Index Range operators, which is also performed via PolySharp. Adam doesn't yet know how/why this is necessary in some places. -->
+    <!--<PackageReference Condition="'$(TargetFramework)' == 'net48'" Include="Microsoft.Bcl.Memory" />-->
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <RimWorldVersion>1.7</RimWorldVersion>
+    <!-- 1.7 (Waylith engine, .NET 10) keeps its managed assemblies in the game root. -->
+    <RimWorldManaged>C:\Steam\steamapps\common\RimWorld</RimWorldManaged>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net48;net10.0</TargetFrameworks>
+    <DefineConstants>$(DefineConstants);RW_$(RimWorldVersion.Replace('.', '_'))</DefineConstants>
+    <LangVersion>14</LangVersion>
+    <Nullable>enable</Nullable>
+    <AssemblyName>CheechXenotype</AssemblyName>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- AppendTargetFrameworkToOutputPath=false also drops the TFM from obj\, which would make the targets clobber each other's intermediates. -->
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\$(TargetFramework)\</IntermediateOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputType>Library</OutputType>
+    <Deterministic>false</Deterministic>
+    <DebugType>none</DebugType>
+    <OutputPath>..\$(RimWorldVersion)\Assemblies</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugSymbols>false</DebugSymbols>
+    <WarningLevel>1</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Configurations>Release</Configurations>
+    <!-- RimWorld loads mod DLLs directly; a .deps.json alongside is just clutter. -->
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.4.3" />
+    <PackageReference Include="Krafs.Publicizer" Version="2.3.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <Publicize Include="Assembly-CSharp:Verse.PawnRenderNode.props" />
+    <Publicize Include="Assembly-CSharp:Verse.Pawn.drawer" />
+    <Publicize Include="Assembly-CSharp:RimWorld.Dialog_ColorPickerBase.focusableControlNames" />
+    <Publicize Include="Assembly-CSharp:RimWorld.Dialog_ColorPickerBase.ButSize" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="RimWorld" />
+    <Using Include="HarmonyLib" />
+    <Using Include="UnityEngine" />
+    <Using Include="Verse" />
+    <Using Include="System" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimWorldManaged)\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <Reference Include="UnityEngine">
+      <HintPath>$(RimWorldManaged)\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(RimWorldManaged)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(RimWorldManaged)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(RimWorldManaged)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>$(RimWorldManaged)\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!--<Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>$(RimWorldManaged)\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>-->
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(RimWorldManaged)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <!-- 1.7 has no Unity: its runtime redirects UnityEngine* references to UnityStubs.dll, which carries the UnityEngine namespace. -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <Reference Include="UnityStubs">
+      <HintPath>$(RimWorldManaged)\UnityStubs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="z_scratchpad.cs" />
+    <None Include="z_scratchpad.cs" />
+  </ItemGroup>
+</Project>

@@ -61,6 +61,9 @@
 			<li>GeneDef_Cheech_Ears_Large_PinkFill_Solid</li>
 			<li>GeneDef_Cheech_Ears_Large_PinkFill_Spots</li>
 			<li>GeneDef_Cheech_Tail_Stripes</li>
+			<li>GeneDef_Cheech_Tail_Cheechy_Tip</li>
+			<li>GeneDef_Cheech_Tail_Long_Tip</li>
+			<li>GeneDef_Cheech_Tail_Bob_Tip</li>
 			<li>GeneDef_Cheech_Pheromones</li>
 		</genes>
 	</XenotypeDef>

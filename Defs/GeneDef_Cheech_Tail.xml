@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+	<GeneDef Name="GeneDef_Cheech_Tail" ParentName="GeneTailBase" Abstract="True">
+		<!--Inherited:
+		<displayCategory>Miscellaneous</displayCategory>
+		<randomChosen>true</randomChosen>
+		<exclusionTags>
+			<li>Tail</li>
+		</exclusionTags>-->
+		<geneClass>Cheechin.GeneTailWithPattern</geneClass>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<displayOrderInCategory>1000</displayOrderInCategory>
+		<renderNodeProperties>
+			<li Class="Cheechin.PawnRenderNodeProperties_BodyTypeOffsets">
+				<nodeClass>Cheechin.PawnRenderNode_TailWithPattern</nodeClass>
+				<workerClass>Cheechin.PawnRenderNodeWorker_AttachmentBodyType</workerClass>
+				<texPath>Cheech/Tail/Cheech_Tail</texPath>
+				<colorType>Custom</colorType>
+				<overrideMeshSize>(1, 1)</overrideMeshSize>
+				<parentTagDef>Body</parentTagDef>
+				<useRottenColor>true</useRottenColor>
+				<rotDrawMode>Fresh,Rotting</rotDrawMode>
+				<!--<visibleFacing>
+					<li>East</li>
+					<li>North</li>
+					<li>West</li>
+				</visibleFacing>
+Notes/example for changing offsets:
+dataNorth/dataSouth (0, 0, -0.25) — no horizontal shift, pushed down 0.25 cells.
+dataEast (-0.55, 0, -0.25) — shifted 0.55 cells left and 0.25 down (tail hanging off the pawn's left side when they face east).
+dataWest (0.55, 0, -0.25) — mirrored: 0.55 right, 0.25 down.
+				-->
+				<drawData>
+					<scaleOffsetByBodySize>true</scaleOffsetByBodySize>
+					<defaultData>
+						<layer>-2</layer>
+					</defaultData>
+					<dataNorth>
+						<offset>(0,0,-0.22)</offset>
+						<layer>90</layer>
+					</dataNorth>
+					<dataSouth>
+						<offset>(0,0,-0.12)</offset>
+						<!--<layer>90</layer>-->
+					</dataSouth>
+					<dataEast>
+						<offset>(-0.5,0,-0.23)</offset>
+					</dataEast>
+					<dataWest>
+						<offset>(0.5,0,-0.23)</offset>
+					</dataWest>
+				</drawData>
+				<!--
+				Per-body-type attach-point corrections, added on top of drawData above. <offset> nudges all facings. +Z is up, +X is right. Tune one body type at a time in-game with the DEV: Fur Colors pawn.
+				-->
+				<bodyTypeOffsets>
+					<li>
+						<bodyType>Male</bodyType>
+						<offset>(0.05, 0, 0.04)</offset>
+					</li>
+					<li>
+						<bodyType>Fat</bodyType>
+						<offset>(-0.03, 0, 0.08)</offset>
+					</li>
+					<li>
+						<bodyType>Hulk</bodyType>
+						<offset>(-0.1, 0, -0.03)</offset>
+					</li>
+				</bodyTypeOffsets>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneDef_Cheech_Tail">
+		<defName>GeneDef_Cheech_Tail_Stripes</defName>
+		<label>cheech tail</label>
+		<description>Striped Cheech tail.  ^_^</description>
+		<renderNodeProperties>
+			<li Class="Cheechin.PawnRenderNodeProperties_PatternMask">
+				<maskPath>Cheech/Tail/m/Cheech_Tail_Stripes</maskPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<!--
+	Cheechy tail OUTLINE abstract: the greyscale Cheechy_Tail texture. Independent of	GeneDef_Cheech_Tail — it extends the vanilla GeneTailBase directly (same convention	as the ear outlines),
+	so it restates the Cheech scalar config (geneClass, icon,	biostats) and needs no Inherit="False" since GeneTailBase carries no render li.	Mask variants below ParentName this and just
+	append a PatternMask li, so one outline can host many masks. drawData/bodyTypeOffsets mirror GeneDef_Cheech_Tail as a	starting point; tune in-game with the DEV: Fur Colors gizmo if needed.
+	-->
+	<GeneDef Name="GeneDef_Cheech_Tail_Cheechy" ParentName="GeneTailBase" Abstract="True">
+		<geneClass>Cheechin.GeneTailWithPattern</geneClass>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<displayOrderInCategory>1000</displayOrderInCategory>
+		<renderNodeProperties>
+			<li Class="Cheechin.PawnRenderNodeProperties_BodyTypeOffsets">
+				<nodeClass>Cheechin.PawnRenderNode_TailWithPattern</nodeClass>
+				<workerClass>Cheechin.PawnRenderNodeWorker_AttachmentBodyType</workerClass>
+				<texPath>Cheech/Tail/Cheechy_Tail</texPath>
+				<colorType>Custom</colorType>
+				<overrideMeshSize>(1, 1)</overrideMeshSize>
+				<parentTagDef>Body</parentTagDef>
+				<useRottenColor>true</useRottenColor>
+				<rotDrawMode>Fresh,Rotting</rotDrawMode>
+				<drawData>
+					<scaleOffsetByBodySize>true</scaleOffsetByBodySize>
+					<defaultData>
+						<layer>-2</layer>
+					</defaultData>
+					<dataNorth>
+						<offset>(-0.03,0,-0.65)</offset>
+						<layer>90</layer>
+					</dataNorth>
+					<dataSouth>
+						<offset>(-0.03,0,-0.55)</offset>
+					</dataSouth>
+					<dataEast>
+						<offset>(-0.55,0,-0.55)</offset>
+					</dataEast>
+					<dataWest>
+						<offset>(0.55,0,-0.55)</offset>
+					</dataWest>
+				</drawData>
+				<bodyTypeOffsets>
+					<li>
+						<bodyType>Male</bodyType>
+						<offset>(0.05, 0, 0.04)</offset>
+					</li>
+					<li>
+						<bodyType>Fat</bodyType>
+						<offset>(-0.03, 0, 0.08)</offset>
+					</li>
+					<li>
+						<bodyType>Hulk</bodyType>
+						<offset>(-0.1, 0, -0.06)</offset>
+					</li>
+					<li>
+						<bodyType>Thin</bodyType>
+						<offset>(0, 0, -0.04)</offset>
+					</li>
+				</bodyTypeOffsets>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneDef_Cheech_Tail_Cheechy">
+		<defName>GeneDef_Cheech_Tail_Cheechy_Tip</defName>
+		<label>cheechy tail</label>
+		<description>A slender, curling cheech tail with an accent-colored tip.</description>
+		<renderNodeProperties>
+			<li Class="Cheechin.PawnRenderNodeProperties_PatternMask">
+				<maskPath>Cheech/Tail/m/Cheechy_Tail_Tip</maskPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<!--
+	Long tail OUTLINE abstract: the greyscale Long_Tail texture, same convention as GeneDef_Cheech_Tail_Cheechy. Long_Tail is drawn in the same canvas frame as Cheechy_Tail (base end at the top,
+	tip on the curl), so drawData is Cheechy's with the small base-end difference subtracted out, putting the root on the same body attach point. bodyTypeOffsets copied from Cheechy.
+	-->
+	<GeneDef Name="GeneDef_Cheech_Tail_Long" ParentName="GeneTailBase" Abstract="True">
+		<geneClass>Cheechin.GeneTailWithPattern</geneClass>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<displayOrderInCategory>1000</displayOrderInCategory>
+		<renderNodeProperties>
+			<li Class="Cheechin.PawnRenderNodeProperties_BodyTypeOffsets">
+				<nodeClass>Cheechin.PawnRenderNode_TailWithPattern</nodeClass>
+				<workerClass>Cheechin.PawnRenderNodeWorker_AttachmentBodyType</workerClass>
+				<texPath>Cheech/Tail/Long_Tail</texPath>
+				<colorType>Custom</colorType>
+				<overrideMeshSize>(1, 1)</overrideMeshSize>
+				<parentTagDef>Body</parentTagDef>
+				<useRottenColor>true</useRottenColor>
+				<rotDrawMode>Fresh,Rotting</rotDrawMode>
+				<drawData>
+					<scaleOffsetByBodySize>true</scaleOffsetByBodySize>
+					<defaultData>
+						<layer>-2</layer>
+					</defaultData>
+					<dataNorth>
+						<offset>(0.02,0,-0.64)</offset>
+						<layer>90</layer>
+					</dataNorth>
+					<dataSouth>
+						<offset>(0.05,0,-0.55)</offset>
+					</dataSouth>
+					<dataEast>
+						<offset>(-0.53,0,-0.54)</offset>
+					</dataEast>
+					<dataWest>
+						<offset>(0.53,0,-0.54)</offset>
+					</dataWest>
+				</drawData>
+				<bodyTypeOffsets>
+					<li>
+						<bodyType>Male</bodyType>
+						<offset>(0.05, 0, 0.02)</offset>
+					</li>
+					<li>
+						<bodyType>Fat</bodyType>
+						<offset>(-0.03, 0, 0.1)</offset>
+					</li>
+					<li>
+						<bodyType>Hulk</bodyType>
+						<offset>(-0.1, 0, -0.09)</offset>
+					</li>
+					<li>
+						<bodyType>Thin</bodyType>
+						<offset>(0, 0, -0.05)</offset>
+					</li>
+				</bodyTypeOffsets>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneDef_Cheech_Tail_Long">
+		<defName>GeneDef_Cheech_Tail_Long_Tip</defName>
+		<label>long cheech tail</label>
+		<description>A long, swishy cheech tail that curls at the end, with an accent-colored tip.</description>
+		<renderNodeProperties>
+			<li Class="Cheechin.PawnRenderNodeProperties_PatternMask">
+				<maskPath>Cheech/Tail/m/Long_Tail_Tip</maskPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<!--
+	Bobtail OUTLINE abstract: the greyscale Bob_Tail texture. The stub has no hidden "stem" to tuck behind the body, so its open (unoutlined) root edge has to sit right on the rump:
+	- East/West: root edge placed ~0.04 inside the rear edge of the Female body silhouette at rump height (z ≈ -0.31); layer -2 hides the seam.
+	- North: drawn over the lower back (layer 90), root at z ≈ -0.24.
+	- South: same spot behind the body, so it's hidden from the front (like a real bobtail). To make it peek out, raise/shift dataSouth.
+	bodyTypeOffsets follow each body type's rear edge / rump height relative to Female (measured from the Tufts body textures), not Cheechy's values, since a stub can't hide a gap.
+	-->
+	<GeneDef Name="GeneDef_Cheech_Tail_Bob" ParentName="GeneTailBase" Abstract="True">
+		<geneClass>Cheechin.GeneTailWithPattern</geneClass>
+		<iconPath>Cheech/Icons/Icon_Paw</iconPath>
+		<biostatCpx>0</biostatCpx>
+		<biostatMet>0</biostatMet>
+		<displayOrderInCategory>1000</displayOrderInCategory>
+		<renderNodeProperties>
+			<li Class="Cheechin.PawnRenderNodeProperties_BodyTypeOffsets">
+				<nodeClass>Cheechin.PawnRenderNode_TailWithPattern</nodeClass>
+				<workerClass>Cheechin.PawnRenderNodeWorker_AttachmentBodyType</workerClass>
+				<texPath>Cheech/Tail/Bob_Tail</texPath>
+				<colorType>Custom</colorType>
+				<overrideMeshSize>(1, 1)</overrideMeshSize>
+				<parentTagDef>Body</parentTagDef>
+				<useRottenColor>true</useRottenColor>
+				<rotDrawMode>Fresh,Rotting</rotDrawMode>
+				<drawData>
+					<scaleOffsetByBodySize>true</scaleOffsetByBodySize>
+					<defaultData>
+						<layer>-2</layer>
+					</defaultData>
+					<dataNorth>
+						<offset>(-0.03,0,-0.63)</offset>
+						<layer>90</layer>
+					</dataNorth>
+					<dataSouth>
+						<offset>(0.03,0,-0.63)</offset>
+					</dataSouth>
+					<dataEast>
+						<offset>(-0.62,0,-0.52)</offset>
+					</dataEast>
+					<dataWest>
+						<offset>(0.62,0,-0.52)</offset>
+					</dataWest>
+				</drawData>
+				<bodyTypeOffsets>
+					<li>
+						<bodyType>Male</bodyType>
+						<offset>(0.1, 0, -0.05)</offset>
+					</li>
+					<li>
+						<bodyType>Fat</bodyType>
+						<offset>(0, 0, 0.05)</offset>
+					</li>
+					<li>
+						<bodyType>Hulk</bodyType>
+						<offset>(-0.05, 0, -0.1)</offset>
+					</li>
+					<li>
+						<bodyType>Thin</bodyType>
+						<offset>(0, 0, -0.1)</offset>
+					</li>
+				</bodyTypeOffsets>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+	<GeneDef ParentName="GeneDef_Cheech_Tail_Bob">
+		<defName>GeneDef_Cheech_Tail_Bob_Tip</defName>
+		<label>cheech bobtail</label>
+		<description>A short, fluffy cheech bobtail with an accent-colored tip.</description>
+		<renderNodeProperties>
+			<li Class="Cheechin.PawnRenderNodeProperties_PatternMask">
+				<maskPath>Cheech/Tail/m/Bob_Tail_Tip</maskPath>
+			</li>
+		</renderNodeProperties>
+	</GeneDef>
+
+</Defs>
